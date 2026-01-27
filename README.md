@@ -39,7 +39,7 @@ Ikuti langkah-langkah berikut untuk menjalankan projek di lokal:
 
 1. **Clone Repository:**
 ```bash
-git clone [url-repo-kamu]
+git clone https://github.com/saputt/TIBER-FE.git
 cd TIBER-FE
 
 ```
