@@ -88,8 +88,3 @@ Untuk menjaga kualitas kode, harap ikuti aturan branch berikut:
 
 Dokumentasi endpoint dapat diakses di file [DOKUMENTASI_API.md] atau di ClickUp tim.
 
-```
-
-**Gimana? Ada bagian di README yang mau ditambahin?** Atau kamu sudah siap buat tarik napas dan mulai meet-nya? Semangat ya, Lead! Kamu pasti bisa nge-lead tim ini dengan mantap.
-
-```
