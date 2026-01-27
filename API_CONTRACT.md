@@ -127,6 +127,8 @@
   "milestones": [
     { "label": "Memulai Perjalanan", "day": 1, "is_completed": true },
     { "label": "Fase Awal", "day": 45, "is_completed": true },
+    { "label": "Tengah Perjalanan", "day": 90, "is_completed": false },
+    { "label": "Mendekati Akhir", "day": 135, "is_completed": false },
     { "label": "Selesai", "day": 180, "is_completed": false }
   ]
 }
