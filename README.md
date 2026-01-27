@@ -1,16 +1,95 @@
-# React + Vite
+# 🏥 TIBER - Frontend (Tuberculosis Care App)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Selamat datang di repository Frontend **TIBER**. Projek ini dibangun menggunakan **React + Vite** dengan fokus pada performa dan skalabilitas untuk membantu pasien TBC dalam manajemen pengobatan.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tech Stack
 
-## React Compiler
+* **Framework:** [React.js](https://react.dev/) (Vite)
+* **State Management:** [Zustand](https://github.com/pmndrs/zustand) (with Persist Middleware)
+* **Routing:** [React Router DOM v6](https://reactrouter.com/) (Data Browser Router)
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+* **API Client:** Native Fetch API (with custom wrapper)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📂 Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Struktur folder ini dirancang agar modular dan mudah dipahami oleh tim:
+
+```text
+src/
+├── assets/         # Gambar, ikon, dan aset statis
+├── components/     # Reusable UI Components (Button, Input, dll)
+├── hooks/          # Custom React Hooks
+├── pages/          # Halaman utama aplikasi (Dashboard, Login, dll)
+├── routes/         # Konfigurasi routing & Protected Routes
+├── services/       # Komunikasi API (api.js & module services)
+├── store/          # Zustand State Management (Auth, UI, dll)
+└── utils/          # Fungsi pembantu (format tanggal, dll)
+
+```
+
+---
+
+## 🚀 Getting Started
+
+Ikuti langkah-langkah berikut untuk menjalankan projek di lokal:
+
+1. **Clone Repository:**
+```bash
+git clone [url-repo-kamu]
+cd TIBER-FE
+
+```
+
+
+2. **Install Dependencies:**
+```bash
+npm install
+
+```
+
+
+3. **Setup Environment:**
+Buat file `.env` di root folder dan masukkan Base URL API:
+```env
+VITE_API_URL=http://localhost:8000/api
+
+```
+
+
+4. **Run Development Server:**
+```bash
+npm run dev
+
+```
+
+
+
+---
+
+## 🛤️ Workflow Kolaborasi (Git)
+
+Untuk menjaga kualitas kode, harap ikuti aturan branch berikut:
+
+1. **Main:** Hanya untuk kode yang sudah siap produksi (Stable).
+2. **Dev:** Branch pusat pengembangan fitur.
+3. **Feature Branch:** Buat branch baru dari `dev` untuk tiap tugas.
+* Format: `feat/nama-fitur` atau `fix/nama-bug`
+* Lakukan **Pull Request (PR)** ke `dev` setelah selesai.
+
+
+
+---
+
+## 📝 API Contract Reference
+
+Dokumentasi endpoint dapat diakses di file [DOKUMENTASI_API.md] atau di ClickUp tim.
+
+```
+
+**Gimana? Ada bagian di README yang mau ditambahin?** Atau kamu sudah siap buat tarik napas dan mulai meet-nya? Semangat ya, Lead! Kamu pasti bisa nge-lead tim ini dengan mantap.
+
+```
