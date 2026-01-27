@@ -1,15 +1,15 @@
-# 📑 Full API Contract - Project TIBER
-
-Dokumentasi lengkap untuk integrasi Frontend & Backend.
-**Base URL:** `http://localhost:8000/api`
+# 🏥 TIBER API CONTRACT
+> Dokumentasi standar pertukaran data antara Frontend & Backend.
 
 ---
 
-## 🔐 1. Authentication
+## 🔐 1. AUTHENTICATION
 
-### **A. Register & Personalization**
-- **Endpoint:** `POST /register`
-- **Request:**
+### 📥 REGISTER & PERSONALIZATION
+`POST` `/api/register`
+> Mendaftarkan user baru sekaligus inisialisasi jadwal pengobatan.
+
+**Request Body**
 ```json
 {
   "first_name": "Sauki",
@@ -27,24 +27,64 @@ Dokumentasi lengkap untuk integrasi Frontend & Backend.
 
 ```
 
-* **Response (201):** `{ "message": "...", "token": "1|abc...", "user": { "id": 1, ... } }`
+**Response Success (201)**
+
+```json
+{
+  "message": "User and personalization data created successfully",
+  "token": "1|abcde12345",
+  "user": {
+    "id": 1,
+    "first_name": "Sauki",
+    "email": "sauki@example.com"
+  }
+}
+
+```
 
 ---
 
-### **B. Login**
+### 🔑 LOGIN
 
-* **Endpoint:** `POST /login`
-* **Request:** `{ "email": "sauki@example.com", "password": "password123" }`
-* **Response (200):** `{ "message": "Login successful", "token": "1|abc...", "user": { "id": 1, "first_name": "Sauki" } }`
+`POST` `/api/login`
+
+> Autentikasi user untuk mendapatkan token akses.
+
+**Request Body**
+
+```json
+{
+  "email": "sauki@example.com",
+  "password": "password123"
+}
+
+```
+
+**Response Success (200)**
+
+```json
+{
+  "message": "Login successful",
+  "token": "1|abcde12345",
+  "user": { 
+    "id": 1, 
+    "first_name": "Sauki" 
+  }
+}
+
+```
 
 ---
 
-## 📊 2. Dashboard & Progress
+## 📊 2. DASHBOARD & PROGRESS
 
-### **A. Dashboard (Data Harian)**
+### 🏠 GET DAILY DASHBOARD
 
-* **Endpoint:** `GET /dashboard`
-* **Response (200):**
+`GET` `/api/dashboard`
+
+> Mengambil ringkasan statistik harian user.
+
+**Response Success (200)**
 
 ```json
 {
@@ -56,21 +96,34 @@ Dokumentasi lengkap untuk integrasi Frontend & Backend.
     "current_day": 40,
     "total_days": 150 
   },
-  "today_task": { "time": "07:00", "is_taken": false, "status": "active" }
+  "today_task": {
+    "time": "07:00",
+    "is_taken": false,
+    "status": "active"
+  }
 }
 
 ```
 
 ---
 
-### **B. Progress Perjalanan (Milestones)**
+### 📈 GET MILESTONES
 
-* **Endpoint:** `GET /progress`
-* **Response (200):**
+`GET` `/api/progress`
+
+> Mengambil riwayat perjalanan pengobatan panjang.
+
+**Response Success (200)**
 
 ```json
 {
-  "current_status": { "current_day": 46, "total_days": 180, "percentage": 25.56, "days_remaining": 134 },
+  "current_status": {
+    "current_day": 46,
+    "total_days": 180,
+    "percentage": 25.56,
+    "days_remaining": 134,
+    "months_remaining": 5
+  },
   "milestones": [
     { "label": "Memulai Perjalanan", "day": 1, "is_completed": true },
     { "label": "Fase Awal", "day": 45, "is_completed": true },
@@ -82,77 +135,113 @@ Dokumentasi lengkap untuk integrasi Frontend & Backend.
 
 ---
 
-## 💊 3. Activities & Logs
+## 💊 3. MEDICATION LOGS
 
-### **A. Konfirmasi Minum Obat**
+### 📝 CONFIRM MEDICATION
 
-* **Endpoint:** `POST /logs`
-* **Request:** `{ "logged_time": "18:05" }`
-* **Response (200):** `{ "message": "Log recorded", "new_streak": 6 }`
+`POST` `/api/logs`
 
----
+> Mencatat waktu user meminum obat hari ini.
 
-### **B. Konfirmasi Kontrol Dokter**
+**Request Body**
 
-* **Endpoint:** `POST /personalization/checkup`
-* **Request:** `{ "checkup_date": "2026-01-26" }`
-* **Response (200):** `{ "message": "...", "next_checkup_date": "2026-02-26" }`
+```json
+{	
+  "logged_time": "18:05"
+}
 
----
+```
 
-### **C. Riwayat Aktivitas (Kalender)**
-
-* **Endpoint:** `GET /activity?filter=weekly`
-* **Response (200):**
+**Response Success (200)**
 
 ```json
 {
-  "summary": { "total_confirmed_days": 4, "consistency_percentage": 57 },
-  "calendar_data": [
-    { "date": "2026-01-19", "day": "Sen", "status": "missed" },
-    { "date": "2026-01-21", "day": "Rab", "status": "confirmed" }
-  ]
+  "message": "Log recorded",
+  "new_streak": 6
 }
 
 ```
 
 ---
 
-## ⚙️ 4. Profile & Account
+### 🏥 CONFIRM CHECKUP
 
-### **A. Ambil Data Profil**
+`POST` `/api/personalization/checkup`
 
-* **Endpoint:** `GET /profile`
-* **Response (200):** `{ "user": { "full_name": "Sauki Well", ... }, "settings": { "reminder_time": "08:00:00", ... } }`
+> Mengonfirmasi jadwal kontrol ke dokter telah dilakukan.
 
----
+**Request Body**
 
-### **B. Update Settings**
+```json
+{
+  "checkup_date": "2026-01-26"
+}
 
-* **Endpoint:** `PUT /profile/settings`
-* **Request:** `{ "reminder_time": "07:30:00", "duration_months": 6, ... }`
+```
 
----
+**Response Success (200)**
 
-### **C. Ubah Password**
+```json
+{
+  "message": "Jadwal kontrol berikutnya telah diperbarui",
+  "next_checkup_date": "2026-02-26"
+}
 
-* **Endpoint:** `PUT /profile/password`
-* **Request:** `{ "old_password": "...", "new_password": "...", "new_password_confirmation": "..." }`
-
----
-
-### **D. Logout**
-
-* **Endpoint:** `POST /logout`
-* **Response (200):** `{ "message": "Berhasil keluar" }`
+```
 
 ---
 
-## ⚠️ 5. Error Handling
+## ⚙️ 4. PROFILE & ACCOUNT
 
-| Status | Deskripsi | Format Response |
-| --- | --- | --- |
-| **422** | **Validation** | `{ "errors": { "email": ["Sudah terdaftar"] } }` |
-| **401** | **Unauthorized** | `{ "message": "Invalid login credentials." }` |
-| **404** | **Not Found** | `{ "message": "Resource not found." }` |
-| **500** | **Server Error** | `{ "message": "Internal Server Error." }` |
+### 👤 GET PROFILE
+
+`GET` `/api/profile`
+
+**Response Success (200)**
+
+```json
+{
+  "user": {
+    "full_name": "Sauki Well",
+    "status": "Pengguna aktif"
+  },
+  "settings": {
+    "reminder_time": "08:00:00",
+    "start_date": "2026-01-26",
+    "duration_months": 6,
+    "control_frequency": 1
+  }
+}
+
+```
+
+---
+
+### 🚪 LOGOUT
+
+`POST` `/api/logout`
+
+**Response Success (200)**
+
+```json
+{
+  "message": "Berhasil keluar"
+}
+
+```
+
+---
+
+## ⚠️ 5. ERROR HANDLING STANDARDS
+
+| Status | Deskripsi |
+| --- | --- |
+| `422` | **Validation Error** - Input tidak valid / Email sudah ada. |
+| `401` | **Unauthenticated** - Token salah atau expired. |
+| `404` | **Not Found** - Data yang dicari tidak ada. |
+| `500` | **Server Error** - Kesalahan internal server Laravel. |
+
+```
+u agar dia tahu tipe data tiap kolom database-nya? (Contoh: `reminder_time` itu tipe `TIME`, `duration` itu `INT`, dll).
+
+```
