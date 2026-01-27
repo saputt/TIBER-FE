@@ -20,14 +20,22 @@ Struktur folder ini dirancang agar modular dan mudah dipahami oleh tim:
 
 ```text
 src/
-├── assets/         # Gambar, ikon, dan aset statis
-├── components/     # Reusable UI Components (Button, Input, dll)
-├── hooks/          # Custom React Hooks
-├── pages/          # Halaman utama aplikasi (Dashboard, Login, dll)
-├── routes/         # Konfigurasi routing & Protected Routes
-├── services/       # Komunikasi API (api.js & module services)
-├── store/          # Zustand State Management (Auth, UI, dll)
-└── utils/          # Fungsi pembantu (format tanggal, dll)
+├── assets/             # Gambar, Icon (SVG), dan file statis
+├── components/         # Atomic Design System
+│   ├── atoms/          # Komponen dasar (Button.jsx, Input.jsx, Badge.jsx)
+│   ├── molecules/      # Gabungan atoms (FormGroup.jsx, CardInfo.jsx)
+│   ├── organisms/      # Komponen kompleks (Navbar.jsx, Sidebar.jsx, LogTable.jsx)
+│   └── templates/      # Layout utama (MainLayout.jsx, AuthLayout.jsx)
+├── hooks/              # Custom Hooks & TanStack Query Logic
+├── pages/              # Halaman Utama (entry point router)
+├── services/           # Konfigurasi Fetch & API Client
+├── store/              # State Management (Zustand)
+├── utils/              # Helper functions
+├── routes/             # Konfigurasi React Router
+├── styles/             # Global CSS (Tailwind directives)
+├── App.jsx             # Root Component (QueryClientProvider & Router)
+└── main.jsx            # Entry point
+
 
 ```
 
