@@ -39,11 +39,11 @@ const TimePickerSlider = ({ timeDay }) => {
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <p>
+    <div className="flex flex-col gap-4 m-5">
+      <p className="text-sm text-black">
         time Pengingat - <b>{timeDay}</b>
       </p>
-      <div className="bg-red-200 p-4 flex flex-col gap-3">
+      <div className="p-5 flex flex-col gap-3 bg-white rounded-md border-1 border-gray-300 shadow-sm">
         <RangeSlider
           min={minMinute}
           max={maxMinute}
@@ -52,13 +52,13 @@ const TimePickerSlider = ({ timeDay }) => {
           onChange={(e) => setMinutes(parseInt(e.target.value))}
         />
 
-        <div className="flex justify-between">
+        <div className="flex justify-between text-black/70">
           {getTime().time.map((time) => (
-            <p>{time}</p>
+            <p className="text-sm">{time}</p>
           ))}
         </div>
 
-        <div className="w-[80%] bg-gray-100 p-4 rounded-xl text-center text-2xl font-bold m-auto">
+        <div className="w-[80%] bg-gray-100 p-2 rounded-xl text-center text-xl font-bold m-auto border-1 border-gray-300 text-black/75">
           {formatTime(minutes)}
         </div>
       </div>

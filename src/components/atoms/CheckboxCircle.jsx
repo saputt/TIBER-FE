@@ -1,19 +1,22 @@
-import { CircleCheck } from "lucide-react";
+import { Circle, CircleCheck } from "lucide-react";
 import React, { useState } from "react";
 
-const CheckboxCircle = () => {
-  const [active, setActive] = useState(true);
+const CheckboxCircle = ({ isActive }) => {
   const defaultDesign =
-    "rounded-full w-10 aspect-square bg-gray-50 p-1 flex justify-center items-center";
+    "rounded-full p-2 flex justify-center items-center inline-block";
   return (
     <>
-      {active && (
-        <div className={defaultDesign}>
-          <CircleCheck size={20} className="text-primary" />
+      {isActive && (
+        <div className={`${defaultDesign} bg-primary`}>
+          <CircleCheck className="text-white w-4 h-4" />
         </div>
       )}
 
-      {!active && <div></div>}
+      {!isActive && (
+        <div className={`${defaultDesign} bg-gray-200`}>
+          <Circle className="text-gray-400 w-4 h-4" />
+        </div>
+      )}
     </>
   );
 };

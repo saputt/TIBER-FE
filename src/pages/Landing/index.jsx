@@ -1,12 +1,7 @@
-import React from "react";
-import CheckboxCircle from "../../components/atoms/CheckboxCircle";
+import React, { useState } from "react";
 
 const LandingPage = () => {
-  return (
-    <div>
-      <CheckboxCircle />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default LandingPage;
