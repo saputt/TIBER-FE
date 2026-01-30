@@ -1,6 +1,5 @@
 import React from "react";
-import Button from "../../components/atoms/Button";
-import Card from "../../components/atoms/Card";
+import TimePickerSlider from "../Auth/components/TimePickerSlider";
 
 const LandingPage = () => {
   return <div></div>;
