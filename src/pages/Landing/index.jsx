@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useState } from "react";
+import ButtonTest from "../../components/atoms/ButtonTest";
 
 const LandingPage = () => {
-  return (
-    <div>LandingPage</div>
-  )
-}
+  return <div></div>;
+};
 
-export default LandingPage
+export default LandingPage;
