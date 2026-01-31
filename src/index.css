@@ -5,8 +5,6 @@
   /* color */
   --color-primary: #4ea9a2;
   --color-secondary: #00ff4c1a;
-<<<<<<< Updated upstream
-=======
   --color-dark-yellow: #ffe082;
   --color-light-yellow: #fff9e6;
   --color-dark-blue: #5badff;
@@ -30,5 +28,4 @@
   --text-h5: 12px;
   --text-h6: 10px;
   --text-h7: 8px;
->>>>>>> Stashed changes
 }

@@ -3,7 +3,11 @@ import ButtonTest from "../../components/atoms/ButtonTest";
 import Navbar from "../../components/organism/Navbar";
 
 const LandingPage = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Navbar variant="landing" />
+    </div>
+  );
 };
 
 export default LandingPage;
