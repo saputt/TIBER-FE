@@ -4,11 +4,7 @@ import Navbar from "../../components/organism/Navbar";
 import OnboardingLayout from "../../components/templates/OnboardingLayout";
 
 const LandingPage = () => {
-  return (
-    <OnboardingLayout>
-      <p>tes</p>
-    </OnboardingLayout>
-  );
+  return <div></div>;
 };
 
 export default LandingPage;

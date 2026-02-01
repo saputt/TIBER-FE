@@ -6,20 +6,22 @@ import { ArrowRight } from "lucide-react";
 
 const OnboardingLayout = ({ step, children }) => {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 min-h-screen flex flex-col">
       <Navbar variant="setup" step={step} />
 
-      <main>
-        <section>{children}</section>
-
-        <footer className="bg-white sticky bottom-0 px-6 py-3 border-t-1 border-gray-200">
+      <main className="flex-1 flex flex-col">
+        <section className="flex-1 flex flex-col overflow-y-auto px-3 py-4">
+          <h3 className="text-h3 font-bold">{}</h3>
+          {children}
+        </section>
+        <footer className="bg-white sticky bottom-0 px-3 py-2 border-t-1 border-gray-200">
           <ButtonTest
             variant="primary"
             size="full"
-            className="flex items-center gap-3"
+            className="flex justify-center items-center gap-1"
           >
             <p className="font-bold text-h4">Lanjut</p>
-            <ArrowRight className="w-15 text-white" />
+            <ArrowRight size={15} className="text-white" />
           </ButtonTest>
         </footer>
       </main>
