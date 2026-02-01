@@ -13,7 +13,7 @@ import React from "react";
 </ButtonTest> */
 }
 
-const ButtonTest = ({ variant, size, children, className }) => {
+const ButtonTest = ({ variant, size, children, className, onClick }) => {
   // This is only included for constant styles.
   // If the style is not constant or changes, do not include
   // it in this variable. Include it in the className props or
@@ -44,6 +44,7 @@ const ButtonTest = ({ variant, size, children, className }) => {
   return (
     <button
       className={`${sizes[size]} ${variants[variant]} ${defaultStyle} ${className}`}
+      onClick={onClick}
     >
       {children}
     </button>
