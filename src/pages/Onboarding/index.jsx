@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import OnboardingLayout from "../../components/templates/OnboardingLayout";
 
 const OnboardingPage = () => {
-  return <div>OnboardingPage</div>;
+  return;
 };
 
 export default OnboardingPage;

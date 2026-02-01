@@ -1,11 +1,15 @@
 import { ArrowLeft, Menu, SquareChartGantt, User, X } from "lucide-react";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useOnboardingStore } from "../../store/useOnboardingStore";
 
 //navigation layout for mobile
-const MobileNav = ({ variant, navigate, location, step }) => {
+const MobileNav = ({ variant, navigate, location }) => {
   const [hamburgerIsOpen, setHamburgerIsOpen] = useState(false);
-  console.log(hamburgerIsOpen);
+
+  const step = useOnboardingStore((state) => state.step);
+  const totalStep = useOnboardingStore((state) => state.totalStep);
+
   return (
     <nav className="flex items-center gap-2">
       {/* left section */}
@@ -95,7 +99,7 @@ const MobileNav = ({ variant, navigate, location, step }) => {
 
         {variant === "setup" && (
           <p className="text-h5 font-light">
-            Langkah {step.currentStep} dari {step.totalStep}
+            Langkah {step} dari {totalStep}
           </p>
         )}
       </div>
@@ -105,19 +109,14 @@ const MobileNav = ({ variant, navigate, location, step }) => {
 
 const DekstopNav = ({ variant }) => {};
 
-const Navbar = ({ variant, step }) => {
+const Navbar = ({ variant }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const bgColor =
     variant === "main" || variant === "sub" ? "bg-primary/15" : "bg-white";
   return (
     <header className={`${bgColor} p-2 font-inter border-b-1 border-gray-400`}>
-      <MobileNav
-        step={step}
-        variant={variant}
-        navigate={navigate}
-        location={location}
-      />
+      <MobileNav variant={variant} navigate={navigate} location={location} />
       <DekstopNav variant={variant} />
     </header>
   );

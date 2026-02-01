@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../organism/Navbar";
 import Button from "../atoms/Button";
 import ButtonTest from "../atoms/ButtonTest";
 import { ArrowRight } from "lucide-react";
+import { useOnboardingStore } from "../../store/useOnboardingStore";
 
-const OnboardingLayout = ({ step, children }) => {
+const OnboardingLayout = ({ children }) => {
+  const nextStep = useOnboardingStore((state) => state.nextStep);
+  const backStep = useOnboardingStore((state) => state.backStep);
+
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
-      <Navbar variant="setup" step={step} />
+      <Navbar variant="setup" />
 
       <main className="flex-1 flex flex-col">
         <section className="flex-1 flex flex-col overflow-y-auto px-3 py-4">
