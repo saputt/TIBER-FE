@@ -2,32 +2,29 @@ import React from "react";
 
 // script onclick dll
 
-const Input = ({
-  type = "text",
-  name,
-  id,
-  placeholder = "placeholder...",
-  className,
-  width = "100%",
-  height = "42px",
-  padding = "0px 16px",
-  radiusBorder = "8px",
-  border = "1px solid #0000004D",
-}) => {
+const Input = ({ type, placeholder, variant, size, className, boxShadowActive }) => {
+  const defaultStyle = "rounded-lg px-2.5 py-2.5 focus:outline-black";
+
+  const variants = {
+    white: "bg-white text-black border-1 border-gray-400",
+    gray: "bg-slate-100 text-black border-1 border-gray-400",
+    whiteNoBorder: "bg-white text-black border-none",
+    grayNoBorder: "bg-slate-100 text-black border-none",
+  };
+
+  const sizes = {
+    sm: "w-[40%]",
+    md: "w-[80%]",
+    full: "w-full",
+  };
+
+  const boxShadow = boxShadowActive ? "shadow-input" : "";
+
   return (
     <input
       type={type}
-      name={name}
-      id={id}
       placeholder={placeholder}
-      className={`${className}`}
-      style={{
-        height: height,
-        width: width,
-        padding: padding,
-        borderRadius: radiusBorder,
-        border: border,
-      }}
+      className={`${sizes[size]} ${variants[variant]} ${defaultStyle} ${className} ${boxShadow}`}
     />
   );
 };

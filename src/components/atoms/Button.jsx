@@ -1,38 +1,26 @@
 import React from "react";
 
-const Button = ({
-  children,
-  type,
-  name,
-  id,
-  className,
-  backgroundColor = "#4EA9A2",
-  width = "100%",
-  height = "42px",
-  radiusBorder = "8px",
-  textColor = "#FFFFFF",
-  fontSize = "12px",
-  fontWeight = "800",
-  boxShadow = "10px 10px 20px 0px #0000001A",
-  onClick,
-}) => {
+const Button = ({ variant, size, children, className, boxShadowActive }) => {
+  const defaultStyle = "rounded-lg";
+  
+  const variants = {
+    primary: "bg-primary text-white",
+    secondary: "bg-primary/50",
+    gray: "bg-gray-100 border-1 border-gray-200",
+    white: "bg-white border-1 border-gray-200",
+  };
+  
+  const sizes = {
+    sm: "py-3 px-10",
+    md: "w-[80%] py-3",
+    full: "w-full py-3",
+  };
+  
+  const boxShadow = boxShadowActive ? "shadow-button" : "";
+
   return (
     <button
-      type={type}
-      name={name}
-      id={id}
-      className={`cursor-pointer transition-all duration-200 hover:opacity-80 ${className}`}
-      onClick={onClick}
-      style={{
-        width: width,
-        height: height,
-        backgroundColor: backgroundColor,
-        borderRadius: radiusBorder,
-        color: textColor,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        boxShadow: boxShadow,
-      }}
+      className={`${sizes[size]} ${variants[variant]} ${defaultStyle} ${className} ${boxShadow}`}
     >
       {children}
     </button>

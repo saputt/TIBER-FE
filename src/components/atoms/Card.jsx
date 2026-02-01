@@ -1,28 +1,30 @@
 import React from "react";
 
-const Card = ({
-  children,
-  backgroundColor = "#FFFFFF",
-  width = "100%",
-  height = "fit-content",
-  radiusBorder = "12px",
-  className,
-  boxShadow = "0px 1px 4px 0px #00000040",
-  padding = "10px 20px",
-}) => {
+const Card = ({ variant, size, boxShadowActive, children, className }) => {
+  const defaultStyle = "h-fit rounded-xl px-5 py-2.5";
+
+  const variants = {
+    white: "bg-white",
+    Blue: "bg-light-blue border-1 border-dark-blue",
+    BlueNoBorder: "bg-light-blue/30",
+    primary: "bg-primary/20 border-1 border-primary",
+    primaryNoBorder: "bg-primary/20",
+    purpleNoBorder: "bg-purple",
+    yellow: "bg-light-yellow border-1 border-dark-yellow",
+    gray: "bg-slate-100 border-1 border-slate-300"
+  };
+
+  const sizes = {
+    sm: "w-[40%]",
+    md: "w-[80%]",
+    full: "w-full",
+  };
+
+  const boxShadow = boxShadowActive ? "shadow-card" : "";
+
   return (
     <div
-      id="streak"
-      name="streak"
-      className={`${className}`}
-      style={{
-        backgroundColor: backgroundColor,
-        width: width,
-        height: height,
-        borderRadius: radiusBorder,
-        boxShadow: boxShadow,
-        padding: padding,
-      }}
+      className={`${sizes[size]} ${variants[variant]} ${defaultStyle} ${className} ${boxShadow}`}
     >
       {children}
     </div>
