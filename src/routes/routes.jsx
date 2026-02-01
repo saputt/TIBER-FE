@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import OnboardingPage from "../pages/Register/onboarding";
 import LandingPage from "../pages/Landing";
 import ActivityPage from "../pages/Activity";
 import ProgressPage from "../pages/Progress";
 import ProfilePage from "../pages/Profile";
 import DashboardPage from "../pages/Dashboard";
 import NotFoundPage from "../pages/404";
-import RegisterPage from "../pages/Register/Register";
-import LoginPage from "../pages/Login/Login";
+import RegisterPage from "../pages/Auth/Register";
+import LoginPage from "../pages/Auth/Login";
+import OnboardingPage from "../pages/Onboarding";
 
 const router = createBrowserRouter([
   //auth page
