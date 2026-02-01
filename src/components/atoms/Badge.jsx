@@ -1,26 +1,26 @@
 import React from "react";
 
-const Badge = ({
-  children,
-  backgroundColor = "#D9D9D966",
-  radiusBorder = "12px",
-  textColor = "#000",
-  fontSize = "8px",
-  fontWeight = "400",
-  className,
-  width = "fit-content",
-}) => {
+const Badge = ({ variant, size, children, className }) => {
+  const defaultStyle = "flex items-center justify-center rounded-xl text-h6 py-0.5";
+
+  const variants = {
+    primary: "bg-primary/20 text-primary border-1 border-primary",
+    darkBlue: "bg-dark-blue/20 text-dark-blue border-1 border-dark-blue",
+    darkYellow: "bg-dark-yellow/10 text-dark-yellow border-1 border-dark-yellow",
+    gray: "bg-gray-200 text-black border-1 border-gray-400",
+    confirmPrimary: "bg-primary/30 text-black",
+    confirmGray: "bg-gray-200 text-black",
+  };
+
+  const sizes = {
+    sm: "w-24",
+    md: "w-40",
+    full: "w-full",
+  };
+
   return (
     <div
-      className={`flex items-center justify-center ${className}`}
-      style={{
-        backgroundColor: backgroundColor,
-        borderRadius: radiusBorder,
-        color: textColor,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        width: width,
-      }}
+      className={`${sizes[size]} ${variants[variant]} ${defaultStyle} ${className}`}
     >
       {children}
     </div>
