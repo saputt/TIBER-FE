@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 //navigation layout for mobile
-const MobileNav = ({ variant, navigate, location }) => {
+const MobileNav = ({ variant, navigate, location, step }) => {
   const [hamburgerIsOpen, setHamburgerIsOpen] = useState(false);
   console.log(hamburgerIsOpen);
   return (
@@ -92,6 +92,12 @@ const MobileNav = ({ variant, navigate, location }) => {
               onClick={() => navigate("/activity")}
             />
           ))}
+
+        {variant === "setup" && (
+          <p className="text-h5 font-light">
+            Langkah {step.currentStep} dari {step.totalStep}
+          </p>
+        )}
       </div>
     </nav>
   );
@@ -99,14 +105,19 @@ const MobileNav = ({ variant, navigate, location }) => {
 
 const DekstopNav = ({ variant }) => {};
 
-const Navbar = ({ variant }) => {
+const Navbar = ({ variant, step }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const bgColor =
     variant === "main" || variant === "sub" ? "bg-primary/15" : "bg-white";
   return (
     <header className={`${bgColor} p-2 font-inter border-b-1 border-gray-400`}>
-      <MobileNav variant={variant} navigate={navigate} location={location} />
+      <MobileNav
+        step={step}
+        variant={variant}
+        navigate={navigate}
+        location={location}
+      />
       <DekstopNav variant={variant} />
     </header>
   );
