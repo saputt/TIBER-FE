@@ -2,7 +2,7 @@ import React from "react";
 
 // script onclick dll
 
-const Input = ({ type, placeholder, variant, size, className, boxShadowActive }) => {
+const Input = ({ type, placeholder, variant, size, className, boxShadowActive, onChange }) => {
   const defaultStyle = "rounded-lg px-2.5 py-2.5 focus:outline-black";
 
   const variants = {
@@ -25,6 +25,7 @@ const Input = ({ type, placeholder, variant, size, className, boxShadowActive })
       type={type}
       placeholder={placeholder}
       className={`${sizes[size]} ${variants[variant]} ${defaultStyle} ${className} ${boxShadow}`}
+      onChange={onChange}
     />
   );
 };

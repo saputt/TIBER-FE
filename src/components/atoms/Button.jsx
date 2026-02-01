@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ variant, size, children, className, boxShadowActive }) => {
+const Button = ({ variant, size, children, className, boxShadowActive, onClick }) => {
   const defaultStyle = "rounded-lg";
   
   const variants = {
@@ -21,6 +21,7 @@ const Button = ({ variant, size, children, className, boxShadowActive }) => {
   return (
     <button
       className={`${sizes[size]} ${variants[variant]} ${defaultStyle} ${className} ${boxShadow}`}
+      onClick={onClick}
     >
       {children}
     </button>
