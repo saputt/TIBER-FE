@@ -9,6 +9,7 @@ const OnboardingLayout = ({ children }) => {
 
   const nextStep = useOnboardingStore((state) => state.nextStep);
   const step = useOnboardingStore((state) => state.step);
+  const totalStep = useOnboardingStore((state) => state.totalStep);
 
   const nextStepSetup = () => {
     if (step === 5) {
@@ -21,7 +22,9 @@ const OnboardingLayout = ({ children }) => {
     <div className="bg-gray-100 h-screen flex flex-col font-inter">
       <Navbar variant="setup" />
 
-      <main className="flex-1 flex flex-col">
+      <main className="flex-1 flex flex-col relative">
+        <div></div>
+
         <section className="flex-1 flex flex-col overflow-y-auto px-3 py-4">
           {children}
         </section>
