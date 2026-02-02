@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RangeSlider from "../../../components/atoms/RangeSlider";
+import { useOnboardingStore } from "../../../store/useOnboardingStore";
 
 const times = [
   {
@@ -25,6 +26,8 @@ const times = [
 ];
 
 const TimePickerSlider = ({ timeDay }) => {
+  const setFormData = useOnboardingStore((state) => state.setFormData);
+
   const getTime = () => times.find((time) => time.timeDay === timeDay);
 
   const minMinute = parseInt(getTime().time[0].split(".")[0] * 60);
@@ -35,11 +38,19 @@ const TimePickerSlider = ({ timeDay }) => {
   const formatTime = (totalMinutes) => {
     const hours = Math.floor(totalMinutes / 60);
     const mins = totalMinutes % 60;
-    return `${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}`;
+    const format = `${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}`;
+    return format;
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFormData("personalization", { reminder_time: formatTime(minutes) });
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [minutes, timeDay]);
+
   return (
-    <div className="flex flex-col gap-4 m-5">
+    <div className="flex flex-col gap-4">
       <p className="text-sm text-black">
         time Pengingat - <b>{timeDay}</b>
       </p>
@@ -54,11 +65,11 @@ const TimePickerSlider = ({ timeDay }) => {
 
         <div className="flex justify-between text-black/70">
           {getTime().time.map((time) => (
-            <p className="text-sm">{time}</p>
+            <p className="text-h6">{time}</p>
           ))}
         </div>
 
-        <div className="w-[80%] bg-gray-100 p-2 rounded-xl text-center text-xl font-bold m-auto border-1 border-gray-300 text-black/75">
+        <div className="w-[80%] bg-gray-100 p-2 rounded-xl text-center text-h5 font-bold m-auto border-1 border-gray-300 text-black/75">
           {formatTime(minutes)}
         </div>
       </div>

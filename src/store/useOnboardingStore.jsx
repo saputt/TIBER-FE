@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const useOnboardingStore = create((get) => ({
+export const useOnboardingStore = create((set) => ({
   step: 1,
   totalStep: 5,
   formData: {},
@@ -20,4 +20,15 @@ export const useOnboardingStore = create((get) => ({
       }
       return { step: 1 };
     }),
+
+  setFormData: (category, newForm) =>
+    set((state) => ({
+      formData: {
+        ...state.formData,
+        [category]: {
+          ...state.formData[category],
+          ...newForm,
+        },
+      },
+    })),
 }));

@@ -11,7 +11,7 @@ const Card = ({ variant, size, boxShadowActive, children, className }) => {
     primaryNoBorder: "bg-primary/20",
     purpleNoBorder: "bg-purple",
     yellow: "bg-light-yellow border-1 border-dark-yellow",
-    gray: "bg-slate-100 border-1 border-slate-300"
+    gray: "bg-slate-100 border-1 border-slate-300",
   };
 
   const sizes = {

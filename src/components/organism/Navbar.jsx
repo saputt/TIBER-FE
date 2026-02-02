@@ -9,6 +9,15 @@ const MobileNav = ({ variant, navigate, location }) => {
 
   const step = useOnboardingStore((state) => state.step);
   const totalStep = useOnboardingStore((state) => state.totalStep);
+  const backStep = useOnboardingStore((state) => state.backStep);
+
+  const backStepSetup = () => {
+    if (step === 1) {
+      navigate("/");
+    } else {
+      backStep();
+    }
+  };
 
   return (
     <nav className="flex items-center gap-2">
@@ -16,6 +25,12 @@ const MobileNav = ({ variant, navigate, location }) => {
       <div>
         {variant === "landing" || variant === "main" ? (
           <img src="/logo.png" className="w-9" onClick={() => navigate("/")} />
+        ) : variant === "setup" ? (
+          <ArrowLeft
+            size={20}
+            className="text-primary"
+            onClick={() => backStepSetup()}
+          />
         ) : (
           <ArrowLeft
             size={20}

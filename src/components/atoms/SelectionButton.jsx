@@ -3,14 +3,14 @@ import React from "react";
 
 const SelectionButton = ({ isSelect, selectionName, className, onClick }) => {
   const defaultStyle =
-    "rounded-lg text-h4 border-1 w-full py-2 text-center cursor-pointer";
+    "rounded-lg text-h4 border-1 w-full py-3 text-center cursor-pointer";
 
   let style;
 
   if (isSelect) {
     style = "bg-primary/30 border-primary flex items-center px-5";
   } else if (!isSelect) {
-    style = "bg-white border-gray-600";
+    style = "bg-white border-gray-400";
   }
   return (
     <>
