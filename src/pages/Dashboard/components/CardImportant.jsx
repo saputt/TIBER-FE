@@ -4,7 +4,12 @@ import { TriangleAlert } from "lucide-react";
 
 const CardImportant = () => {
   return (
-    <Card className="py-4 flex flex-col gap-3" variant="yellow" size="full">
+    <Card
+      boxShadowActive={true}
+      className="py-4 flex flex-col gap-3"
+      variant="yellow"
+      size="full"
+    >
       <div className="flex items-center gap-2">
         <TriangleAlert size={24} className="text-warning" />
         <h5 className="text-h5 font-semibold">Penting Diingat</h5>
