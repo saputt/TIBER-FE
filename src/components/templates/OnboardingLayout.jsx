@@ -3,12 +3,20 @@ import ButtonTest from "../atoms/ButtonTest";
 import { ArrowRight } from "lucide-react";
 import { useOnboardingStore } from "../../store/useOnboardingStore";
 import { useLocation, useNavigate } from "react-router-dom";
+import BarStep from "../atoms/BarStep";
 
 const OnboardingLayout = ({ children }) => {
   const navigate = useNavigate();
 
   const nextStep = useOnboardingStore((state) => state.nextStep);
   const step = useOnboardingStore((state) => state.step);
+  const totalStep = useOnboardingStore((state) => state.totalStep);
+
+  const totalStepCont = [];
+
+  for (let i = 1; i < totalStep + 1; i++) {
+    totalStepCont.push({ id: i });
+  }
 
   const location = useLocation();
 
@@ -26,7 +34,13 @@ const OnboardingLayout = ({ children }) => {
       />
 
       <main className="flex-1 flex flex-col relative">
-        <div></div>
+        {!location.pathname.includes("register") && (
+          <div className="absolute top-0 w-full flex">
+            {totalStepCont.map((num) => (
+              <BarStep isActive={step === num.id} />
+            ))}
+          </div>
+        )}
 
         <section className="flex-1 flex flex-col overflow-y-auto px-4 py-5">
           {children}
