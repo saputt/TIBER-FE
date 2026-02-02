@@ -18,11 +18,7 @@ const OnboardingPage = () => {
     4: <FormControl />,
     5: <FormReminder />,
   };
-  return (
-    <div>
-      <OnboardingLayout>{formStep[step]}</OnboardingLayout>
-    </div>
-  );
+  return <OnboardingLayout>{formStep[step]}</OnboardingLayout>;
 };
 
 export default OnboardingPage;
