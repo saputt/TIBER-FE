@@ -23,13 +23,26 @@ const MobileNav = ({ variant, navigate, location }) => {
     <nav className="flex items-center gap-2">
       {/* left section */}
       <div>
-        {variant === "landing" || variant === "main" ? (
-          <img src="/logo.png" className="w-9" onClick={() => navigate("/")} />
-        ) : variant === "setup" ? (
+        {variant === "landing" ||
+          (variant === "main" && (
+            <img
+              src="/logo.png"
+              className="w-9"
+              onClick={() => navigate("/")}
+            />
+          ))}
+
+        {variant === "setup" ? (
           <ArrowLeft
             size={20}
             className="text-primary"
             onClick={() => backStepSetup()}
+          />
+        ) : variant === "regist" ? (
+          <ArrowLeft
+            size={20}
+            className="text-primary"
+            onClick={() => navigate("/onboarding")}
           />
         ) : (
           <ArrowLeft
@@ -52,6 +65,10 @@ const MobileNav = ({ variant, navigate, location }) => {
 
         {variant === "setup" && (
           <h1 className="text-h2 font-semibold">Personalisasi</h1>
+        )}
+
+        {variant === "regist" && (
+          <h1 className="text-h2 font-semibold">Buat Akun</h1>
         )}
 
         {variant === "info" && (

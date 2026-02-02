@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Navbar from "../../components/organism/Navbar";
 
 const RegisterPage = () => {
   return (
-    <div>RegisterPage</div>
-  )
-}
+    <div>
+      <Navbar variant="regist" />
+    </div>
+  );
+};
 
-export default RegisterPage
+export default RegisterPage;
