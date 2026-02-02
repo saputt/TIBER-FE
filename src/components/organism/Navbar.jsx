@@ -10,6 +10,7 @@ const MobileNav = ({ variant, navigate, location }) => {
   const step = useOnboardingStore((state) => state.step);
   const totalStep = useOnboardingStore((state) => state.totalStep);
   const backStep = useOnboardingStore((state) => state.backStep);
+  const setStep = useOnboardingStore((state) => state.setStep);
 
   const backStepSetup = () => {
     if (step === 1) {
