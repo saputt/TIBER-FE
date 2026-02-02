@@ -7,10 +7,10 @@ const FormPersonalization = ({ title, description, info, children }) => {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
-        <h3 className="text-h3 font-bold text-wrap w-70 font-jakarta">
+        <h3 className="text-h3 font-bold text-wrap w-80 font-jakarta">
           {title}
         </h3>
-        <p className="text-h5 w-70">{description}</p>
+        <p className="text-h5 w-80">{description}</p>
         <Card variant="Blue" size="full" className="flex gap-2">
           <Lightbulb className="text-light-yellow w-12" />
           <p className="font-light text-h5">
