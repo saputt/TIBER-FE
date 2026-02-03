@@ -10,6 +10,8 @@ import LoginPage from "../pages/Auth/Login";
 import OnboardingPage from "../pages/Onboarding";
 import AppLayout from "../components/templates/AppLayout";
 import AboutPage from "../pages/About";
+import InfoUserPage from "../pages/InfoUser/InfoUser";
+import HowPage from "../pages/How";
 
 const router = createBrowserRouter([
   //auth page
@@ -65,6 +67,14 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <AboutPage />,
+      },
+      {
+        path: "/hows-it-work",
+        element: <HowPage />,
+      },
+      {
+        path: "/information-user",
+        element: <InfoUserPage />,
       },
     ],
   },

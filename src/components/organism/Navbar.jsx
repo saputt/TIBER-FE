@@ -46,6 +46,14 @@ const MobileNav = ({ variant, navigate, location }) => {
           />
         )}
 
+        {(variant === "about" || variant === "hows" || variant === "info") && (
+          <ArrowLeft
+            size={20}
+            className="text-primary"
+            onClick={() => navigate("/")}
+          />
+        )}
+
         {variant === "sub" && (
           <ArrowLeft
             size={20}
@@ -73,11 +81,23 @@ const MobileNav = ({ variant, navigate, location }) => {
           <h1 className="text-h2 font-semibold">Buat Akun</h1>
         )}
 
+        {variant === "about" && (
+          <h1 className="text-primary text-center font-bold text-h2">
+            Tentang TIBER
+          </h1>
+        )}
+        {variant === "hows" && (
+          <h1 className="text-primary text-center font-bold text-h2">
+            Cara Kerja
+          </h1>
+        )}
         {variant === "info" && (
           <h1 className="text-primary text-center font-bold text-h2">
             Informasi Pengguna
           </h1>
         )}
+
+        {}
 
         {variant === "sub" && (
           <img
@@ -103,7 +123,9 @@ const MobileNav = ({ variant, navigate, location }) => {
             />
           ))}
 
-        {variant === "info" && <img src="/logo.png" className="w-9" />}
+        {(variant === "about" || variant === "hows" || variant === "info") && (
+          <img src="/logo.png" className="w-9" />
+        )}
 
         {variant === "main" && (
           <div className="flex gap-4">

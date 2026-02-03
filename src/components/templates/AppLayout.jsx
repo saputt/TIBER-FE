@@ -10,6 +10,9 @@ const AppLayout = () => {
     "/": "landing",
     "/activity": "sub",
     "/profile": "sub",
+    "/about": "about",
+    "/information-user": "info",
+    "/hows-it-work": "hows",
   };
 
   return (
