@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import ProfileCard from "./components/ProfileCard";
+import SummaryCard from "./components/SummaryCard";
 
 const ProfilePage = () => {
   return (
-    <div>ProfilePage</div>
-  )
-}
+    <div className="flex flex-col gap-4">
+      <ProfileCard />
+      <SummaryCard />
+    </div>
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;
