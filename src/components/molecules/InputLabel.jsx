@@ -9,6 +9,7 @@ const InputLabel = ({
   variant,
   type,
   placeholder,
+  size,
   className,
   onChange,
 }) => {
@@ -30,6 +31,7 @@ const InputLabel = ({
           type={type}
           className={className}
           onChange={onChange}
+          size={size}
         />
       )}
     </div>
