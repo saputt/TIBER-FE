@@ -150,7 +150,7 @@ const Navbar = ({ variant }) => {
     variant === "main" || variant === "sub" ? "bg-primary/15" : "bg-white";
   return (
     <header
-      className={`${bgColor} p-2 font-inter border-b-1 border-gray-400 sticky top-0 w-full backdrop-blur-3xl`}
+      className={`${bgColor} p-2 font-inter border-b-1 border-gray-400 sticky top-0 w-full backdrop-blur-3xl z-100`}
     >
       <MobileNav variant={variant} navigate={navigate} location={location} />
       <DekstopNav variant={variant} />
