@@ -1,7 +1,7 @@
 import React from "react";
 
 const Button = ({ variant, size, children, className, boxShadowActive, onClick }) => {
-  const defaultStyle = "rounded-lg";
+  const defaultStyle = "rounded-lg font-inter";
   
   const variants = {
     primary: "bg-primary text-white",
