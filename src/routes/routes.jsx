@@ -9,6 +9,7 @@ import RegisterPage from "../pages/Auth/Register";
 import LoginPage from "../pages/Auth/Login";
 import OnboardingPage from "../pages/Onboarding";
 import AppLayout from "../components/templates/AppLayout";
+import AboutPage from "../pages/About";
 
 const router = createBrowserRouter([
   //auth page
@@ -59,6 +60,11 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashboardPage />,
+      },
+
+      {
+        path: "/about",
+        element: <AboutPage />,
       },
     ],
   },
