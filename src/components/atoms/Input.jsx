@@ -5,9 +5,9 @@ const Input = ({ type, placeholder, variant, size, className, boxShadowActive, o
 
   const variants = {
     white: "bg-white text-black border-1 border-gray-400",
-    gray: "bg-slate-100 text-black border-1 border-gray-400",
+    gray: "bg-bg-gray-50 text-black border-1 border-gray-400",
     whiteNoBorder: "bg-white text-black border-none",
-    grayNoBorder: "bg-slate-100 text-black border-none",
+    grayNoBorder: "bg-bg-gray-50 text-black border-none",
   };
 
   const sizes = {
