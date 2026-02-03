@@ -28,8 +28,8 @@ const ButtonTest = ({ variant, size, children, className, onClick }) => {
   const variants = {
     primary: "bg-primary text-white",
     secondary: "bg-primary/50",
-    gray: "bg-gray-100 border-1 border-gray-200",
-    white: "bg-white border-1 border-gray-200",
+    gray: "bg-gray-100 border-1 border-gray-400",
+    white: "bg-white border-1 border-gray-400",
   };
 
   // This object provides the size type of its components.
