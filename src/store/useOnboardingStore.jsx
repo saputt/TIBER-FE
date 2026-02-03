@@ -5,6 +5,9 @@ export const useOnboardingStore = create((set) => ({
   totalStep: 5,
   formData: {},
 
+  setMinStep: () => set({ step: 1 }),
+  setMaxStep: () => set((state) => ({ step: state.totalStep })),
+
   nextStep: () =>
     set((state) => {
       if (state.step < state.totalStep) {

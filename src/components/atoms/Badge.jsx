@@ -1,7 +1,7 @@
 import React from "react";
 
 const Badge = ({ variant, size, children, className }) => {
-  const defaultStyle = "flex items-center justify-center rounded-xl text-h6 py-0.5";
+  const defaultStyle = "flex items-center justify-center rounded-xl text-h6 py-0.5 font-inter";
 
   const variants = {
     primary: "bg-primary/20 text-primary border-1 border-primary",
