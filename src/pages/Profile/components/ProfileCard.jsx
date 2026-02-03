@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "../../../components/atoms/Card";
 import { Settings } from "lucide-react";
+import { useProfileStore } from "../../../store/useProfileStore";
 
 const ProfileCard = () => {
+  const setManageProfile = useProfileStore((state) => state.setManageProfile);
+  const isProfileOpen = useProfileStore((state) => state.isProfileOpen);
+
+  console.log(isProfileOpen);
   return (
     <Card
       variant="white"
@@ -18,9 +23,13 @@ const ProfileCard = () => {
           <h3 className="font-semibold text-h4">Sauki WellWell</h3>
           <p className="text-h7">Dimulai 16 Desember 2025</p>
         </div>
-        <Settings size={20} />
+        <Settings
+          size={20}
+          className="text-gray-700"
+          onClick={() => setManageProfile()}
+        />
       </div>
-      <hr />
+      <hr className="text-gray-400" />
       <div className="flex flex-col">
         <h5 className="text-h5">Durasi Pengobatan</h5>
         <p className="font-semibold text-h5">6 Bulan</p>

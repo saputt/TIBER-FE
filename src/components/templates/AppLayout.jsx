@@ -16,7 +16,7 @@ const AppLayout = () => {
     <div className="font-inter">
       <Navbar variant={types[location.pathname]} />
 
-      <main className="p-8 ">
+      <main className="p-8 bg-gray-50 relative">
         <Outlet />
       </main>
     </div>
