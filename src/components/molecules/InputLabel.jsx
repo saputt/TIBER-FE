@@ -2,7 +2,7 @@ import React from 'react'
 import InputSelect from './inputSelect'
 import Input from '../atoms/Input'
 
-const InputLabel = ({ label, variantInput, variantLabel, variant, type, placeholder, size, className, onChange }) => {
+const InputLabel = ({ label, variantInput = "input", variantLabel = "normal", variant, type = "text", placeholder, size = "full", className, onChange }) => {
   return (
     <div className='flex flex-col gap-1.5'>
       {variantLabel == "normal" && (

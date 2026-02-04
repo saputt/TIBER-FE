@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "../../components/atoms/Button";
-import LandingPageLayout from "../../components/templates/LandingPageLayout";
 import FeatureList from "./components/FeatureList";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -8,7 +7,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <LandingPageLayout>
+    <div className="pt-3 pb-5 min-h-dvh">
       <div className="flex justify-center">
         <img src="/logo.png" className="w-14 shadow-md rounded-lg" />
       </div>
@@ -30,7 +29,7 @@ const LandingPage = () => {
         <span className="text-primary font-inter font-semibold text-h5">Sudah punya akun? <Link className="underline" to="/login">Masuk</Link></span>
       </div>
       <FeatureList />
-    </LandingPageLayout>
+    </div>
   );
 };
 
