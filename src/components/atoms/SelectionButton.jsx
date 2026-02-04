@@ -13,11 +13,11 @@ const SelectionButton = ({
   let style;
 
   if (isSelect && isBoarding) {
-    style = "bg-primary/30 border-primary flex items-center px-5";
+    style = "bg-primary/30 border-primary flex items-center";
   } else if (isSelect) {
-    style = "bg-primary px-5 text-white";
+    style = "bg-primary text-white";
   } else if (!isSelect) {
-    style = "bg-white border-gray-400 border-1 px-5";
+    style = "bg-white border-gray-400 border-1";
   }
   return (
     <>
