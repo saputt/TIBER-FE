@@ -15,7 +15,7 @@ const FeatureList = () => {
             <span className="font-inter font-semibold text-h4">Fitur Pendamping Anda</span>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {featureLists.map(list => (
-                    <Card variant="white" size="full" boxShadowActive="true" className="flex gap-6">
+                    <Card variant="white" size="full" boxShadowActive="true" className="flex gap-6 min-h-19.75">
                         <div className="bg-primary/20 text-primary mt-0.5 p-2 rounded-md w-fit h-fit">
                             {list.icon}
                         </div>
