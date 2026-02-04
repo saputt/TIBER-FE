@@ -2,15 +2,24 @@ import { create } from "zustand";
 
 export const useProfileStore = create((set) => ({
   isProfileOpen: false,
+  isDailyOpen: false,
+  isControlOpen: false,
 
-  setProfileTrue: () => {
-    set({
-      isProfileOpen: true,
-    });
+  setProfile: () => {
+    set((state) => ({
+      isProfileOpen: !state.isProfileOpen,
+    }));
   },
-  setProfileFalse: () => {
-    set({
-      isProfileOpen: false,
-    });
+
+  setDaily: () => {
+    set((state) => ({
+      isDailyOpen: !state.isDailyOpen,
+    }));
+  },
+
+  setControl: () => {
+    set((state) => ({
+      isControlOpen: !state.isControlOpen,
+    }));
   },
 }));

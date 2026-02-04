@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import LandingPage from "../pages/Landing";
 import ActivityPage from "../pages/Activity";
 import ProgressPage from "../pages/Progress";
-import ProfilePage from "../pages/Profile";
 import DashboardPage from "../pages/Dashboard";
 import NotFoundPage from "../pages/404";
 import RegisterPage from "../pages/Auth/Register";
@@ -12,6 +11,8 @@ import AppLayout from "../components/templates/AppLayout";
 import AboutPage from "../pages/About";
 import InfoUserPage from "../pages/InfoUser/InfoUser";
 import HowPage from "../pages/How";
+import ProfileSettingPage from "../pages/Profile/Setting";
+import ProfilePage from "../pages/Profile/Profile";
 
 const router = createBrowserRouter([
   //auth page
@@ -56,6 +57,12 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <ProfilePage />,
+      },
+
+      //profile page
+      {
+        path: "/profile/settings",
+        element: <ProfileSettingPage />,
       },
 
       //home page (dashboard)

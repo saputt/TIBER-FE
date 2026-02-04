@@ -23,42 +23,29 @@ const MobileNav = ({ variant, navigate, location }) => {
     <nav className="flex items-center gap-2">
       {/* left section */}
       <div>
-        {variant === "landing" && (
-          <img src="/logo.png" className="w-9" onClick={() => navigate("/")} />
-        )}
-        {variant === "main" && (
-          <img src="/logo.png" className="w-9" onClick={() => navigate("/")} />
-        )}
-
-        {variant === "setup" && (
+        {variant === "landing" || variant === "main" ? (
+          <img
+            src="/logo.png"
+            className="w-9"
+            onClick={() => navigate("/dashboard")}
+          />
+        ) : variant === "setup" ? (
           <ArrowLeft
             size={20}
             className="text-primary"
             onClick={() => backStepSetup()}
           />
-        )}
-
-        {variant === "regist" && (
-          <ArrowLeft
-            size={20}
-            className="text-primary"
-            onClick={() => navigate("/onboarding")}
-          />
-        )}
-
-        {(variant === "about" || variant === "hows" || variant === "info") && (
-          <ArrowLeft
-            size={20}
-            className="text-primary"
-            onClick={() => navigate("/")}
-          />
-        )}
-
-        {variant === "sub" && (
+        ) : variant === "sub" ? (
           <ArrowLeft
             size={20}
             className="text-primary"
             onClick={() => navigate("/dashboard")}
+          />
+        ) : (
+          <ArrowLeft
+            size={20}
+            className="text-primary"
+            onClick={() => navigate(-1)}
           />
         )}
       </div>
@@ -77,33 +64,17 @@ const MobileNav = ({ variant, navigate, location }) => {
           <h1 className="text-h2 font-semibold">Personalisasi</h1>
         )}
 
-        {variant === "regist" && (
-          <h1 className="text-h2 font-semibold">Buat Akun</h1>
-        )}
-
-        {variant === "about" && (
-          <h1 className="text-primary text-center font-bold text-h2">
-            Tentang TIBER
-          </h1>
-        )}
-        {variant === "hows" && (
-          <h1 className="text-primary text-center font-bold text-h2">
-            Cara Kerja
-          </h1>
-        )}
         {variant === "info" && (
           <h1 className="text-primary text-center font-bold text-h2">
             Informasi Pengguna
           </h1>
         )}
 
-        {}
-
         {variant === "sub" && (
           <img
             src="/logo.png"
             className="w-9 m-auto cursor-pointer"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/dashboard")}
           />
         )}
       </div>
@@ -123,9 +94,7 @@ const MobileNav = ({ variant, navigate, location }) => {
             />
           ))}
 
-        {(variant === "about" || variant === "hows" || variant === "info") && (
-          <img src="/logo.png" className="w-9" />
-        )}
+        {variant === "info" && <img src="/logo.png" className="w-9" />}
 
         {variant === "main" && (
           <div className="flex gap-4">
@@ -140,18 +109,18 @@ const MobileNav = ({ variant, navigate, location }) => {
           </div>
         )}
 
-        {variant === "sub" && location.pathname.includes("activity") && (
-          <User
-            className="w-6 text-primary cursor-pointer"
-            onClick={() => navigate("/profile")}
-          />
-        )}
-        {variant === "sub" && location.pathname.includes("profile") && (
-          <SquareChartGantt
-            className="w-6 text-primary cursor-pointer"
-            onClick={() => navigate("/activity")}
-          />
-        )}
+        {variant === "sub" &&
+          (location.pathname.includes("activity") ? (
+            <User
+              className="w-6 text-primary cursor-pointer"
+              onClick={() => navigate("/profile")}
+            />
+          ) : (
+            <SquareChartGantt
+              className="w-6 text-primary cursor-pointer"
+              onClick={() => navigate("/activity")}
+            />
+          ))}
 
         {variant === "setup" && (
           <p className="text-h5 font-light">
@@ -172,7 +141,7 @@ const Navbar = ({ variant }) => {
     variant === "main" || variant === "sub" ? "bg-primary/15" : "bg-white";
   return (
     <header
-      className={`${bgColor} p-2 font-inter border-b-1 border-gray-400 sticky top-0 w-full backdrop-blur-3xl z-100`}
+      className={`${bgColor} p-2 font-inter border-b-1 border-gray-400 sticky top-0 z-100 backdrop-blur-2xl`}
     >
       <MobileNav variant={variant} navigate={navigate} location={location} />
       <DekstopNav variant={variant} />

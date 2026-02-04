@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import Card from "../../../components/atoms/Card";
 import { Settings } from "lucide-react";
 import { useProfileStore } from "../../../store/useProfileStore";
+import { useNavigate } from "react-router-dom";
 
 const ProfileCard = () => {
-  const setProfileTrue = useProfileStore((state) => state.setProfileTrue);
+  const setProfile = useProfileStore((state) => state.setProfile);
+  const isProfileOpen = useProfileStore((state) => state.isProfileOpen);
 
+  const navigate = useNavigate();
   return (
     <Card
       variant="white"
@@ -24,7 +27,7 @@ const ProfileCard = () => {
         <Settings
           size={20}
           className="text-gray-700"
-          onClick={() => setProfileTrue()}
+          onClick={() => navigate("/profile/settings")}
         />
       </div>
       <hr className="text-gray-400" />

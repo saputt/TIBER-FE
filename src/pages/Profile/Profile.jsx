@@ -4,17 +4,19 @@ import SummaryCard from "./components/SummaryCard";
 import SettingReminderCard from "./components/SettingReminderCard";
 import HelpCard from "./components/HelpCard";
 import NoteCard from "./components/NoteCard";
-import Button from "../../components/atoms/Button";
 import ButtonTest from "../../components/atoms/ButtonTest";
 import { LogOut } from "lucide-react";
 import { useProfileStore } from "../../store/useProfileStore";
-import ManageProfileCard from "./components/ManageProfileCard";
+import ManageReminderLog from "./components/ManageReminderLog";
+import ManageControl from "./components/ManageControl";
 
 const ProfilePage = () => {
-  const isProfileOpen = useProfileStore((state) => state.isProfileOpen);
+  const isDailyOpen = useProfileStore((state) => state.isDailyOpen);
+  const isControlOpen = useProfileStore((state) => state.isControlOpen);
   return (
     <div className="flex flex-col gap-4">
-      {isProfileOpen && <ManageProfileCard />}
+      {isDailyOpen && <ManageReminderLog />}
+      {isControlOpen && <ManageControl />}
 
       <ProfileCard />
       <SummaryCard />

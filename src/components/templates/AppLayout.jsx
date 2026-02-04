@@ -13,6 +13,7 @@ const AppLayout = () => {
     "/about": "about",
     "/information-user": "info",
     "/hows-it-work": "hows",
+    "/profile/settings": "main",
   };
 
   return (
