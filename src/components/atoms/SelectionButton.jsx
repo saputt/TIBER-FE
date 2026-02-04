@@ -1,16 +1,21 @@
 import { CircleCheck } from "lucide-react";
 import React from "react";
 
-const SelectionButton = ({ isSelect, selectionName, className, onClick }) => {
-  const defaultStyle =
-    "rounded-lg text-h4 border-1 w-full py-3 text-center cursor-pointer";
+const SelectionButton = ({
+  children,
+  isSelect,
+  selectionName,
+  className,
+  onClick,
+}) => {
+  const defaultStyle = " text-center cursor-pointer";
 
   let style;
 
   if (isSelect) {
     style = "bg-primary/30 border-primary flex items-center px-5";
   } else if (!isSelect) {
-    style = "bg-white border-gray-400";
+    style = "bg-white border-gray-400 border-1 px-5";
   }
   return (
     <>
@@ -20,8 +25,7 @@ const SelectionButton = ({ isSelect, selectionName, className, onClick }) => {
           onClick={onClick}
           value={selectionName}
         >
-          <p className="flex-1">{selectionName}</p>
-          <CircleCheck size={25} className="text-primary" />
+          {children}
         </button>
       )}
 
@@ -31,7 +35,7 @@ const SelectionButton = ({ isSelect, selectionName, className, onClick }) => {
           onClick={onClick}
           value={selectionName}
         >
-          {selectionName}
+          {children}
         </button>
       )}
     </>
