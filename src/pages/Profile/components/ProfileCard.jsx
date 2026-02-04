@@ -4,10 +4,8 @@ import { Settings } from "lucide-react";
 import { useProfileStore } from "../../../store/useProfileStore";
 
 const ProfileCard = () => {
-  const setManageProfile = useProfileStore((state) => state.setManageProfile);
-  const isProfileOpen = useProfileStore((state) => state.isProfileOpen);
+  const setProfileTrue = useProfileStore((state) => state.setProfileTrue);
 
-  console.log(isProfileOpen);
   return (
     <Card
       variant="white"
@@ -26,7 +24,7 @@ const ProfileCard = () => {
         <Settings
           size={20}
           className="text-gray-700"
-          onClick={() => setManageProfile()}
+          onClick={() => setProfileTrue()}
         />
       </div>
       <hr className="text-gray-400" />
