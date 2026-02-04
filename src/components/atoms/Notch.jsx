@@ -7,7 +7,7 @@ const Notch = ({ variant, children, className }) => {
   };
 
   const defaultStyle =
-    "bg-primary text-white text-h6 font-semibold px-5 px-1 absolute text-center";
+    "bg-primary text-white text-h6 font-semibold absolute text-center";
   return (
     <div className={`${className} ${styles[variant]} ${defaultStyle}`}>
       {children}
