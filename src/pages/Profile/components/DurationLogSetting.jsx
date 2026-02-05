@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../../../components/atoms/Card";
 import { Timer, X } from "lucide-react";
-import InputSelect from "../../../components/molecules/inputSelect";
+import InputSelect from "../../../components/molecules/InputSelect";
 import Button from "../../../components/atoms/Button";
 import { useProfileStore } from "../../../store/useProfileStore";
 
