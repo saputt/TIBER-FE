@@ -28,7 +28,7 @@ const OnboardingLayout = ({ children }) => {
     }
   };
   return (
-    <div className="bg-gray-100 h-screen flex flex-col font-inter">
+    <div className="bg-gray-100 h-svh flex flex-col font-inter">
       <Navbar
         variant={location.pathname.includes("register") ? "regist" : "setup"}
       />
