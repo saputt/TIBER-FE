@@ -26,6 +26,8 @@ const FormTimeCategory = () => {
               key={time}
               isSelect={selectTime === time}
               selectionName={time}
+              isBoarding={true}
+              className="py-2"
               onClick={() => {
                 setSelectTime(time);
                 setFormData("personalization", { time_category: time });

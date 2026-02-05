@@ -4,12 +4,12 @@ import Input from "../atoms/Input";
 
 const InputLabel = ({
   label,
-  variantInput,
-  variantLabel,
+  variantInput = "input",
+  variantLabel = "normal",
   variant,
-  type,
+  type = "text",
   placeholder,
-  size,
+  size = "full",
   className,
   onChange,
 }) => {

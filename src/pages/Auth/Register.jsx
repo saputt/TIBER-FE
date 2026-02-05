@@ -7,6 +7,7 @@ import ButtonTest from "../../components/atoms/ButtonTest";
 import InfoSaveCard from "./components/InfoSaveCard";
 import RegistForm from "./components/RegistForm";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/atoms/Button";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -30,14 +31,14 @@ const RegisterPage = () => {
 
         <InfoSaveCard variant="blue" />
 
-        <ButtonTest
+        <Button
           variant="primary"
           size="full"
           className="mt-5 shadow-button"
           onClick={() => navigate("/dashboard")}
         >
           Daftar
-        </ButtonTest>
+        </Button>
 
         <p className="text-center text-h6 text-wrap w-65">
           Dengan membuat akun, anda menyetujui Syarat & Ketentuan dan Kebijakan

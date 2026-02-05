@@ -1,7 +1,16 @@
 import React from "react";
 
-const Input = ({ type, placeholder, variant, size, className, boxShadowActive, onChange }) => {
-  const defaultStyle = "rounded-lg px-2.5 py-2.5 focus:outline-black font-inter";
+const Input = ({
+  type,
+  placeholder,
+  variant,
+  size,
+  className,
+  boxShadowActive,
+  onChange,
+}) => {
+  const defaultStyle =
+    "rounded-lg px-2.5 py-2.5 focus:outline-black font-inter";
 
   const variants = {
     white: "bg-white text-black border-1 border-gray-400",

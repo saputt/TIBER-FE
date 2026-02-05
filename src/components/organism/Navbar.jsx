@@ -24,38 +24,35 @@ const MobileNav = ({ variant, navigate, location }) => {
     <nav className="flex items-center gap-2">
       {/* left section */}
       <div>
-        {variant === "landing" && (
-          <img src="/logo.png" className="w-9" onClick={() => navigate("/")} />
-        )}
-        {variant === "main" && (
-          <img src="/logo.png" className="w-9" onClick={() => navigate("/")} />
-        )}
-
-        {variant === "setup" && (
+        {variant === "landing" || variant === "main" ? (
+          <img
+            src="/logo.png"
+            className="w-9"
+            onClick={() => navigate("/dashboard")}
+          />
+        ) : variant === "setup" ? (
           <ArrowLeft
             size={20}
             className="text-primary"
             onClick={() => backStepSetup()}
           />
-        )}
-
-        {variant === "regist" && (
-          <ArrowLeft
-            size={20}
-            className="text-primary"
-            onClick={() => {
-              setMaxStep();
-              navigate("/onboarding");
-            }}
-          />
-        )}
-
-        {variant === "sub" && (
+        ) : variant === "sub" ? (
           <ArrowLeft
             size={20}
             className="text-primary"
             onClick={() => navigate("/dashboard")}
           />
+        ) : (
+          variant === "regist" && (
+            <ArrowLeft
+              size={20}
+              className="text-primary"
+              onClick={() => {
+                setMaxStep();
+                navigate("/onboarding");
+              }}
+            />
+          )
         )}
       </div>
 
@@ -87,7 +84,7 @@ const MobileNav = ({ variant, navigate, location }) => {
           <img
             src="/logo.png"
             className="w-9 m-auto cursor-pointer"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/dashboard")}
           />
         )}
       </div>
@@ -122,18 +119,18 @@ const MobileNav = ({ variant, navigate, location }) => {
           </div>
         )}
 
-        {variant === "sub" && location.pathname.includes("activity") && (
-          <User
-            className="w-6 text-primary cursor-pointer"
-            onClick={() => navigate("/profile")}
-          />
-        )}
-        {variant === "sub" && location.pathname.includes("profile") && (
-          <SquareChartGantt
-            className="w-6 text-primary cursor-pointer"
-            onClick={() => navigate("/activity")}
-          />
-        )}
+        {variant === "sub" &&
+          (location.pathname.includes("activity") ? (
+            <User
+              className="w-6 text-primary cursor-pointer"
+              onClick={() => navigate("/profile")}
+            />
+          ) : (
+            <SquareChartGantt
+              className="w-6 text-primary cursor-pointer"
+              onClick={() => navigate("/activity")}
+            />
+          ))}
 
         {variant === "setup" && (
           <p className="text-h5 font-light">
@@ -154,7 +151,7 @@ const Navbar = ({ variant }) => {
     variant === "main" || variant === "sub" ? "bg-primary/15" : "bg-white";
   return (
     <header
-      className={`${bgColor} p-2 font-inter border-b-1 border-gray-400 sticky top-0 w-full backdrop-blur-3xl z-100`}
+      className={`${bgColor} p-2 font-inter border-b-1 border-gray-400 sticky top-0 z-100 backdrop-blur-2xl`}
     >
       <MobileNav variant={variant} navigate={navigate} location={location} />
       <DekstopNav variant={variant} />
