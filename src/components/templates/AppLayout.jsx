@@ -1,0 +1,30 @@
+import React, { Children } from "react";
+import Navbar from "../organism/Navbar";
+import { Outlet, useLocation } from "react-router-dom";
+
+const AppLayout = () => {
+  const location = useLocation();
+
+  const types = {
+    "/dashboard": "main",
+    "/": "landing",
+    "/activity": "sub",
+    "/profile": "sub",
+    "/about": "about",
+    "/information-user": "info",
+    "/hows-it-work": "hows",
+    "/profile/settings": "main",
+  };
+
+  return (
+    <div className="font-inter min-h-screen flex flex-col">
+      <Navbar variant={types[location.pathname]} />
+
+      <main className="p-8 bg-gray-50 relative flex-1">
+        <Outlet />
+      </main>
+    </div>
+  );
+};
+
+export default AppLayout;
