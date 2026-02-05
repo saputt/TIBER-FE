@@ -3,6 +3,7 @@ import Card from "../../../components/atoms/Card";
 import { Lightbulb } from "lucide-react";
 import Input from "../../../components/atoms/Input";
 import FormPersonalization from "../../../components/organism/FormPersonalization";
+import InputLabel from "../../../components/molecules/InputLabel";
 
 const FormDuration = () => {
   return (
@@ -11,15 +12,12 @@ const FormDuration = () => {
       description="Ini membantu kami menghitung progres perjalanan pengobatan Anda."
       info="Tahukah Anda? Menyelesaikan seluruh rangkaian durasi pengobatan sangat penting untuk mencegah kuman TBC menjadi kebal (resisten) terhadap obat."
     >
-      <div>
-        <p className="text-h5 font-medium">Durasi Pengobatan</p>
-        <Input
-          type="number"
-          variant="white"
-          size="full"
-          placeholder="Contoh: 6 Bulan"
-        />
-      </div>
+      <InputLabel
+        label="Durasi Pengobatan"
+        variant="gray"
+        placeholder="Contoh: 6 Bulan"
+        type="number"
+      />
     </FormPersonalization>
   );
 };
