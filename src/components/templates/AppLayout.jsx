@@ -17,10 +17,10 @@ const AppLayout = () => {
   };
 
   return (
-    <div className="font-inter">
+    <div className="font-inter min-h-screen flex flex-col">
       <Navbar variant={types[location.pathname]} />
 
-      <main className="p-8 bg-gray-50 relative">
+      <main className="p-8 bg-gray-50 relative flex-1">
         <Outlet />
       </main>
     </div>
