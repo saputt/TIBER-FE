@@ -1,5 +1,5 @@
 import React from "react";
-import InputSelect from "./inputSelect";
+import InputSelect from "./InputSelect";
 import Input from "../atoms/Input";
 
 const InputLabel = ({
