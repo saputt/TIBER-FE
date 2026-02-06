@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "../../components/atoms/Card";
 import Badge from "../../components/atoms/Badge";
 import { Pill } from "lucide-react";
@@ -14,7 +14,7 @@ import CardImportant from "./components/CardImportant";
 const DashboardPage = () => {
   return (
     <div className="flex flex-col gap-4">
-      <CardLog isTaken={false} />
+      <CardLog isTaken={true} />
       <CardStreak />
       <CardJourney />
       <CardControl />

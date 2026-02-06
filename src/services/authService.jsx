@@ -1,7 +1,22 @@
 import React from "react";
+import { fetcher } from "./api";
 
-const authService = () => {
-  return <div>authService</div>;
+export const loginService = (payload) => {
+  return fetcher("/login", {
+    method: "POST",
+    body: payload,
+  });
 };
 
-export default authService;
+export const registerService = (payload) => {
+  return fetcher("/register", {
+    method: "POST",
+    body: payload,
+  });
+};
+
+export const logoutService = () => {
+  return fetcher("/logout", {
+    method: "POST",
+  });
+};

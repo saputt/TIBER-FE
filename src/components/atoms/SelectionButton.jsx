@@ -1,27 +1,39 @@
-import { CircleCheck } from "lucide-react";
+import { CircleCheck, CircleCheckBig } from "lucide-react";
 import React from "react";
 
-const SelectionButton = ({ isSelect, selectionName, className, onClick }) => {
-  const defaultStyle =
-    "rounded-lg text-h4 border-1 w-full py-3 text-center cursor-pointer";
-
+const SelectionButton = ({
+  isSelect,
+  selectionName,
+  className,
+  onClick,
+  isBoarding,
+}) => {
+  const defaultStyle = "text-center cursor-pointer rounded-lg";
+  const styleBoarding = "flex justify-center items-center relative";
   let style;
 
-  if (isSelect) {
-    style = "bg-primary/30 border-primary flex items-center px-5";
+  if (isSelect && isBoarding) {
+    style = "bg-primary/30 border-1 border-primary flex items-center ";
+  } else if (isSelect) {
+    style = "bg-primary text-white";
   } else if (!isSelect) {
-    style = "bg-white border-gray-400";
+    style = "bg-gray-50 border-gray-400 border-1";
   }
   return (
     <>
       {isSelect && (
         <button
-          className={`${style} ${defaultStyle} ${className}`}
+          className={`${style} ${defaultStyle} ${className} ${isBoarding && styleBoarding}`}
           onClick={onClick}
           value={selectionName}
         >
-          <p className="flex-1">{selectionName}</p>
-          <CircleCheck size={25} className="text-primary" />
+          <p>{selectionName}</p>
+          {isBoarding && (
+            <CircleCheckBig
+              size={25}
+              className="text-primary absolute right-3"
+            />
+          )}
         </button>
       )}
 
