@@ -1,11 +1,10 @@
 import { ArrowLeft, Menu, SquareChartGantt, User, X } from "lucide-react";
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useOnboardingStore } from "../../store/useOnboardingStore";
 
 //navigation layout for mobile
-const MobileNav = ({ variant, navigate, location }) => {
-  const [hamburgerIsOpen, setHamburgerIsOpen] = useState(false);
+const MobileNav = ({ variant, navigate, location, hamburgerIsOpen, setHamburgerIsOpen }) => {
 
   const step = useOnboardingStore((state) => state.step);
   const totalStep = useOnboardingStore((state) => state.totalStep);
@@ -149,13 +148,44 @@ const Navbar = ({ variant }) => {
   const location = useLocation();
   const bgColor =
     variant === "main" || variant === "sub" ? "bg-primary/15" : "bg-white";
+
+  const [hamburgerIsOpen, setHamburgerIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (hamburgerIsOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [hamburgerIsOpen])
+  
   return (
-    <header
-      className={`${bgColor} p-2 font-inter border-b-1 border-gray-400 sticky top-0 z-100 backdrop-blur-2xl`}
-    >
-      <MobileNav variant={variant} navigate={navigate} location={location} />
-      <DekstopNav variant={variant} />
-    </header>
+    <>
+      <header
+        className={`${bgColor} p-2 font-inter border-b-1 border-gray-400 sticky top-0 w-full backdrop-blur-3xl z-100`}
+      >
+        <MobileNav variant={variant} navigate={navigate} location={location} hamburgerIsOpen={hamburgerIsOpen} setHamburgerIsOpen={setHamburgerIsOpen}/>
+        <DekstopNav variant={variant} />
+      </header>
+
+      {variant === "landing" && hamburgerIsOpen && (
+        <div className="fixed inset-0 bg-black/20 z-30 transition-opacity duration-300 ease-in-out" onClick={() => setHamburgerIsOpen(false)} />
+      )}
+
+      {variant === "landing" && (
+        <div className={`fixed top-0 left-0 pt-[52.8px] px-2 w-full ${bgColor} rounded-b-xl z-50 transform transition-transform duration-500 ease-in-out ${hamburgerIsOpen ? "translate-y-0" : "-translate-y-full"}`}>
+          <div className="flex flex-col">
+            <Link className="p-4 font-inter text-h5 text-black/70 text-left" to="/about">Tentang TIBER</Link>
+            <Link className="p-4 font-inter text-h5 text-black/70 text-left border-b border-black/30" to="/hows-it-work">Cara Kerja</Link>
+            <Link className="p-4 font-inter text-h5 text-black/70 text-left" to="/login">Masuk</Link>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
