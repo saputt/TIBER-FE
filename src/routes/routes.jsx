@@ -14,6 +14,7 @@ import HowPage from "../pages/How";
 import ProfileSettingPage from "../pages/Profile/Setting";
 import ProfilePage from "../pages/Profile/Profile";
 import ScrollToTop from "../utils/ScrollToTop";
+import { AuthGuard, GuestGuard } from "./RouteGuard";
 
 const router = createBrowserRouter([
   {
@@ -26,18 +27,22 @@ const router = createBrowserRouter([
     children: [
       //auth page
       {
-        path: "/login",
-        element: <LoginPage />,
-      },
-      {
-        path: "/register",
-        element: <RegisterPage />,
-      },
-
-      //onboarding (personalization)
-      {
-        path: "/onboarding",
-        element: <OnboardingPage />,
+        element: <GuestGuard />,
+        children: [
+          {
+            path: "/login",
+            element: <LoginPage />,
+          },
+          {
+            path: "/register",
+            element: <RegisterPage />,
+          },
+          //onboarding (personalization)
+          {
+            path: "/onboarding",
+            element: <OnboardingPage />,
+          },
+        ],
       },
 
       {
@@ -49,35 +54,39 @@ const router = createBrowserRouter([
             path: "/",
             element: <LandingPage />,
           },
-
-          //activity page
           {
-            path: "/activity",
-            element: <ActivityPage />,
-          },
+            element: <AuthGuard />,
+            children: [
+              //activity page
+              {
+                path: "/activity",
+                element: <ActivityPage />,
+              },
 
-          //progress page
-          {
-            path: "/progress",
-            element: <ProgressPage />,
-          },
+              //progress page
+              {
+                path: "/progress",
+                element: <ProgressPage />,
+              },
 
-          //profile page
-          {
-            path: "/profile",
-            element: <ProfilePage />,
-          },
+              //profile page
+              {
+                path: "/profile",
+                element: <ProfilePage />,
+              },
 
-          //profile page
-          {
-            path: "/profile/settings",
-            element: <ProfileSettingPage />,
-          },
+              //profile page
+              {
+                path: "/profile/settings",
+                element: <ProfileSettingPage />,
+              },
 
-          //home page (dashboard)
-          {
-            path: "/dashboard",
-            element: <DashboardPage />,
+              //home page (dashboard)
+              {
+                path: "/dashboard",
+                element: <DashboardPage />,
+              },
+            ],
           },
 
           {

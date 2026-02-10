@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../../../components/atoms/Card";
 import { Sparkle } from "lucide-react";
 
-const CardJourney = () => {
+const CardJourney = ({ dayPass }) => {
   return (
     <Card
       variant="white"
@@ -20,7 +20,7 @@ const CardJourney = () => {
         className="bg-sec-dark-blue/10 flex flex-col gap-1 py-4"
         size="full"
       >
-        <h5 className="font-bold text-h5">45 hari sudah kamu jalani.</h5>
+        <h5 className="font-bold text-h5">{dayPass} hari sudah kamu jalani.</h5>
         <p className="text-h5">
           Seperempat perjalan selesai, setiap langkah kecil tetap berarti.
         </p>

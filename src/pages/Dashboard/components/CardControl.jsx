@@ -1,8 +1,9 @@
 import React from "react";
 import Card from "../../../components/atoms/Card";
 import { Bell, Calendar } from "lucide-react";
+import { useMedicationLog } from "../../../hooks/useDashboard";
 
-const CardControl = () => {
+const CardControl = ({ dayLeft }) => {
   return (
     <Card
       className="py-4 bg-light-purple flex flex-col gap-2"
@@ -17,7 +18,7 @@ const CardControl = () => {
       </div>
 
       <div>
-        <h3 className="font-medium text-h3">7 Hari Lagi</h3>
+        <h3 className="font-medium text-h3">{dayLeft} Hari Lagi</h3>
       </div>
 
       <div className="flex gap-2">

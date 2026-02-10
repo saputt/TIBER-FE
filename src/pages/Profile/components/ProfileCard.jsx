@@ -4,7 +4,7 @@ import { Settings } from "lucide-react";
 import { useProfileStore } from "../../../store/useProfileStore";
 import { useNavigate } from "react-router-dom";
 
-const ProfileCard = () => {
+const ProfileCard = ({ name, duration, startDate }) => {
   const setProfile = useProfileStore((state) => state.setProfile);
   const isProfileOpen = useProfileStore((state) => state.isProfileOpen);
 
@@ -21,8 +21,8 @@ const ProfileCard = () => {
           S
         </div>
         <div className="flex flex-col flex-1">
-          <h3 className="font-semibold text-h4">Sauki WellWell</h3>
-          <p className="text-h7">Dimulai 16 Desember 2025</p>
+          <h3 className="font-semibold text-h4">{name}</h3>
+          <p className="text-h7">Dimulai {startDate}</p>
         </div>
         <Settings
           size={20}
@@ -33,7 +33,7 @@ const ProfileCard = () => {
       <hr className="text-gray-400" />
       <div className="flex flex-col">
         <h5 className="text-h5">Durasi Pengobatan</h5>
-        <p className="font-semibold text-h5">6 Bulan</p>
+        <p className="font-semibold text-h5">{duration} Bulan</p>
       </div>
     </Card>
   );

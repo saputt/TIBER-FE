@@ -4,8 +4,13 @@ import { Lightbulb } from "lucide-react";
 import Input from "../../../components/atoms/Input";
 import FormPersonalization from "../../../components/organism/FormPersonalization";
 import InputLabel from "../../../components/molecules/InputLabel";
+import { useOnboardingStore } from "../../../store/useOnboardingStore";
 
 const FormDuration = () => {
+  const setFormData = useOnboardingStore((state) => state.setFormData);
+  const durationMonth = useOnboardingStore(
+    (state) => state.formData?.personalization?.duration_month,
+  );
   return (
     <FormPersonalization
       title="Berapa lama perkiraan durasi pengobatan Anda"
@@ -17,6 +22,10 @@ const FormDuration = () => {
         variant="gray"
         placeholder="Contoh: 6 Bulan"
         type="number"
+        onChange={(e) =>
+          setFormData("personalization", { duration_month: e.target.value })
+        }
+        value={durationMonth || ""}
       />
     </FormPersonalization>
   );

@@ -14,7 +14,9 @@ export const useMedicationLog = () => {
   return useMutation({
     mutationFn: (payload) => logService(payload),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["dashboard"] });
+      queryClient.invalidateQueries({
+        queryKey: ["dashboard", "personalization"],
+      });
     },
   });
 };

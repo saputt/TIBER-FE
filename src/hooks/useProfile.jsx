@@ -1,19 +1,30 @@
 import {
   QueryClient,
   useMutation,
+  useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
 import React from "react";
-import { personalizationService } from "../services/personalizationService";
+import {
+  getPersonalizationService,
+  updatePersonalizationService,
+} from "../services/personalizationService";
 import { profileService } from "../services/profileService";
 
-export const usePersonalization = () => {
+export const useUpdatePersonalization = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (payload) => personalizationService(payload),
+    mutationFn: (payload) => updatePersonalizationService(payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["dashboard"] });
     },
+  });
+};
+
+export const useGetPersonalization = () => {
+  return useQuery({
+    queryKey: ["personalization", "dashboard"],
+    queryFn: () => getPersonalizationService(),
   });
 };
 

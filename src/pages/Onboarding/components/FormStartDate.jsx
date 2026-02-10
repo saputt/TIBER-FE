@@ -8,8 +8,9 @@ import InputLabel from "../../../components/molecules/InputLabel";
 
 const FormStartDate = () => {
   const setFormData = useOnboardingStore((state) => state.setFormData);
-  const formData = useOnboardingStore((state) => state.formData);
-
+  const startDate = useOnboardingStore(
+    (state) => state.formData?.personalization?.start_date,
+  );
   return (
     <FormPersonalization
       title="Kapan Anda memulai pengobatan"
@@ -19,10 +20,12 @@ const FormStartDate = () => {
       <InputLabel
         label="Tanggal Mulai Pengobatan"
         variant="gray"
-        onChange={() =>
+        onChange={(e) =>
           setFormData("personalization", { start_date: e.target.value })
         }
         placeholder="DD/MM/YYYY"
+        type="date"
+        value={startDate || ""}
       />
     </FormPersonalization>
   );

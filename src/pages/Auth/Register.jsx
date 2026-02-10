@@ -24,21 +24,8 @@ const RegisterPage = () => {
           </div>
         </div>
 
-        <InfoSaveCard variant="green" />
-
         {/* form register */}
         <RegistForm />
-
-        <InfoSaveCard variant="blue" />
-
-        <Button
-          variant="primary"
-          size="full"
-          className="mt-5 shadow-button"
-          onClick={() => navigate("/dashboard")}
-        >
-          Daftar
-        </Button>
 
         <p className="text-center text-h6 text-wrap w-65">
           Dengan membuat akun, anda menyetujui Syarat & Ketentuan dan Kebijakan

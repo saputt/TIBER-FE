@@ -2,8 +2,9 @@ import React from "react";
 import Card from "../../../components/atoms/Card";
 import { ChartBar } from "lucide-react";
 import BarStep from "../../../components/atoms/BarStep";
+import RangeSlider from "../../../components/atoms/RangeSlider";
 
-const CardProgress = () => {
+const CardProgress = ({ currentDay, totalDay }) => {
   return (
     <Card
       boxShadowActive={true}
@@ -18,12 +19,14 @@ const CardProgress = () => {
         <h4 className="text-h4">Progres Pengobatan</h4>
       </div>
       <div className="flex flex-col">
-        <h2 className="font-semibold text-h2">Hari 45 dari 180</h2>
+        <h2 className="font-semibold text-h2">
+          Hari {currentDay} dari {totalDay}
+        </h2>
         <p className="text-h5">Sekitar seperempat perjalanan tercapai</p>
       </div>
       <div className="flex flex-col gap-1">
         <div className="flex">
-          <BarStep isActive={true} />
+          <RangeSlider min={0} max={totalDay} value={currentDay} />
         </div>
         <div className="w-full flex justify-between">
           <p className="text-h6">Mulai</p>

@@ -5,6 +5,16 @@ export const useProfileStore = create((set) => ({
   isDailyOpen: false,
   isControlOpen: false,
   isStartDateOpen: false,
+  personalization: {},
+
+  setPersonalization: (data) => {
+    set((state) => ({
+      personalization: {
+        ...state.personalization,
+        data,
+      },
+    }));
+  },
 
   setDuration: () => {
     set((state) => ({

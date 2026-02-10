@@ -1,10 +1,25 @@
-import React from "react";
-import InputLabel from "../../components/molecules/InputLabel"
+import React, { useState } from "react";
+import InputLabel from "../../components/molecules/InputLabel";
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../../components/atoms/Button"
+import Button from "../../components/atoms/Button";
+import { useLogin } from "../../hooks/useAuth";
+import { useAuthStore } from "../../store/useAuthStore";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { mutate: login, isLoading } = useLogin();
+
+  const token = useAuthStore((state) => state.token);
+
+  const handleSubmit = () => {
+    login({
+      email,
+      password,
+    });
+  };
 
   return (
     <div className="px-8 py-24 bg-gray-50 min-h-dvh w-full flex flex-col items-center">
@@ -12,26 +27,65 @@ const LoginPage = () => {
         <img src="/secLogo.png" className="w-14 rounded-lg" />
       </div>
       <div className="mt-9 flex flex-col items-center">
-        <span className="font-inter font-bold text-h2">Selamat Datang Kembali</span>
-        <span className="font-inter text-h5">Lanjutkan perjalanan pengobatan Anda</span>
+        <span className="font-inter font-bold text-h2">
+          Selamat Datang Kembali
+        </span>
+        <span className="font-inter text-h5">
+          Lanjutkan perjalanan pengobatan Anda
+        </span>
       </div>
       <div className="flex flex-col gap-2 mt-14 w-full sm:w-md">
-        <InputLabel variantInput="input" variantLabel="normal" label="Email" variant="gray" type="email" placeholder="nama@email.com" size="full"/>
+        <InputLabel
+          variantInput="input"
+          variantLabel="normal"
+          label="Email"
+          variant="gray"
+          type="email"
+          placeholder="nama@email.com"
+          size="full"
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <div className="flex flex-col">
-          <InputLabel variantInput="input" variantLabel="normal" label="Kata Sandi" variant="gray" type="password" placeholder="Min 8 Karakter" size="full"/>
+          <InputLabel
+            variantInput="input"
+            variantLabel="normal"
+            label="Kata Sandi"
+            variant="gray"
+            type="password"
+            placeholder="Min 8 Karakter"
+            size="full"
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <div className="text-end">
-            <Link to="*" className="font-inter text-h5 underline text-black/70 w-fit">Lupa sandi</Link>
+            <Link
+              to="*"
+              className="font-inter text-h5 underline text-black/70 w-fit"
+            >
+              Lupa sandi
+            </Link>
           </div>
         </div>
       </div>
       <div className="text-center w-full sm:w-md">
-        <Button variant="primary" size="full" boxShadowActive="true" className="mt-6 text-h5 sm:w-md" onClick={() => {navigate("/dashboard")}}>Masuk</Button>
+        <Button
+          variant="primary"
+          size="full"
+          boxShadowActive="true"
+          className="mt-6 text-h5 sm:w-md"
+          onClick={() => handleSubmit()}
+        >
+          Masuk
+        </Button>
       </div>
       <div className="text-center mt-1">
-        <span className="text-primary font-inter text-h5 text-center">Belum punya akun? <Link to="/register">Daftar Sekarang</Link></span>
+        <span className="text-primary font-inter text-h5 text-center">
+          Belum punya akun? <Link to="/register">Daftar Sekarang</Link>
+        </span>
       </div>
       <div className="text-center mt-0.5">
-        <span className="text-black/50 font-inter text-h5 text-center"><Link to="/">Kembali</Link></span>
+        <span className="text-black/50 font-inter text-h5 text-center">
+          <Link to="/">Kembali</Link>
+        </span>
       </div>
     </div>
   );

@@ -4,14 +4,14 @@ import { useOnboardingStore } from "../../../store/useOnboardingStore";
 import FormPersonalization from "../../../components/organism/FormPersonalization";
 
 const FormTimeCategory = () => {
-  const [selectTime, setSelectTime] = useState();
-
-  const timeCategory = ["Pagi", "Siang", "Sore", "Malam"];
+  const timeCategories = ["pagi", "siang", "sore", "malam"];
 
   const setFormData = useOnboardingStore((state) => state.setFormData);
 
-  const formData = useOnboardingStore((state) => state.formData);
-  console.log(formData);
+  const timeCategory = useOnboardingStore(
+    (state) => state.formData?.personalization?.time_category,
+  );
+
   return (
     <FormPersonalization
       title="Kapan waktu paling nyaman bagi Anda untuk minum obat?"
@@ -21,15 +21,14 @@ const FormTimeCategory = () => {
       <div className="flex flex-col gap-2">
         <p className="text-h5 font-medium">Waktu Rutin</p>
         <div className="flex flex-col gap-2">
-          {timeCategory.map((time) => (
+          {timeCategories.map((time) => (
             <SelectionButton
               key={time}
-              isSelect={selectTime === time}
+              isSelect={timeCategory === time}
               selectionName={time}
               isBoarding={true}
               className="py-3 text-h5"
               onClick={() => {
-                setSelectTime(time);
                 setFormData("personalization", { time_category: time });
               }}
             />

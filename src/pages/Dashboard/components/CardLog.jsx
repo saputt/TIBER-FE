@@ -3,12 +3,31 @@ import Card from "../../../components/atoms/Card";
 import Badge from "../../../components/atoms/Badge";
 import { CircleCheckBig, Pill } from "lucide-react";
 import ButtonTest from "../../../components/atoms/ButtonTest";
+import { useMedicationLog } from "../../../hooks/useDashboard";
+import { useAuthStore } from "../../../store/useAuthStore";
 
 const CardLog = ({ isTaken }) => {
-  const [taken, setTaken] = useState(false);
+  const { mutate } = useMedicationLog();
+  const user = useAuthStore((state) => state.user);
+  console.log(user);
+  const handleLog = () => {
+    const now = new Date();
+    const formatted = now
+      .toISOString()
+      .slice(0, 19)
+      .replace("T", " ")
+      .split(" ");
+    const data = {
+      user_id: user.id,
+      log_date: formatted[0],
+      logged_time: formatted[1],
+    };
+
+    mutate(data);
+  };
   return (
     <>
-      {taken && (
+      {isTaken && (
         <Card
           boxShadowActive={true}
           size="full"
@@ -36,14 +55,13 @@ const CardLog = ({ isTaken }) => {
             variant="secondary"
             size="full"
             className="font-bold text-h6"
-            onClick={() => setTaken(!taken)}
           >
             Sampai jumpa di jadwal berikutnya
           </ButtonTest>
         </Card>
       )}
 
-      {!taken && (
+      {!isTaken && (
         <Card
           boxShadowActive={true}
           size="full"
@@ -66,7 +84,7 @@ const CardLog = ({ isTaken }) => {
             variant="primary"
             size="full"
             className="font-bold text-h6"
-            onClick={() => setTaken(!taken)}
+            onClick={() => handleLog()}
           >
             Konfirmasi
           </ButtonTest>

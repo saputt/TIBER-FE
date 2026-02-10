@@ -1,7 +1,9 @@
+import { useAuthStore } from "../store/useAuthStore";
+
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const fetcher = async (endpoint, options = {}) => {
-  const token = localStorage.getItem("token");
+  const token = useAuthStore.getState().token;
 
   const headers = {
     "Content-Type": "application/json",

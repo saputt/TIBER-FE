@@ -2,7 +2,8 @@ import React from "react";
 import Card from "../../../components/atoms/Card";
 import { Flame } from "lucide-react";
 
-const CardStreak = () => {
+const CardStreak = ({ streak }) => {
+  console.log(streak);
   return (
     <Card
       variant="white"
@@ -14,7 +15,7 @@ const CardStreak = () => {
         <Flame size={20} className="text-dark-orange" />
       </div>
       <div className="flex-1">
-        <h2 className="text-h2 font-medium">5 Hari</h2>
+        <h2 className="text-h2 font-medium">{streak}</h2>
         <p className="text-h5">Konsisten tanpa terlewat</p>
       </div>
     </Card>

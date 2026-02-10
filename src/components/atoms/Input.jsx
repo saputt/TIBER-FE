@@ -8,6 +8,7 @@ const Input = ({
   className,
   boxShadowActive,
   onChange,
+  value,
 }) => {
   const defaultStyle =
     "rounded-lg px-2.5 py-2.5 focus:outline-black font-inter";
@@ -33,6 +34,7 @@ const Input = ({
       placeholder={placeholder}
       className={`${sizes[size]} ${variants[variant]} ${defaultStyle} ${className} ${boxShadow}`}
       onChange={onChange}
+      value={value}
     />
   );
 };

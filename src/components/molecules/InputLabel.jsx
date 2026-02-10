@@ -12,6 +12,9 @@ const InputLabel = ({
   size = "full",
   className,
   onChange,
+  value,
+  onClick,
+  defaultValue,
 }) => {
   return (
     <div className="flex flex-col gap-1.5">
@@ -22,7 +25,14 @@ const InputLabel = ({
         <span className="text-h4 font-medium font-inter">{label}</span>
       )}
       {variantInput == "select" && (
-        <InputSelect variant={variant} placeholder={placeholder} />
+        <InputSelect
+          variant={variant}
+          placeholder={placeholder}
+          onClick={onClick}
+          defaultValue={defaultValue}
+          onChange={onChange}
+          value={value}
+        />
       )}
       {variantInput == "input" && (
         <Input
@@ -32,6 +42,7 @@ const InputLabel = ({
           className={className}
           onChange={onChange}
           size={size}
+          value={value}
         />
       )}
     </div>

@@ -7,7 +7,7 @@ export const dashboardService = () => {
 };
 
 export const logService = (payload) => {
-  return fetcher("/logs", {
+  return fetcher("/log", {
     method: "POST",
     body: payload,
   });
