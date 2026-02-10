@@ -12,7 +12,7 @@ const AppLayout = () => {
     "/profile": "sub",
     "/about": "about",
     "/information-user": "info",
-    "/hows-it-work": "hows",
+    "/hows-it-work": "how",
     "/profile/settings": "main",
   };
 
