@@ -4,11 +4,12 @@ import { useOnboardingStore } from "../../../store/useOnboardingStore";
 import InfoSaveCard from "./InfoSaveCard";
 import Button from "../../../components/atoms/Button";
 import { useRegister } from "../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const RegistForm = () => {
   const setFormData = useOnboardingStore((state) => state.setFormData);
   const formData = useOnboardingStore((state) => state.formData);
-
+  const navigate = useNavigate();
   const { mutate: register } = useRegister();
 
   const [password, setPassword] = useState("");
@@ -30,7 +31,6 @@ const RegistForm = () => {
       user: {
         fullname: fullname,
         email: email,
-        // PENTING: Password minimal 8 karakter buat standar Laravel biasanya!
         password: password,
       },
       personalization: {
@@ -43,7 +43,6 @@ const RegistForm = () => {
       },
     };
 
-    console.log("Kirim ke Laravel:", finalData);
     register(finalData);
   };
 
@@ -51,7 +50,7 @@ const RegistForm = () => {
     <div>
       <InfoSaveCard variant="green" />
 
-      <form onSubmit={handleRegister}>
+      <form>
         <div className="w-full flex flex-col gap-4 my-3">
           <InputLabel
             label="Nama Lengkap"
@@ -88,7 +87,12 @@ const RegistForm = () => {
         </div>
         <InfoSaveCard variant="blue" />
 
-        <Button variant="primary" size="full" className="mt-5 shadow-button">
+        <Button
+          variant="primary"
+          size="full"
+          className="mt-5 shadow-button"
+          onClick={() => navigate("/login")}
+        >
           Daftar
         </Button>
       </form>

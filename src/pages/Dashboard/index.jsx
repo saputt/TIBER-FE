@@ -14,7 +14,6 @@ import { useDashboardOverview } from "../../hooks/useDashboard";
 
 const DashboardPage = () => {
   const { data: dashboard, isLoading } = useDashboardOverview();
-  console.log(dashboard);
   const calculateDaysLeft = (targetDate) => {
     if (!targetDate) return 0;
 

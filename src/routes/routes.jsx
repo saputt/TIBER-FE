@@ -27,23 +27,36 @@ const router = createBrowserRouter([
     children: [
       //auth page
       {
-        element: <GuestGuard />,
-        children: [
-          {
-            path: "/login",
-            element: <LoginPage />,
-          },
-          {
-            path: "/register",
-            element: <RegisterPage />,
-          },
-          //onboarding (personalization)
-          {
-            path: "/onboarding",
-            element: <OnboardingPage />,
-          },
-        ],
+        path: "/login",
+        element: <LoginPage />,
       },
+      {
+        path: "/register",
+        element: <RegisterPage />,
+      },
+      //onboarding (personalization)
+      {
+        path: "/onboarding",
+        element: <OnboardingPage />,
+      },
+      // {
+      //   element: <GuestGuard />,
+      //   children: [
+      //     {
+      //       path: "/login",
+      //       element: <LoginPage />,
+      //     },
+      //     {
+      //       path: "/register",
+      //       element: <RegisterPage />,
+      //     },
+      //     //onboarding (personalization)
+      //     {
+      //       path: "/onboarding",
+      //       element: <OnboardingPage />,
+      //     },
+      //   ],
+      // },
 
       {
         path: "/",
@@ -55,39 +68,67 @@ const router = createBrowserRouter([
             element: <LandingPage />,
           },
           {
-            element: <AuthGuard />,
-            children: [
-              //activity page
-              {
-                path: "/activity",
-                element: <ActivityPage />,
-              },
-
-              //progress page
-              {
-                path: "/progress",
-                element: <ProgressPage />,
-              },
-
-              //profile page
-              {
-                path: "/profile",
-                element: <ProfilePage />,
-              },
-
-              //profile page
-              {
-                path: "/profile/settings",
-                element: <ProfileSettingPage />,
-              },
-
-              //home page (dashboard)
-              {
-                path: "/dashboard",
-                element: <DashboardPage />,
-              },
-            ],
+            path: "/activity",
+            element: <ActivityPage />,
           },
+
+          //progress page
+          {
+            path: "/progress",
+            element: <ProgressPage />,
+          },
+
+          //profile page
+          {
+            path: "/profile",
+            element: <ProfilePage />,
+          },
+
+          //profile page
+          {
+            path: "/profile/settings",
+            element: <ProfileSettingPage />,
+          },
+
+          //home page (dashboard)
+          {
+            path: "/dashboard",
+            element: <DashboardPage />,
+          },
+          // {
+          //   element: <AuthGuard />,
+          //   children: [
+          //     //activity page
+          //     {
+          //       path: "/activity",
+          //       element: <ActivityPage />,
+          //     },
+
+          //     //progress page
+          //     {
+          //       path: "/progress",
+          //       element: <ProgressPage />,
+          //     },
+
+          //     //profile page
+          //     {
+          //       path: "/profile",
+          //       element: <ProfilePage />,
+          //     },
+
+          //     //profile page
+          //     {
+          //       path: "/profile/settings",
+          //       element: <ProfileSettingPage />,
+          //     },
+
+          //     //home page (dashboard)
+          //     {
+          //       path: "/dashboard",
+          //       element: <DashboardPage />,
+          //     },
+          //   ],
+          // },
 
           {
             path: "/about",

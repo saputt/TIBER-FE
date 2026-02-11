@@ -28,7 +28,7 @@ export const fetcher = async (endpoint, options = {}) => {
 
   if (response.status === 401) {
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    // window.location.href = "/login";
   }
 
   const data = await response.json();

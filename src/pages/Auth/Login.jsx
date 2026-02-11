@@ -12,8 +12,6 @@ const LoginPage = () => {
 
   const { mutate: login, isLoading } = useLogin();
 
-  const token = useAuthStore((state) => state.token);
-
   const handleSubmit = () => {
     login({
       email,
@@ -72,7 +70,7 @@ const LoginPage = () => {
           size="full"
           boxShadowActive="true"
           className="mt-6 text-h5 sm:w-md"
-          onClick={() => handleSubmit()}
+          onClick={() => navigate("/dashboard")}
         >
           Masuk
         </Button>
