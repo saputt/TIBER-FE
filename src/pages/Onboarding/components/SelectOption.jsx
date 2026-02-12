@@ -16,6 +16,7 @@ const SelectOption = ({ options }) => {
         {options.map((option) => (
           <SelectionButton
             selectionName={option.name}
+            key={option.name}
             isSelect={isSelect === option.name}
             onClick={() => {
               setIsSelect(option.name);

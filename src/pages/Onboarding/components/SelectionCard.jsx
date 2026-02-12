@@ -8,6 +8,7 @@ const SelectionCard = ({ title, list, isSelect, onClick }) => {
       <hr />
       {list.map((list) => (
         <SelectionButton
+          key={list}
           isBoarding={true}
           isSelect={isSelect}
           selectionName={list}

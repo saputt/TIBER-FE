@@ -19,6 +19,17 @@ const FormControl = () => {
   const freqUnit = useOnboardingStore(
     (state) => state.formData?.personalization?.control_freq_unit,
   );
+
+  let nameDay = "";
+
+  if (freqUnit === "day") {
+    nameDay = "Hari";
+  } else if (freqUnit === "week") {
+    nameDay = "Minggu";
+  } else if (freqUnit === "month") {
+    nameDay = "Bulan";
+  }
+
   const setFormData = useOnboardingStore((state) => state.setFormData);
 
   return (
@@ -31,7 +42,7 @@ const FormControl = () => {
         variantInput="select"
         placeholder="Contoh: 2 (Hari/Minggu/Bulan diatur di →)"
         label="Rentang kontrol, Setiap:"
-        defaultValue={freqUnit || "Bulan"}
+        defaultValue={nameDay || "Bulan"}
         onClick={() => setOverlay()}
         onChange={(e) =>
           setFormData("personalization", {

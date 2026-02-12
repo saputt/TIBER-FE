@@ -26,6 +26,7 @@ const SelectionOverlayCard = ({ data }) => {
             selectionName={data.name}
             isSelect={freqUnit == data.id}
             isBoarding={true}
+            key={data.id}
             onClick={() => {
               setFormData("personalization", { control_freq_unit: data.id });
               setOverlay();
