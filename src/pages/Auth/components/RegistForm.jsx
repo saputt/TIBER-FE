@@ -69,7 +69,8 @@ const RegistForm = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <InputLabel
-            label="Kata Sanndi"
+            label="Kata Sandi"
+            type="password"
             placeholder="Min 8 Karakter"
             variantInput="input"
             variantLabel="normal"
@@ -78,6 +79,7 @@ const RegistForm = () => {
           />
           <InputLabel
             label="Konfirmasi Kata Sandi"
+            type="password"
             placeholder="Masukkan ulang kata sandi"
             variantInput="input"
             variantLabel="normal"
