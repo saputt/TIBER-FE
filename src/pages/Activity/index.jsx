@@ -12,7 +12,7 @@ import { useActivityStore } from "../../store/useActivityStore";
 
 const ActivityPage = () => {
   const { data, isLoading } = useActivityOverview();
-  console.log(data)
+  console.log(data);
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
 
   if (isLoading) {
@@ -27,7 +27,7 @@ const ActivityPage = () => {
           Minum Obat
         </button>
         <CalenderWeek weekSummary={data?.data?.weekly_summary} />
-        <StreakCard />
+        <StreakCard highestStreak={data?.data?.highest_streak} />
         <History
           data={data?.data?.recent_logs}
           onOpen={() => setIsHistoryModalOpen(true)}

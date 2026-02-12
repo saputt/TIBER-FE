@@ -19,7 +19,7 @@ const SummaryCard = ({ dayPass, currentStreak, totalDay }) => {
           </div>
           <div className="flex flex-col text-center items-center">
             <h3 className="font-semibold text-h3">{dayPass}</h3>
-            <p className="text-h6">Hari Tercatat</p>
+            <p className="text-h6">Hari Dilewati</p>
           </div>
         </div>
 
