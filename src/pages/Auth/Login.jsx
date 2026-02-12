@@ -100,7 +100,7 @@ const LoginPage = () => {
       </div>
       <div className="text-center mt-1">
         <span className="text-primary font-inter text-h5 text-center">
-          Belum punya akun? <Link to="/register">Daftar Sekarang</Link>
+          Belum punya akun? <Link to="/onboarding">Daftar Sekarang</Link>
         </span>
       </div>
       <div className="text-center mt-0.5">

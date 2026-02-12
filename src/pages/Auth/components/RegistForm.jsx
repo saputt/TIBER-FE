@@ -92,7 +92,9 @@ const RegistForm = () => {
             variant="gray"
             type={showConfirmPassword ? "text" : "password"}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            endIcon={showConfirmPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+            endIcon={
+              showConfirmPassword ? <Eye size={20} /> : <EyeOff size={20} />
+            }
             onEndIconClick={() => setShowConfirmPassword(!showConfirmPassword)}
           />
         </div>
