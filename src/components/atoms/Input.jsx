@@ -9,6 +9,8 @@ const Input = ({
   boxShadowActive,
   onChange,
   value,
+  endIcon,
+  onEndIconClick,
 }) => {
   const defaultStyle =
     "rounded-lg px-2.5 py-2.5 focus:outline-black font-inter";
@@ -29,13 +31,24 @@ const Input = ({
   const boxShadow = boxShadowActive ? "shadow-input" : "";
 
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      className={`${sizes[size]} ${variants[variant]} ${defaultStyle} ${className} ${boxShadow}`}
-      onChange={onChange}
-      value={value}
-    />
+    <div className={`relative ${sizes[size]}`}>
+      <input
+        type={type}
+        placeholder={placeholder}
+        className={`${sizes.full} ${variants[variant]} ${defaultStyle} ${className} ${boxShadow}`}
+        onChange={onChange}
+        value={value}
+      />
+      {endIcon && (
+        <div
+          className={`absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 z-10 ${onEndIconClick ? "cursor-pointer" : ""
+            }`}
+          onClick={onEndIconClick}
+        >
+          {endIcon}
+        </div>
+      )}
+    </div>
   );
 };
 

@@ -15,6 +15,8 @@ const InputLabel = ({
   value,
   onClick,
   defaultValue,
+  endIcon,
+  onEndIconClick,
 }) => {
   return (
     <div className="flex flex-col gap-1.5">
@@ -43,6 +45,8 @@ const InputLabel = ({
           onChange={onChange}
           size={size}
           value={value}
+          endIcon={endIcon}
+          onEndIconClick={onEndIconClick}
         />
       )}
     </div>

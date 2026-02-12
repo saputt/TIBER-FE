@@ -5,20 +5,34 @@ import Button from "../../components/atoms/Button";
 import { useLogin } from "../../hooks/useAuth";
 import { useAuthStore } from "../../store/useAuthStore";
 import { useQueryClient } from "@tanstack/react-query";
+import { Eye, EyeOff } from "lucide-react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { mutate: login, isPending } = useLogin();
 
   const handleSubmit = () => {
     if (isPending) return;
-    login({
-      email,
-      password,
-    });
+    setErrorMessage(""); // Clear previous errors
+    login(
+      {
+        email,
+        password,
+      },
+      {
+        onError: (error) => {
+          const msg =
+            error.response?.data?.message ||
+            "Terjadi kesalahan. Silakan coba lagi.";
+          setErrorMessage(msg);
+        },
+      }
+    );
   };
 
   return (
@@ -34,7 +48,12 @@ const LoginPage = () => {
           Lanjutkan perjalanan pengobatan Anda
         </span>
       </div>
-      <div className="flex flex-col gap-2 mt-14 w-full sm:w-md">
+      <div className="flex flex-col gap-2 mt-8 w-full sm:w-md">
+        {errorMessage && (
+          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm text-center">
+            {errorMessage}
+          </div>
+        )}
         <InputLabel
           variantInput="input"
           variantLabel="normal"
@@ -51,10 +70,12 @@ const LoginPage = () => {
             variantLabel="normal"
             label="Kata Sandi"
             variant="gray"
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Min 8 Karakter"
             size="full"
             onChange={(e) => setPassword(e.target.value)}
+            endIcon={showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+            onEndIconClick={() => setShowPassword(!showPassword)}
           />
           <div className="text-end">
             <Link

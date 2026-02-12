@@ -64,7 +64,7 @@ const OnboardingLayout = ({ children }) => {
           </div>
         )}
 
-        <section className="flex-1 flex flex-col overflow-y-auto px-4 py-5">
+        <section className="flex-1 flex flex-col overflow-y-auto px-4 py-5 bg-gray-50">
           {children}
         </section>
 

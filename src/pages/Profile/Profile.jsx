@@ -25,7 +25,7 @@ import { useState } from "react";
 const ProfilePage = () => {
   const isDailyOpen = useProfileStore((state) => state.isDailyOpen);
   const isControlOpen = useProfileStore((state) => state.isControlOpen);
-  const { mutate: logout } = useLogout();
+  const { mutate: logout, isPending } = useLogout();
   const { data, isLoading } = useGetPersonalization();
   const username = useAuthStore((state) => state.user?.fullname);
   const setPersonalization = usePersonalizationStore(
@@ -38,7 +38,7 @@ const ProfilePage = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleLogout = () => {
-    logout(undefined, {
+    logout({
       onSuccess: () => {
         setShowLogoutModal(true);
       },
@@ -85,7 +85,7 @@ const ProfilePage = () => {
         onClick={handleLogout}
       >
         <LogOut size={17} />
-        Keluar
+        {isPending ? "Sedang Keluar..." : "Keluar"}
       </ButtonTest>
 
       <SuccessModal
