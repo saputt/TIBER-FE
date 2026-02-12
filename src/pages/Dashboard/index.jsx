@@ -11,15 +11,12 @@ import CardControl from "./components/CardControl";
 import CardProgress from "./components/CardProgress";
 import CardImportant from "./components/CardImportant";
 import { useDashboardOverview } from "../../hooks/useDashboard";
-import { useActivityMonth } from "../../hooks/useActivity";
 import Loading from "../../components/molecules/Loading";
 
 const DashboardPage = () => {
   const { data: dashboard, isLoading } = useDashboardOverview();
 
-  const { data: calenderMonth, isLoading: calenderMonthLoading } =
-    useActivityMonth("2");
-  console.log(calenderMonth);
+  console.log(dashboard);
 
   if (isLoading) {
     return (
@@ -49,7 +46,10 @@ const DashboardPage = () => {
     <div className="flex flex-col gap-4">
       <CardLog isTaken={dashboard?.data?.is_taken_today} />
       <CardStreak streak={dashboard?.data?.current_streak} />
-      <CardJourney dayPass={dashboard?.data?.days_passed} />
+      <CardJourney
+        dayPass={dashboard?.data?.days_passed}
+        totalDay={dashboard?.data?.total_days}
+      />
       <CardControl dayLeft={calculateDaysLeft(dashboard?.data?.next_checkup)} />
       <CardProgress
         currentDay={dashboard?.data?.days_passed}

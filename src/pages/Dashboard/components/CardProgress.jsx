@@ -5,6 +5,22 @@ import BarStep from "../../../components/atoms/BarStep";
 import RangeSlider from "../../../components/atoms/RangeSlider";
 
 const CardProgress = ({ currentDay, totalDay }) => {
+  const percentage = (currentDay / totalDay) * 100;
+
+  const getProgressMessage = (progress) => {
+    if (progress <= 10) {
+      return "Perjalanan ribuan mil dimulai dengan satu langkah.";
+    } else if (progress <= 30) {
+      return "Konsistensi adalah kunci. Kamu melakukan hal yang hebat.";
+    } else if (progress <= 60) {
+      return "Setiap hari membawamu lebih dekat pada kesembuhan.";
+    } else if (progress <= 90) {
+      return "Terus melangkah, kemenangan sudah di depan mata.";
+    } else {
+      return "Kamu berhasil! Kesehatanmu adalah prioritas utama.";
+    }
+  };
+
   return (
     <Card
       boxShadowActive={true}
@@ -22,7 +38,7 @@ const CardProgress = ({ currentDay, totalDay }) => {
         <h2 className="font-semibold text-h2">
           Hari {currentDay} dari {totalDay}
         </h2>
-        <p className="text-h5">Sekitar seperempat perjalanan tercapai</p>
+        <p className="text-h5">{getProgressMessage(percentage)}</p>
       </div>
       <div className="flex flex-col gap-1">
         <div className="flex">

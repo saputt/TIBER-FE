@@ -15,6 +15,11 @@ import { useAuthStore } from "../../store/useAuthStore";
 import { FormatDate } from "../../utils/FormatDate";
 import { usePersonalizationStore } from "../../store/usePersonalizationStore";
 import Loading from "../../components/molecules/Loading";
+import { useDashboardOverview } from "../../hooks/useDashboard";
+
+import { useNavigate } from "react-router-dom";
+import SuccessModal from "../../components/molecules/SuccessModal";
+import { useState } from "react";
 
 const ProfilePage = () => {
   const isDailyOpen = useProfileStore((state) => state.isDailyOpen);
@@ -26,7 +31,25 @@ const ProfilePage = () => {
     (state) => state.setPersonalization,
   );
 
-  if (isLoading) {
+  const { data: dashboard, isLoading: dashboardLoading } = useDashboardOverview();
+
+  const navigate = useNavigate();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+  const handleLogout = () => {
+    logout(undefined, {
+      onSuccess: () => {
+        setShowLogoutModal(true);
+      },
+    });
+  };
+
+  const handleLogoutConfirm = () => {
+    setShowLogoutModal(false);
+    navigate("/");
+  };
+
+  if (isLoading || dashboardLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Loading />
@@ -50,7 +73,7 @@ const ProfilePage = () => {
         duration={data?.Data.duration_month}
         startDate={FormatDate(data?.Data.start_date)}
       />
-      <SummaryCard />
+      <SummaryCard dayPass={dashboard?.data.days_passed} currentStreak={dashboard?.data.current_streak} totalDay={dashboard?.data.total_days} />
       <SettingReminderCard
         reminderTimeDay={data?.Data.time_category}
         reminderTime={data?.Data.reminder_time}
@@ -62,11 +85,19 @@ const ProfilePage = () => {
         variant="white"
         size="full"
         className="flex justify-center items-center text-h5"
-        onClick={() => logout()}
+        onClick={handleLogout}
       >
         <LogOut size={17} />
         Keluar
       </ButtonTest>
+
+      <SuccessModal
+        isOpen={showLogoutModal}
+        title="Sampai Jumpa Lagi!"
+        description="Jangan lupa minum obat ya, walau Aku tidak sedang mendampingimu. Semangat sembuh!"
+        buttonText="Ke Landing Page"
+        onConfirm={handleLogoutConfirm}
+      />
     </div>
   );
 };

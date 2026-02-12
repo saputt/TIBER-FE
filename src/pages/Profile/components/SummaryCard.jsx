@@ -2,7 +2,8 @@ import React from "react";
 import Card from "../../../components/atoms/Card";
 import { Calendar, ChartNoAxesColumnIncreasing, Flame } from "lucide-react";
 
-const SummaryCard = () => {
+const SummaryCard = ({ dayPass, currentStreak, totalDay }) => {
+  const progress = Number(((dayPass / totalDay) * 100).toFixed(1));
   return (
     <Card
       size="full"
@@ -17,7 +18,7 @@ const SummaryCard = () => {
             <Calendar className="text-primary" size={16} />
           </div>
           <div className="flex flex-col text-center items-center">
-            <h3 className="font-semibold text-h3">45</h3>
+            <h3 className="font-semibold text-h3">{dayPass}</h3>
             <p className="text-h6">Hari Tercatat</p>
           </div>
         </div>
@@ -28,7 +29,7 @@ const SummaryCard = () => {
             <Flame size={16} className="text-dark-orange" />
           </div>
           <div className="flex flex-col">
-            <h3 className="font-semibold text-h3">5</h3>
+            <h3 className="font-semibold text-h3">{currentStreak}</h3>
             <p className="text-h6">Beruntun</p>
           </div>
         </div>
@@ -39,7 +40,7 @@ const SummaryCard = () => {
             <ChartNoAxesColumnIncreasing className="text-primary" size={16} />
           </div>
           <div className="flex flex-col">
-            <h3 className="font-semibold text-h3">25%</h3>
+            <h3 className="font-semibold text-h3">{progress}%</h3>
             <p className="text-h6">Progress</p>
           </div>
         </div>

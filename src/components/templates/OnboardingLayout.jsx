@@ -11,6 +11,28 @@ const OnboardingLayout = ({ children }) => {
   const nextStep = useOnboardingStore((state) => state.nextStep);
   const step = useOnboardingStore((state) => state.step);
   const totalStep = useOnboardingStore((state) => state.totalStep);
+  const formData = useOnboardingStore((state) => state.formData);
+
+  const validateStep = (currentStep) => {
+    const data = formData?.personalization || {};
+
+    switch (currentStep) {
+      case 1:
+        return !!data.start_date;
+      case 2:
+        return !!data.duration_month;
+      case 3:
+        return !!data.time_category;
+      case 4:
+        return !!data.control_freq_value;
+      case 5:
+        return !!data.reminder_time;
+      default:
+        return true;
+    }
+  };
+
+  const isStepValid = validateStep(step);
 
   const totalStepCont = [];
 
@@ -53,6 +75,7 @@ const OnboardingLayout = ({ children }) => {
               size="full"
               className="flex justify-center items-center gap-1"
               onClick={() => nextStepSetup()}
+              disabled={!isStepValid}
             >
               <p className="font-bold text-h4">Lanjut</p>
               <ArrowRight size={15} className="text-white" />

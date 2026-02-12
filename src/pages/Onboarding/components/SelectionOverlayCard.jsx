@@ -20,7 +20,6 @@ const SelectionOverlayCard = ({ data }) => {
         variant="white"
       >
         <h3>Pilih Rentang</h3>
-        <hr />
         {data.map((data) => (
           <SelectionButton
             selectionName={data.name}
@@ -31,7 +30,7 @@ const SelectionOverlayCard = ({ data }) => {
               setFormData("personalization", { control_freq_unit: data.id });
               setOverlay();
             }}
-            className="py-1"
+            className="py-2"
           />
         ))}
       </Card>

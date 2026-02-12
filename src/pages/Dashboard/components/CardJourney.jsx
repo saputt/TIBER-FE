@@ -2,7 +2,23 @@ import React from "react";
 import Card from "../../../components/atoms/Card";
 import { Sparkle } from "lucide-react";
 
-const CardJourney = ({ dayPass }) => {
+const CardJourney = ({ dayPass, totalDay }) => {
+  const progressPercentage = (dayPass / totalDay) * 100;
+
+  const getJourneyMessage = (progress) => {
+    if (progress <= 10) {
+      return "Awal yang hebat! Membangun rutinitas adalah kunci kesuksesan.";
+    } else if (progress <= 30) {
+      return "Kamu sudah di jalur yang benar. Terus pertahankan semangatmu!";
+    } else if (progress <= 60) {
+      return "Sudah separuh jalan! Jangan menyerah, kesehatanmu sangat berharga.";
+    } else if (progress <= 90) {
+      return "Sedikit lagi! Garis finish sudah di depan mata.";
+    } else {
+      return "Luar biasa! Kamu adalah pejuang yang tangguh.";
+    }
+  };
+
   return (
     <Card
       variant="white"
@@ -22,7 +38,7 @@ const CardJourney = ({ dayPass }) => {
       >
         <h5 className="font-bold text-h5">{dayPass} hari sudah kamu jalani.</h5>
         <p className="text-h5">
-          Seperempat perjalan selesai, setiap langkah kecil tetap berarti.
+          {getJourneyMessage(progressPercentage)}
         </p>
       </Card>
     </Card>

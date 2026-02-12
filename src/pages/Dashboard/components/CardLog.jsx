@@ -6,9 +6,16 @@ import ButtonTest from "../../../components/atoms/ButtonTest";
 import { useMedicationLog } from "../../../hooks/useDashboard";
 import { useAuthStore } from "../../../store/useAuthStore";
 
+import { confirmationMessages } from "../../../utils/messages";
+import SuccessModal from "../../../components/molecules/SuccessModal";
+
 const CardLog = ({ isTaken }) => {
   const { mutate } = useMedicationLog();
   const user = useAuthStore((state) => state.user);
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
   const handleLog = () => {
     const now = new Date();
     const formatted = now
@@ -22,10 +29,27 @@ const CardLog = ({ isTaken }) => {
       logged_time: formatted[1],
     };
 
-    mutate(data);
+    mutate(data, {
+      onSuccess: () => {
+        const randomMessage =
+          confirmationMessages[
+          Math.floor(Math.random() * confirmationMessages.length)
+          ];
+        setModalMessage(randomMessage);
+        setShowModal(true);
+      },
+    });
   };
+
   return (
     <>
+      <SuccessModal
+        isOpen={showModal}
+        title="Berhasil Tercatat!"
+        description={modalMessage}
+        buttonText="Tutup"
+        onConfirm={() => setShowModal(false)}
+      />
       {isTaken && (
         <Card
           boxShadowActive={true}

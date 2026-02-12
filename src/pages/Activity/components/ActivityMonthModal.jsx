@@ -6,6 +6,7 @@ import CheckboxCircle from "../../../components/atoms/CheckboxCircle";
 import Notch from "../../../components/atoms/Notch";
 import Card from "../../../components/atoms/Card";
 import Loading from "../../../components/molecules/Loading";
+import { getDaysInMonth, formatMonthYearID } from "../../../utils/dateUtils";
 
 const ActivityMonthModal = () => {
     const { isCalenderMonth, setCalenderMonth } = useActivityStore();
@@ -17,10 +18,7 @@ const ActivityMonthModal = () => {
         }
     }, [isCalenderMonth]);
 
-    const monthYearString = currentDate.toLocaleDateString("id-ID", {
-        month: "long",
-        year: "numeric",
-    });
+    const monthYearString = formatMonthYearID(currentDate);
 
     const monthNumber = currentDate.getMonth() + 1;
 
@@ -32,24 +30,6 @@ const ActivityMonthModal = () => {
 
     const handleNextMonth = () => {
         setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)));
-    };
-
-    const getDaysInMonth = (date) => {
-        const year = date.getFullYear();
-        const month = date.getMonth();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const firstDay = new Date(year, month, 1).getDay();
-
-        let startDay = firstDay === 0 ? 6 : firstDay - 1;
-
-        const days = [];
-        for (let i = 0; i < startDay; i++) {
-            days.push(null);
-        }
-        for (let i = 1; i <= daysInMonth; i++) {
-            days.push(i);
-        }
-        return days;
     };
 
     const calendarDays = getDaysInMonth(currentDate);
@@ -82,7 +62,7 @@ const ActivityMonthModal = () => {
                     </button>
                 </div>
 
-                <div className="flex justify-between items-center px-4 py-1">
+                <div className="flex justify-between items-center py-1">
                     <button onClick={handlePrevMonth} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-primary">
                         <ChevronLeft size={20} />
                     </button>

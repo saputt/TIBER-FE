@@ -13,14 +13,14 @@ import React from "react";
 </ButtonTest> */
 }
 
-const ButtonTest = ({ variant, size, children, className, onClick }) => {
+const ButtonTest = ({ variant, size, children, className, onClick, disabled }) => {
   // This is only included for constant styles.
   // If the style is not constant or changes, do not include
   // it in this variable. Include it in the className props or
   // in certain custom variants.
   // change or delete the contents of the variable below,
   // if the contents are not constant
-  const defaultStyle = "rounded-lg";
+  const defaultStyle = "rounded-lg disabled:opacity-50 disabled:cursor-not-allowed";
 
   // This object provides several variants along with their
   // tailwind classes. Change them to suit the component
@@ -45,6 +45,7 @@ const ButtonTest = ({ variant, size, children, className, onClick }) => {
     <button
       className={`${sizes[size]} ${variants[variant]} ${defaultStyle} ${className}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>
