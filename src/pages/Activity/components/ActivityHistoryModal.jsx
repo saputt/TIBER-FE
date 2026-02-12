@@ -12,17 +12,16 @@ import {
     formatMonthYearID,
 } from "../../../utils/dateUtils";
 import Notch from "../../../components/atoms/Notch";
+import ActivityHistorySkeleton from "./ActivityHistorySkeleton";
 
 const ActivityHistoryModal = ({ isOpen, onClose }) => {
     const [currentDate, setCurrentDate] = useState(new Date());
 
-    // Week Start (Monday)
     const weekStart = getStartOfWeek(currentDate);
     const weekStartISO = formatDateISO(weekStart);
 
     const { data: activityData, isLoading } = useActivityWeek(weekStartISO);
 
-    // Headers
     const monthYearString = formatMonthYearID(currentDate);
     const weekNumber = getWeekOfMonth(currentDate);
 
@@ -54,14 +53,12 @@ const ActivityHistoryModal = ({ isOpen, onClose }) => {
                     </button>
                 </div>
 
-                {/* Month/Year Selection (Visual Only for now, implicitly controlled by arrows) */}
                 <div className="flex justify-center mb-2">
                     <div className="bg-primary/20 px-3 py-1 rounded-lg text-h5 font-medium text-gray-700 flex items-center gap-1">
                         {monthYearString} ▼
                     </div>
                 </div>
 
-                {/* Week Navigation */}
                 <div className="flex justify-between items-center mb-4">
                     <button onClick={handlePrevWeek} className="p-2 text-primary hover:bg-green-50 rounded-full">
                         <ChevronLeft size={20} />
@@ -72,9 +69,7 @@ const ActivityHistoryModal = ({ isOpen, onClose }) => {
                     </button>
                 </div>
 
-                {/* Content */}
                 <Card boxShadowActive={true} className="flex-1 overflow-y-auto relative overflow-hidden pt-8">
-                    {/* Week Header Chip */}
                     <Notch variant="right" className="px-3 py-1">
                         Minggu {weekNumber} | {monthYearString}
                     </Notch>
@@ -84,11 +79,11 @@ const ActivityHistoryModal = ({ isOpen, onClose }) => {
 
                     <div className="flex flex-col gap-1">
                         {isLoading ? (
-                            <Loading />
+                            <ActivityHistorySkeleton />
                         ) : activityData?.data?.logs?.length > 0 ? (
                             activityData.data.logs.map((item, index) => {
                                 const isTaken = item.status === "taken";
-                                const statusText = isTaken ? "Minum obat tercatat" : "Tidak tercatat"; // Or specific status text
+                                const statusText = isTaken ? "Minum obat tercatat" : "Tidak tercatat";
 
                                 return (
                                     <div className="flex gap-3 items-center" key={index}>
@@ -111,7 +106,6 @@ const ActivityHistoryModal = ({ isOpen, onClose }) => {
                         )}
                     </div>
                 </Card>
-
             </Card>
         </div>
     );

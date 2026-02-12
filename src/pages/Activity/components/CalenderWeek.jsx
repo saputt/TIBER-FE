@@ -2,15 +2,9 @@ import React from "react";
 import Card from "../../../components/atoms/Card";
 import Notch from "../../../components/atoms/Notch";
 import CheckboxCircle from "../../../components/atoms/CheckboxCircle";
-import { usePersonalizationStore } from "../../../store/usePersonalizationStore";
-import { getWeekNumberFromStart } from "../../../utils/WeekNumber";
 import { useActivityStore } from "../../../store/useActivityStore";
 
 const CalenderWeek = ({ weekSummary }) => {
-  const personalization = usePersonalizationStore(
-    (state) => state.personalization,
-  );
-
   const setCalenderMonth = useActivityStore((state) => state.setCalenderMonth);
   return (
     <Card

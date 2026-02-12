@@ -15,6 +15,7 @@ import { useAuthStore } from "../../store/useAuthStore";
 import { FormatDate } from "../../utils/FormatDate";
 import { usePersonalizationStore } from "../../store/usePersonalizationStore";
 import Loading from "../../components/molecules/Loading";
+import ProfileSkeleton from "./components/ProfileSkeleton";
 import { useDashboardOverview } from "../../hooks/useDashboard";
 
 import { useNavigate } from "react-router-dom";
@@ -50,11 +51,7 @@ const ProfilePage = () => {
   };
 
   if (isLoading || dashboardLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Loading />
-      </div>
-    );
+    return <ProfileSkeleton />;
   }
 
   setPersonalization(data?.Data);

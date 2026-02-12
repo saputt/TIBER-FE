@@ -11,6 +11,7 @@ import CardControl from "./components/CardControl";
 import CardProgress from "./components/CardProgress";
 import CardImportant from "./components/CardImportant";
 import { useDashboardOverview } from "../../hooks/useDashboard";
+import DashboardSkeleton from "./components/DashboardSkeleton";
 import Loading from "../../components/molecules/Loading";
 
 const DashboardPage = () => {
@@ -19,11 +20,7 @@ const DashboardPage = () => {
   console.log(dashboard);
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Loading />
-      </div>
-    );
+    return <DashboardSkeleton />;
   }
 
   const calculateDaysLeft = (targetDate) => {

@@ -7,6 +7,7 @@ import Notch from "../../../components/atoms/Notch";
 import Card from "../../../components/atoms/Card";
 import Loading from "../../../components/molecules/Loading";
 import { getDaysInMonth, formatMonthYearID } from "../../../utils/dateUtils";
+import ActivityMonthSkeleton from "./ActivityMonthSkeleton";
 
 const ActivityMonthModal = () => {
     const { isCalenderMonth, setCalenderMonth } = useActivityStore();
@@ -86,8 +87,8 @@ const ActivityMonthModal = () => {
                         ))}
 
                         {isLoading ? (
-                            <div className="col-span-7 py-10">
-                                <Loading />
+                            <div className="col-span-7 py-2">
+                                <ActivityMonthSkeleton />
                             </div>
                         ) : (
                             calendarDays.map((day, index) => {

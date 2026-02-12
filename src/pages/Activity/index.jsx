@@ -5,6 +5,7 @@ import StreakCard from "./components/StreakCard";
 import History from "./components/History";
 import ActivityMonthModal from "./components/ActivityMonthModal";
 import ActivityHistoryModal from "./components/ActivityHistoryModal";
+import ActivitySkeleton from "./components/ActivitySkeleton";
 import Loading from "../../components/molecules/Loading";
 import { useActivityMonth, useActivityOverview } from "../../hooks/useActivity";
 import { useActivityStore } from "../../store/useActivityStore";
@@ -15,11 +16,7 @@ const ActivityPage = () => {
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Loading />
-      </div>
-    );
+    return <ActivitySkeleton />;
   }
 
   return (
