@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import {
-  activityMonth,
+  activityWeekly,
+  activityMonthly,
   activityOverviewService,
 } from "../services/activityService";
 
@@ -14,7 +15,7 @@ export const useActivityOverview = () => {
 export const useActivityMonth = (numberMonth) => {
   return useQuery({
     queryKey: ["activity", "month", numberMonth],
-    queryFn: () => activityMonth(numberMonth),
+    queryFn: () => activityMonthly(numberMonth),
     enabled: !!numberMonth,
   });
 };
@@ -22,7 +23,7 @@ export const useActivityMonth = (numberMonth) => {
 export const useActivityWeek = (weekStart) => {
   return useQuery({
     queryKey: ["activity", "week", weekStart],
-    queryFn: () => activityMonth(weekStart),
+    queryFn: () => activityWeekly(weekStart),
     enabled: !!weekStart,
   });
 };
