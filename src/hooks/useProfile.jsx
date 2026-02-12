@@ -28,7 +28,9 @@ export const useGetPersonalization = () => {
   return useQuery({
     queryKey: ["personalization", "dashboard"],
     queryFn: () => getPersonalizationService(),
-    onSuccess: (data) => {},
+    staleTime: 60 * 60 * 1000,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 };
 

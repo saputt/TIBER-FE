@@ -6,6 +6,9 @@ export const useDashboardOverview = () => {
   return useQuery({
     queryKey: ["dashboard", "personalization"],
     queryFn: () => dashboardService(),
+    staleTime: 60 * 60 * 1000,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 };
 

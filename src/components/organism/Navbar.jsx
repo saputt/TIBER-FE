@@ -2,6 +2,9 @@ import { ArrowLeft, Menu, SquareChartGantt, User, X } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useOnboardingStore } from "../../store/useOnboardingStore";
+import { activityOverviewService } from "../../services/activityService";
+import { useQueryClient } from "@tanstack/react-query";
+import { getPersonalizationService } from "../../services/personalizationService";
 
 //navigation layout for mobile
 const MobileNav = ({
@@ -11,10 +14,13 @@ const MobileNav = ({
   hamburgerIsOpen,
   setHamburgerIsOpen,
 }) => {
+  const queryClient = useQueryClient();
   const step = useOnboardingStore((state) => state.step);
   const totalStep = useOnboardingStore((state) => state.totalStep);
   const backStep = useOnboardingStore((state) => state.backStep);
   const setMaxStep = useOnboardingStore((state) => state.setMaxStep);
+
+  let hoverTime;
 
   const backStepSetup = () => {
     if (step === 1) {
@@ -23,6 +29,38 @@ const MobileNav = ({
       backStep();
     }
   };
+
+  const handleMouseEnterActivity = () => {
+    hoverTime = setTimeout(() => {
+      queryClient.prefetchQuery({
+        queryKey: ["activity", "overview"],
+        queryFn: () => activityOverviewService(),
+        staleTime: 60 * 60 * 1000,
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+      })
+    }, 200)
+  }
+
+  const handleMouseLeaveActivity = () => {
+    clearTimeout(hoverTime)
+  }
+
+  const handleMouseEnterProfile = () => {
+    hoverTime = setTimeout(() => {
+      queryClient.prefetchQuery({
+        queryKey: ["personalization", "dashboard"],
+        queryFn: () => getPersonalizationService(),
+        staleTime: 60 * 60 * 1000,
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+      })
+    }, 200)
+  }
+
+  const handleMouseLeaveProfile = () => {
+    clearTimeout(hoverTime)
+  }
 
   return (
     <nav className="flex items-center gap-2">
@@ -159,10 +197,14 @@ const MobileNav = ({
         {variant === "main" && (
           <div className="flex gap-4">
             <SquareChartGantt
+              onMouseEnter={handleMouseEnterActivity}
+              onMouseLeave={handleMouseLeaveActivity}
               className="w-6 text-primary cursor-pointer"
               onClick={() => navigate("/activity")}
             />
             <User
+              onMouseEnter={handleMouseEnterProfile}
+              onMouseLeave={handleMouseLeaveProfile}
               className="w-6 text-primary cursor-pointer"
               onClick={() => navigate("/profile")}
             />
@@ -172,11 +214,15 @@ const MobileNav = ({
         {variant === "sub" &&
           (location.pathname.includes("activity") ? (
             <User
+              onMouseEnter={handleMouseEnterProfile}
+              onMouseLeave={handleMouseLeaveProfile}
               className="w-6 text-primary cursor-pointer"
               onClick={() => navigate("/profile")}
             />
           ) : (
             <SquareChartGantt
+              onMouseEnter={handleMouseEnterActivity}
+              onMouseLeave={handleMouseLeaveActivity}
               className="w-6 text-primary cursor-pointer"
               onClick={() => navigate("/activity")}
             />
