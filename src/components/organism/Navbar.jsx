@@ -192,7 +192,7 @@ const MobileNav = ({
   );
 };
 
-const DekstopNav = ({ variant }) => {};
+const DekstopNav = ({ variant }) => { };
 
 const Navbar = ({ variant }) => {
   const navigate = useNavigate();

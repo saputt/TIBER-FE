@@ -14,6 +14,7 @@ import { useGetPersonalization } from "../../hooks/useProfile";
 import { useAuthStore } from "../../store/useAuthStore";
 import { FormatDate } from "../../utils/FormatDate";
 import { usePersonalizationStore } from "../../store/usePersonalizationStore";
+import Loading from "../../components/molecules/Loading";
 
 const ProfilePage = () => {
   const isDailyOpen = useProfileStore((state) => state.isDailyOpen);
@@ -26,7 +27,11 @@ const ProfilePage = () => {
   );
 
   if (isLoading) {
-    return;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loading />
+      </div>
+    );
   }
 
   setPersonalization(data?.Data);

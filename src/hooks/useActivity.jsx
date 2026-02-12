@@ -6,14 +6,14 @@ import {
 
 export const useActivityOverview = () => {
   return useQuery({
-    queryKey: ["activity"],
+    queryKey: ["activity", "overview"],
     queryFn: () => activityOverviewService(),
   });
 };
 
 export const useActivityMonth = (numberMonth) => {
   return useQuery({
-    queryKey: ["activity"],
+    queryKey: ["activity", "month", numberMonth],
     queryFn: () => activityMonth(numberMonth),
     enabled: !!numberMonth,
   });

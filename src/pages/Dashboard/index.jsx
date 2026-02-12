@@ -12,12 +12,21 @@ import CardProgress from "./components/CardProgress";
 import CardImportant from "./components/CardImportant";
 import { useDashboardOverview } from "../../hooks/useDashboard";
 import { useActivityMonth } from "../../hooks/useActivity";
+import Loading from "../../components/molecules/Loading";
 
 const DashboardPage = () => {
   const { data: dashboard, isLoading } = useDashboardOverview();
 
+  const { data: calenderMonth, isLoading: calenderMonthLoading } =
+    useActivityMonth("2");
+  console.log(calenderMonth);
+
   if (isLoading) {
-    return;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loading />
+      </div>
+    );
   }
 
   const calculateDaysLeft = (targetDate) => {

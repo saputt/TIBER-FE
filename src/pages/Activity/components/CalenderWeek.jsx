@@ -4,11 +4,14 @@ import Notch from "../../../components/atoms/Notch";
 import CheckboxCircle from "../../../components/atoms/CheckboxCircle";
 import { usePersonalizationStore } from "../../../store/usePersonalizationStore";
 import { getWeekNumberFromStart } from "../../../utils/WeekNumber";
+import { useActivityStore } from "../../../store/useActivityStore";
 
 const CalenderWeek = ({ weekSummary }) => {
   const personalization = usePersonalizationStore(
     (state) => state.personalization,
   );
+
+  const setCalenderMonth = useActivityStore((state) => state.setCalenderMonth);
   return (
     <Card
       className="relative overflow-hidden pt-8 flex flex-col gap-3"
@@ -38,7 +41,12 @@ const CalenderWeek = ({ weekSummary }) => {
         })}
       </div>
 
-      <p className="text-h6 text-right font-semibold">Lihat Selengkapnya →</p>
+      <p
+        className="text-h6 text-right font-semibold"
+        onClick={() => setCalenderMonth()}
+      >
+        Lihat Selengkapnya →
+      </p>
     </Card>
   );
 };
