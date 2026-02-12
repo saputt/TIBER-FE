@@ -50,3 +50,46 @@ export const formatDateISO = (date) => {
     const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
 };
+
+export const formatRelativeDateID = (dateStr) => {
+    if (!dateStr) return "";
+    const date = new Date(dateStr);
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    const isToday =
+        date.getDate() === today.getDate() &&
+        date.getMonth() === today.getMonth() &&
+        date.getFullYear() === today.getFullYear();
+
+    const isYesterday =
+        date.getDate() === yesterday.getDate() &&
+        date.getMonth() === yesterday.getMonth() &&
+        date.getFullYear() === yesterday.getFullYear();
+
+    if (isToday) return "Hari ini";
+    if (isYesterday) return "Kemarin";
+
+    return date.toLocaleDateString("id-ID", {
+        day: "numeric",
+        month: "long",
+    });
+};
+
+export const getStartOfWeek = (date) => {
+    const d = new Date(date);
+    const day = d.getDay();
+    const diff = d.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
+    return new Date(d.setDate(diff));
+};
+
+export const getWeekOfMonth = (date) => {
+    const d = new Date(date);
+    const dateNum = d.getDate();
+    const day = d.getDay();
+    // Rough estimate: dividing date by 7 (ceil)
+    // More precise: 
+    const firstDay = new Date(d.getFullYear(), d.getMonth(), 1).getDay();
+    return Math.ceil((dateNum + firstDay) / 7);
+};

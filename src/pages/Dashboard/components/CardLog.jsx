@@ -77,7 +77,7 @@ const CardLog = ({ isTaken }) => {
           <ButtonTest
             variant="secondary"
             size="full"
-            className="font-bold text-h6"
+            className="text-h6"
           >
             Sampai jumpa di jadwal berikutnya
           </ButtonTest>

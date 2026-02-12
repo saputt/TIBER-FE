@@ -42,7 +42,7 @@ const CalenderWeek = ({ weekSummary }) => {
       </div>
 
       <p
-        className="text-h6 text-right font-semibold"
+        className="text-h6 text-right font-semibold hover:text-primary transition-colors cursor-pointer"
         onClick={() => setCalenderMonth()}
       >
         Lihat Selengkapnya →

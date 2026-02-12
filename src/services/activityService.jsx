@@ -6,8 +6,8 @@ export const activityOverviewService = () => {
   });
 };
 
-export const activityMonth = (numberMonth) => {
-  return fetcher(`/activity/calendar/${numberMonth}`, {
+export const activityMonth = (weekStart) => {
+  return fetcher(`/activity/logs-weekly/${weekStart}`, {
     method: "GET",
   });
 };

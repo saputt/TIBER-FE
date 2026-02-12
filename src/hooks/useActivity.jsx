@@ -18,3 +18,11 @@ export const useActivityMonth = (numberMonth) => {
     enabled: !!numberMonth,
   });
 };
+
+export const useActivityWeek = (weekStart) => {
+  return useQuery({
+    queryKey: ["activity", "week", weekStart],
+    queryFn: () => activityMonth(weekStart),
+    enabled: !!weekStart,
+  });
+};
