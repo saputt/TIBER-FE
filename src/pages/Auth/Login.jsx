@@ -10,9 +10,10 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { mutate: login, isLoading } = useLogin();
+  const { mutate: login, isPending } = useLogin();
 
   const handleSubmit = () => {
+    if (isPending) return;
     login({
       email,
       password,
@@ -70,9 +71,9 @@ const LoginPage = () => {
           size="full"
           boxShadowActive="true"
           className="mt-6 text-h5 sm:w-md"
-          onClick={() => navigate("/dashboard")}
+          onClick={() => handleSubmit()}
         >
-          Masuk
+          {isPending ? "Sedang masuk..." : "Login"}
         </Button>
       </div>
       <div className="text-center mt-1">

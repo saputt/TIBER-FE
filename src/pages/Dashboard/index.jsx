@@ -11,9 +11,15 @@ import CardControl from "./components/CardControl";
 import CardProgress from "./components/CardProgress";
 import CardImportant from "./components/CardImportant";
 import { useDashboardOverview } from "../../hooks/useDashboard";
+import { useActivityMonth } from "../../hooks/useActivity";
 
 const DashboardPage = () => {
   const { data: dashboard, isLoading } = useDashboardOverview();
+
+  if (isLoading) {
+    return;
+  }
+
   const calculateDaysLeft = (targetDate) => {
     if (!targetDate) return 0;
 

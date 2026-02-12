@@ -1,10 +1,12 @@
 import { Bell, X } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../../components/atoms/Card";
 import SelectionButton from "../../../components/atoms/SelectionButton";
 import RangeSlider from "../../../components/atoms/RangeSlider";
 import Button from "../../../components/atoms/Button";
 import { useProfileStore } from "../../../store/useProfileStore";
+import { usePersonalizationStore } from "../../../store/usePersonalizationStore";
+import { useUpdatePersonalization } from "../../../hooks/useProfile";
 
 const times = [
   {
@@ -29,15 +31,21 @@ const times = [
   },
 ];
 
-const ManageReminderLog = () => {
-  const [selectTime, setSelectTime] = useState("pagi");
+const ManageReminderLog = ({ reminderTime, reminderTimeDay }) => {
+  const [selectTime, setSelectTime] = useState(reminderTimeDay);
 
   const getTime = () => times.find((time) => time.timeDay === selectTime);
+
+  const { mutate } = useUpdatePersonalization();
 
   const minMinute = parseInt(getTime().time[0].split(".")[0] * 60);
   const maxMinute = parseInt(getTime().time.at(-1).split(".")[0] * 60);
 
-  const [minutes, setMinutes] = useState(getTime().defaultMin);
+  const defaultMin =
+    parseInt(reminderTime.split(":")[0] * 60) +
+    parseInt(reminderTime.split(":")[1]);
+
+  const [minutes, setMinutes] = useState(defaultMin);
 
   const formatTime = (totalMinutes) => {
     const hours = Math.floor(totalMinutes / 60);
@@ -46,7 +54,24 @@ const ManageReminderLog = () => {
     return format;
   };
 
+  const [time_category, setTime_Category] = useState();
+  const [reminder_time, setReminder_Time] = useState();
+
   const setDaily = useProfileStore((state) => state.setDaily);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setReminder_Time(formatTime(minutes));
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [minutes, selectTime]);
+
+  const handleSubmit = () => {
+    mutate({
+      time_category,
+      reminder_time,
+    });
+  };
 
   return (
     <div className="h-screen w-full bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5">
@@ -72,6 +97,7 @@ const ManageReminderLog = () => {
                   onClick={() => {
                     setSelectTime(time.timeDay);
                     setMinutes(time.defaultMin);
+                    setTime_Category(time.timeDay);
                   }}
                   selectionName={time.timeDay}
                   key={time.timeDay}
@@ -107,7 +133,11 @@ const ManageReminderLog = () => {
           <Button variant="gray" className="flex-1 py-2 text-h6">
             Batal
           </Button>
-          <Button variant="primary" className="flex-1 text-h6">
+          <Button
+            variant="primary"
+            className="flex-1 text-h6"
+            onClick={() => handleSubmit()}
+          >
             Simpan
           </Button>
         </div>

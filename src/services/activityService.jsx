@@ -5,3 +5,9 @@ export const activityOverviewService = () => {
     method: "GET",
   });
 };
+
+export const activityMonth = (numberMonth) => {
+  return fetcher(`/activity/calendar/${numberMonth}`, {
+    method: "GET",
+  });
+};

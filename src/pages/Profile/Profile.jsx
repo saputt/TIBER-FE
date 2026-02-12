@@ -13,17 +13,31 @@ import { useLogout } from "../../hooks/useAuth";
 import { useGetPersonalization } from "../../hooks/useProfile";
 import { useAuthStore } from "../../store/useAuthStore";
 import { FormatDate } from "../../utils/FormatDate";
+import { usePersonalizationStore } from "../../store/usePersonalizationStore";
 
 const ProfilePage = () => {
   const isDailyOpen = useProfileStore((state) => state.isDailyOpen);
   const isControlOpen = useProfileStore((state) => state.isControlOpen);
   const { mutate: logout } = useLogout();
-  const { data } = useGetPersonalization();
-  console.log(data);
+  const { data, isLoading } = useGetPersonalization();
   const username = useAuthStore((state) => state.user?.fullname);
+  const setPersonalization = usePersonalizationStore(
+    (state) => state.setPersonalization,
+  );
+
+  if (isLoading) {
+    return;
+  }
+
+  setPersonalization(data?.Data);
   return (
     <div className="flex flex-col gap-4">
-      {isDailyOpen && <ManageReminderLog />}
+      {isDailyOpen && (
+        <ManageReminderLog
+          reminderTime={data?.Data.reminder_time}
+          reminderTimeDay={data?.Data.time_category}
+        />
+      )}
       {isControlOpen && <ManageControl />}
 
       <ProfileCard

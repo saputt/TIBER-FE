@@ -9,7 +9,6 @@ import { useAuthStore } from "../../../store/useAuthStore";
 const CardLog = ({ isTaken }) => {
   const { mutate } = useMedicationLog();
   const user = useAuthStore((state) => state.user);
-  console.log(user);
   const handleLog = () => {
     const now = new Date();
     const formatted = now

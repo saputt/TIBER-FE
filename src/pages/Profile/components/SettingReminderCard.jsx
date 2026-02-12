@@ -2,10 +2,12 @@ import React from "react";
 import Card from "../../../components/atoms/Card";
 import { Bell, Calendar } from "lucide-react";
 import { useProfileStore } from "../../../store/useProfileStore";
+import { useUpdatePersonalization } from "../../../hooks/useProfile";
 
 const SettingReminderCard = ({ reminderTimeDay, reminderTime, checkup }) => {
   const setDaily = useProfileStore((state) => state.setDaily);
   const setControl = useProfileStore((state) => state.setControl);
+  const { mutate } = useUpdatePersonalization();
   return (
     <Card
       size="full"

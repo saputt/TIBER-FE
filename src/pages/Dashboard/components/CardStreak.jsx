@@ -3,7 +3,6 @@ import Card from "../../../components/atoms/Card";
 import { Flame } from "lucide-react";
 
 const CardStreak = ({ streak }) => {
-  console.log(streak);
   return (
     <Card
       variant="white"

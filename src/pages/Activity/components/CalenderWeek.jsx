@@ -2,18 +2,13 @@ import React from "react";
 import Card from "../../../components/atoms/Card";
 import Notch from "../../../components/atoms/Notch";
 import CheckboxCircle from "../../../components/atoms/CheckboxCircle";
+import { usePersonalizationStore } from "../../../store/usePersonalizationStore";
+import { getWeekNumberFromStart } from "../../../utils/WeekNumber";
 
-const weeks = [
-  { day: "Sen", active: false, date: 19 },
-  { day: "Sel", active: true, date: 20 },
-  { day: "Rab", active: true, date: 21 },
-  { day: "Kam", active: true, date: 22 },
-  { day: "Jum", active: true, date: 23 },
-  { day: "Sab", active: true, date: 24 },
-  { day: "Min", active: false, date: 25 },
-];
-
-const CalenderWeek = () => {
+const CalenderWeek = ({ weekSummary }) => {
+  const personalization = usePersonalizationStore(
+    (state) => state.personalization,
+  );
   return (
     <Card
       className="relative overflow-hidden pt-8 flex flex-col gap-3"
@@ -26,13 +21,21 @@ const CalenderWeek = () => {
       </Notch>
 
       <div className="flex justify-between">
-        {weeks.map((week) => (
-          <div className="flex flex-col items-center gap-1">
-            <p className="text-h6">{week.day}</p>
-            <CheckboxCircle isActive={week.active} />
-            <p className="text-h6">{week.date}</p>
-          </div>
-        ))}
+        {weekSummary.map((week) => {
+          const dateObj = new Date(week.date);
+
+          const dayInWeek = dateObj.toLocaleDateString("id-ID", {
+            weekday: "short",
+          });
+
+          return (
+            <div className="flex flex-col items-center gap-1">
+              <p className="text-h6">{dayInWeek}</p>
+              <CheckboxCircle isActive={week.status === "taken"} />
+              <p className="text-h6">{week.date.split("-")[2]}</p>
+            </div>
+          );
+        })}
       </div>
 
       <p className="text-h6 text-right font-semibold">Lihat Selengkapnya →</p>

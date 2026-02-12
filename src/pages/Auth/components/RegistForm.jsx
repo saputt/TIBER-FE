@@ -10,7 +10,7 @@ const RegistForm = () => {
   const setFormData = useOnboardingStore((state) => state.setFormData);
   const formData = useOnboardingStore((state) => state.formData);
   const navigate = useNavigate();
-  const { mutate: register } = useRegister();
+  const { mutate: register, isPending } = useRegister();
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -21,6 +21,8 @@ const RegistForm = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+
+    if (isPending) return;
 
     if (password !== confirmPassword) {
       alert("kata sandi tidak sesuai");
@@ -50,7 +52,7 @@ const RegistForm = () => {
     <div>
       <InfoSaveCard variant="green" />
 
-      <form>
+      <form onSubmit={handleRegister}>
         <div className="w-full flex flex-col gap-4 my-3">
           <InputLabel
             label="Nama Lengkap"
@@ -87,13 +89,8 @@ const RegistForm = () => {
         </div>
         <InfoSaveCard variant="blue" />
 
-        <Button
-          variant="primary"
-          size="full"
-          className="mt-5 shadow-button"
-          onClick={() => navigate("/login")}
-        >
-          Daftar
+        <Button variant="primary" size="full" className="mt-5 shadow-button">
+          {isPending ? "Sedang mendaftar..." : "Daftar"}
         </Button>
       </form>
     </div>

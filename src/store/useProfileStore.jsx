@@ -11,7 +11,7 @@ export const useProfileStore = create((set) => ({
     set((state) => ({
       personalization: {
         ...state.personalization,
-        data,
+        ...data,
       },
     }));
   },
