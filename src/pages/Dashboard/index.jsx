@@ -40,19 +40,36 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <CardLog isTaken={dashboard?.data?.is_taken_today} />
-      <CardStreak streak={dashboard?.data?.current_streak} />
-      <CardJourney
-        dayPass={dashboard?.data?.days_passed}
-        totalDay={dashboard?.data?.total_days}
-      />
-      <CardControl dayLeft={calculateDaysLeft(dashboard?.data?.next_checkup)} />
-      <CardProgress
-        currentDay={dashboard?.data?.days_passed}
-        totalDay={dashboard?.data?.total_days}
-      />
-      <CardImportant />
+    <div className="flex flex-col gap-6 lg:grid lg:grid-cols-12 lg:items-start">
+      {/* Main Content Area (Column 1-8) */}
+      <div className="flex flex-col gap-6 lg:col-span-8">
+        {/* Banner Status */}
+        <div className="w-full">
+          <CardLog isTaken={dashboard?.data?.is_taken_today} />
+        </div>
+
+        {/* Progress & Journey - 2 Columns on Desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          <CardProgress
+            currentDay={dashboard?.data?.days_passed}
+            totalDay={dashboard?.data?.total_days}
+          />
+          <CardJourney
+            dayPass={dashboard?.data?.days_passed}
+            totalDay={dashboard?.data?.total_days}
+          />
+        </div>
+      </div>
+
+      {/* Right Sidebar Area (Column 9-12) */}
+      <div className="flex flex-col gap-6 lg:col-span-4 h-full">
+        <CardStreak streak={dashboard?.data?.current_streak} />
+        <CardControl dayLeft={calculateDaysLeft(dashboard?.data?.next_checkup)} />
+
+        <div className="lg:mt-auto">
+          <CardImportant />
+        </div>
+      </div>
     </div>
   );
 };

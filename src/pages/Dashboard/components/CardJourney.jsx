@@ -23,7 +23,7 @@ const CardJourney = ({ dayPass, totalDay }) => {
     <Card
       variant="white"
       size="full"
-      className="py-5 flex flex-col gap-3"
+      className="py-5 flex flex-col gap-3 h-full justify-between"
       boxShadowActive={true}
     >
       <div className="flex items-center gap-3">

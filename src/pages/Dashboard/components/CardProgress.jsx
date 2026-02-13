@@ -26,7 +26,7 @@ const CardProgress = ({ currentDay, totalDay }) => {
       boxShadowActive={true}
       size="full"
       variant="white"
-      className="py-4 flex flex-col gap-4"
+      className="py-4 flex flex-col gap-4 h-full"
     >
       <div className="flex gap-2 items-center">
         <div className="w-8 h-8 rounded-full bg-light-green/30 flex items-center justify-center">

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import MobileNav from "./NavbarComponents/MobileNav";
 
-const DekstopNav = ({ variant }) => { };
-
 const Navbar = ({ variant }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,7 +34,6 @@ const Navbar = ({ variant }) => {
           hamburgerIsOpen={hamburgerIsOpen}
           setHamburgerIsOpen={setHamburgerIsOpen}
         />
-        <DekstopNav variant={variant} />
       </header>
 
 
