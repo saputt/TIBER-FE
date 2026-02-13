@@ -69,6 +69,7 @@ const MobileNav = ({
                         src="/logo.png"
                         className="w-9"
                         onClick={() => navigate("/dashboard")}
+                        alt="Logo TIBER"
                     />
                 ) : variant === "setup" ? (
                     <ArrowLeft
@@ -147,6 +148,7 @@ const MobileNav = ({
                         src="/logo.png"
                         className="w-9 m-auto cursor-pointer"
                         onClick={() => navigate("/dashboard")}
+                        alt="Logo TIBER"
                     />
                 )}
 
@@ -166,15 +168,15 @@ const MobileNav = ({
             {/* right section */}
             <div>
                 {variant === "about" && (
-                    <img src="/logo.png" className="w-9" onClick={() => navigate("/")} />
+                    <img src="/logo.png" className="w-9" onClick={() => navigate("/")} alt="Logo TIBER" />
                 )}
 
                 {variant === "info" && (
-                    <img src="/logo.png" className="w-9" onClick={() => navigate("/")} />
+                    <img src="/logo.png" className="w-9" onClick={() => navigate("/")} alt="Logo TIBER" />
                 )}
 
                 {variant === "how" && (
-                    <img src="/logo.png" className="w-9" onClick={() => navigate("/")} />
+                    <img src="/logo.png" className="w-9" onClick={() => navigate("/")} alt="Logo TIBER" />
                 )}
 
                 {variant === "landing" &&
@@ -190,7 +192,7 @@ const MobileNav = ({
                         />
                     ))}
 
-                {variant === "info" && <img src="/logo.png" className="w-9" />}
+                {variant === "info" && <img src="/logo.png" className="w-9" alt="Logo TIBER" />}
 
                 {variant === "main" && (
                     <div className="flex gap-4">

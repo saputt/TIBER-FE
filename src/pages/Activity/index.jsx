@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SelectionButton from "../../components/atoms/SelectionButton";
 import CalenderWeek from "./components/CalenderWeek";
 import StreakCard from "./components/StreakCard";
 import History from "./components/History";
@@ -11,14 +10,10 @@ import Button from "../../components/atoms/Button";
 import { useActivityOverview } from "../../hooks/useActivity";
 
 const ActivityPage = () => {
-  // Logic dari kamu: Fetching data
   const { data, isLoading } = useActivityOverview();
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
-
-  // Logic dari teman: Toggle navigasi
   const [isCatatanKontrol, setIsCatatanKontrol] = useState(false);
 
-  // Styling dinamis untuk button
   const colorMinumObat = isCatatanKontrol
     ? "bg-white text-black border border-gray-200"
     : "bg-primary text-white";
@@ -26,7 +21,6 @@ const ActivityPage = () => {
     ? "bg-primary text-white"
     : "bg-white text-black border border-gray-200";
 
-  // Loading state tetap pakai Skeleton kamu
   if (isLoading) {
     return <ActivitySkeleton />;
   }
@@ -35,8 +29,6 @@ const ActivityPage = () => {
     <>
       <div className="flex flex-col gap-3">
         <h3 className="font-bold text-h3">Aktivitas Saya</h3>
-
-        {/* Navigasi Tab Gabungan */}
         <div className="flex gap-2.5">
           <button
             className={`${colorMinumObat} text-h6 px-5 py-1 rounded-xl w-fit cursor-pointer transition-colors`}
@@ -52,12 +44,10 @@ const ActivityPage = () => {
           </Button>
         </div>
 
-        {/* Konten Kondisional */}
         {isCatatanKontrol ? (
           <CatatanKontrol />
         ) : (
           <>
-            {/* Pakai data hasil fetching kamu */}
             <CalenderWeek weekSummary={data?.data?.weekly_summary} />
             <StreakCard highestStreak={data?.data?.highest_streak} />
             <History
@@ -68,7 +58,6 @@ const ActivityPage = () => {
         )}
       </div>
 
-      {/* Modal-modal tetap di luar agar tidak terpengaruh toggle */}
       {!isCatatanKontrol && (
         <>
           <ActivityMonthModal />

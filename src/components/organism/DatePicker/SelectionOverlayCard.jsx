@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Card from "../../../components/atoms/Card";
+import Card from "../../atoms/Card";
 import SelectionButton from "../../../components/atoms/SelectionButton";
 import { useOnboardingStore } from "../../../store/useOnboardingStore";
 
@@ -13,7 +13,7 @@ const SelectionOverlayCard = ({ data }) => {
   const setOverlay = useOnboardingStore((state) => state.setOverlay);
 
   return (
-    <div className="h-screen w-full bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5">
+    <div className="h-screen w-full bg-white/20 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5">
       <Card
         className="flex flex-col gap-3 py-4 w-70"
         boxShadowActive={true}

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import SelectionButton from "../../../components/atoms/SelectionButton";
+import SelectionButton from "../../atoms/SelectionButton";
 import { useOnboardingStore } from "../../../store/useOnboardingStore";
 
 const SelectOption = ({ options }) => {
   const [isSelect, setIsSelect] = useState();
-  const setForm = useOnboardingStore((state) => state.setForm);
+  const setFormData = useOnboardingStore((state) => state.setFormData);
 
   return (
     <div>
@@ -20,7 +20,9 @@ const SelectOption = ({ options }) => {
             isSelect={isSelect === option.name}
             onClick={() => {
               setIsSelect(option.name);
-              setForm("personalization", { control_freq_unit: option.name });
+              setFormData("personalization", {
+                control_freq_unit: option.id // Use ID not name for logic usually? FormControl uses id: "day" etc.
+              });
             }}
           />
         ))}

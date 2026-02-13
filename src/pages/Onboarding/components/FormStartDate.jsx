@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import Input from "../../../components/atoms/Input";
-import Card from "../../../components/atoms/Card";
-import { Lightbulb } from "lucide-react";
 import FormPersonalization from "../../../components/organism/FormPersonalization";
-import { useOnboardingStore } from "../../../store/useOnboardingStore";
-import InputLabel from "../../../components/molecules/InputLabel";
-
-import { Calendar } from "lucide-react";
-import DatePicker from "./DatePicker";
+import DateTrigger from "../../../components/atoms/DateTrigger";
+import DatePicker from "../../../components/organism/DatePicker/DatePicker";
 import { formatDateID } from "../../../utils/dateUtils";
+import { useOnboardingStore } from "../../../store/useOnboardingStore";
 
 const FormStartDate = () => {
   const setFormData = useOnboardingStore((state) => state.setFormData);
@@ -29,15 +24,11 @@ const FormStartDate = () => {
       <div className="flex flex-col gap-1.5">
         <span className="text-h4 font-inter">Tanggal Mulai Pengobatan</span>
 
-        <button
+        <DateTrigger
+          value={formattedDate}
+          placeholder="Pilih Tanggal Mulai"
           onClick={() => setShowDatePicker(true)}
-          className={`w-full p-3 rounded-lg border border-gray-400 flex justify-between items-center transition-all duration-200border-gray-200 bg-gray-50 text-gray-400 hover:border-primary/50`}
-        >
-          <span className={`text-h5 font-medium ${startDate ? "text-black" : ""}`}>
-            {formattedDate || "Pilih Tanggal Mulai"}
-          </span>
-          <Calendar size={20} className={startDate ? "text-primary" : "text-gray-400"} />
-        </button>
+        />
       </div>
 
       <DatePicker

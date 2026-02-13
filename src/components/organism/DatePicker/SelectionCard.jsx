@@ -1,5 +1,6 @@
 import React from "react";
-import SelectionButton from "../../../components/atoms/SelectionButton";
+import Card from "../../atoms/Card";
+import SelectionButton from "../../atoms/SelectionButton";
 
 const SelectionCard = ({ title, list, isSelect, onClick }) => {
   return (

@@ -7,7 +7,7 @@ import { useUpdatePersonalization } from "../../../hooks/useProfile";
 const SettingReminderCard = ({ reminderTimeDay, reminderTime, checkup }) => {
   const setDaily = useProfileStore((state) => state.setDaily);
   const setControl = useProfileStore((state) => state.setControl);
-  const { mutate } = useUpdatePersonalization();
+  const personalization = useProfileStore((state) => state.personalization);
   return (
     <Card
       size="full"
@@ -24,7 +24,13 @@ const SettingReminderCard = ({ reminderTimeDay, reminderTime, checkup }) => {
           <div className="flex flex-col flex-1">
             <h5 className="text-h5 font-medium">Pengingat Harian</h5>
             <p className="font-light text-h6">
-              {reminderTimeDay} pukul {reminderTime}
+              {personalization.time_category
+                ? personalization.time_category
+                : reminderTimeDay}
+              pukul{" "}
+              {personalization.reminder_time
+                ? personalization.reminder_time
+                : reminderTime}
             </p>
           </div>
           <p

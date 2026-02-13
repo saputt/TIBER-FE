@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FormPersonalization from "../../../components/organism/FormPersonalization";
 import Input from "../../../components/atoms/Input";
 import InputLabel from "../../../components/molecules/InputLabel";
-import SelectionOverlayCard from "./SelectionOverlayCard";
+import SelectionOverlayCard from "../../../components/organism/DatePicker/SelectionOverlayCard";
 import { useOnboardingStore } from "../../../store/useOnboardingStore";
 
 const FormControl = () => {

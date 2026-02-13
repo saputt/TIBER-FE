@@ -15,7 +15,7 @@ const RegisterPage = () => {
     <OnboardingLayout>
       <div className="flex flex-col gap-3 items-center">
         <div className="flex flex-col items-center">
-          <img src="secLogo.png" className="w-15" />
+          <img src="secLogo.png" className="w-15" alt="Logo TIBER" />
           <div className="text-center flex flex-col py-6">
             <h2 className="font-bold text-h2">Hampir Selesai!</h2>
             <p className="text-h5 text-wrap w-60">

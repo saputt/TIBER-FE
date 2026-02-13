@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Card from "../../../components/atoms/Card";
+import Card from "../../atoms/Card";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import ButtonTest from "../../../components/atoms/ButtonTest";
+import ButtonTest from "../../atoms/ButtonTest";
 import {
     getDaysInMonth,
     formatMonthYearID,
@@ -166,7 +166,7 @@ const DatePicker = ({ isOpen, onClose, onSelectDate, initialDate }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-300">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm p-4 animate-in fade-in duration-300">
             <Card className="bg-white w-full max-w-sm rounded-[24px] p-5 shadow-xl relative animate-in zoom-in-95 duration-300">
                 {/* Header */}
                 <div className="flex justify-between items-center mb-4">

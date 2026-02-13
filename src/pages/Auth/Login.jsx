@@ -38,7 +38,7 @@ const LoginPage = () => {
   return (
     <div className="px-8 py-24 bg-gray-50 min-h-dvh w-full flex flex-col items-center">
       <div className="flex justify-center">
-        <img src="/secLogo.png" className="w-14 rounded-lg" />
+        <img src="/secLogo.png" className="w-14 rounded-lg" alt="Logo TIBER" />
       </div>
       <div className="mt-9 flex flex-col items-center">
         <span className="font-inter font-bold text-h2">

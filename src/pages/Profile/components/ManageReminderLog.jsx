@@ -50,7 +50,7 @@ const ManageReminderLog = ({ reminderTime, reminderTimeDay }) => {
   const formatTime = (totalMinutes) => {
     const hours = Math.floor(totalMinutes / 60);
     const mins = totalMinutes % 60;
-    const format = `${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}`;
+    const format = `${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:00`;
     return format;
   };
 
