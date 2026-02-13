@@ -3,6 +3,8 @@ import InputLabel from "../../../components/molecules/InputLabel";
 import { useOnboardingStore } from "../../../store/useOnboardingStore";
 import SelectOption from "../../../components/organism/DatePicker/SelectOption";
 import SelectionOverlayCard from "../../../components/organism/DatePicker/SelectionOverlayCard";
+import FormPersonalization from "../../../components/organism/FormPersonalization";
+import SelectionButton from "../../../components/atoms/SelectionButton";
 
 const FormTimeCategory = () => {
   const timeCategories = ["pagi", "siang", "sore", "malam"];
