@@ -13,7 +13,7 @@ const CalenderWeek = ({ weekSummary }) => {
       size="full"
       boxShadowActive={true}
     >
-      <Notch variant="right" className="font-semibold text-h6 px-5 py-1">
+      <Notch variant="right" className="font-semibold text-h6 px-5 py-1 lg:text-h5 lg:px-8">
         Minggu 3 | Januari 2026
       </Notch>
 
@@ -28,7 +28,7 @@ const CalenderWeek = ({ weekSummary }) => {
           return (
             <div className="flex flex-col items-center gap-1">
               <p className="text-h6">{dayInWeek}</p>
-              <CheckboxCircle isActive={week.status === "taken"} />
+              <CheckboxCircle isActive={week.status === "taken"} className="w-8 h-8 lg:w-11 lg:h-11" classCircle="w-4 h-4 lg:w-6 lg:h-6" />
               <p className="text-h6">{week.date.split("-")[2]}</p>
             </div>
           );

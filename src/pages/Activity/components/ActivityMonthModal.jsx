@@ -50,8 +50,8 @@ const ActivityMonthModal = () => {
     if (!isCalenderMonth) return null;
 
     return (
-        <div className="h-screen w-full bg-white/20 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5 z-10">
-            <Card className="bg-white rounded-3xl p-5 shadow-xl relative animate-in fade-in zoom-in duration-300">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-in fade-in duration-300">
+            <Card className="bg-white w-full max-w-sm lg:max-w-lg rounded-3xl p-5 shadow-xl relative animate-in zoom-in-95 duration-300 max-h-[90vh] overflow-y-auto">
 
                 <div className="flex justify-between items-center">
                     <h3 className="text-h5 font-medium">Kalender Aktivitas</h3>

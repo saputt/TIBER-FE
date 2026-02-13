@@ -30,7 +30,7 @@ const AppLayout = () => {
           <Navbar variant={types[location.pathname]} />
         </div>
 
-        <main className="p-4 lg:p-8 bg-gray-50 flex-1 overflow-y-auto relative pb-24 lg:pb-8">
+        <main className="p-4 lg:px-32 lg:py-10 bg-gray-50 flex-1 overflow-y-auto relative pb-24 lg:pb-8">
           <Outlet />
         </main>
       </div>

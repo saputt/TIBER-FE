@@ -27,34 +27,44 @@ const ActivityPage = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-3">
-        <h3 className="font-bold text-h3">Aktivitas Saya</h3>
-        <div className="flex gap-2.5">
-          <button
-            className={`${colorMinumObat} text-h6 px-5 py-1 rounded-xl w-fit cursor-pointer transition-colors`}
-            onClick={() => setIsCatatanKontrol(false)}
-          >
-            Minum Obat
-          </button>
-          <Button
-            className={`${colorCatatanKontrol} text-h6 px-5 py-1 rounded-xl w-fit cursor-pointer transition-colors`}
-            onClick={() => setIsCatatanKontrol(true)}
-          >
-            Catatan Kontrol
-          </Button>
+      <div className="flex flex-col gap-3 lg:gap-6">
+        <div className="flex flex-col gap-3">
+          <h3 className="font-bold text-h3">Aktivitas Saya</h3>
+          <div className="flex gap-2.5">
+            <button
+              className={`${colorMinumObat} text-h6 px-5 py-1 rounded-xl w-fit cursor-pointer transition-colors`}
+              onClick={() => setIsCatatanKontrol(false)}
+            >
+              Minum Obat
+            </button>
+            <Button
+              className={`${colorCatatanKontrol} text-h6 px-5 py-1 rounded-xl w-fit cursor-pointer transition-colors`}
+              onClick={() => setIsCatatanKontrol(true)}
+            >
+              Catatan Kontrol
+            </Button>
+          </div>
         </div>
 
         {isCatatanKontrol ? (
           <CatatanKontrol />
         ) : (
-          <>
-            <CalenderWeek weekSummary={data?.data?.weekly_summary} />
-            <StreakCard highestStreak={data?.data?.highest_streak} />
-            <History
-              data={data?.data?.recent_logs}
-              onOpen={() => setIsHistoryModalOpen(true)}
-            />
-          </>
+          <div className="flex flex-col gap-3 lg:grid lg:grid-cols-12 lg:gap-6 lg:items-stretch">
+            <div className="lg:col-span-8">
+              <CalenderWeek weekSummary={data?.data?.weekly_summary} />
+            </div>
+
+            <div className="lg:col-span-4 flex flex-col gap-4">
+              <StreakCard highestStreak={data?.data?.highest_streak} />
+            </div>
+
+            <div className="lg:col-span-12">
+              <History
+                data={data?.data?.recent_logs}
+                onOpen={() => setIsHistoryModalOpen(true)}
+              />
+            </div>
+          </div>
         )}
       </div>
 

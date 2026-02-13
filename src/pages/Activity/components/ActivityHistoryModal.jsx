@@ -40,8 +40,8 @@ const ActivityHistoryModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm p-4 animate-in fade-in duration-300">
-            <Card className="bg-white w-full max-w-sm rounded-lg p-5 shadow-xl relative animate-in zoom-in-95 duration-300 flex flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-in fade-in duration-300">
+            <Card className="bg-white w-full max-w-sm lg:max-w-md rounded-2xl p-5 shadow-xl relative animate-in zoom-in-95 duration-300 flex flex-col max-h-[90vh]">
                 {/* Header */}
                 <div className="flex justify-between items-center mb-2">
                     <h3 className="text-h5 font-medium text-gray-900">Riwayat Aktivitas</h3>
@@ -77,7 +77,7 @@ const ActivityHistoryModal = ({ isOpen, onClose }) => {
 
                     <p className="text-h7 font-light text-gray-500 mb-2">Hanya menampilkan 1 Minggu terakhir</p>
 
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-1 lg:gap-2">
                         {isLoading ? (
                             <ActivityHistorySkeleton />
                         ) : activityData?.data?.logs?.length > 0 ? (

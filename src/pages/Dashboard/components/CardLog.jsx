@@ -61,7 +61,7 @@ const CardLog = ({ isTaken }) => {
             size="md"
             className="text-h7 text-black"
           >
-            Hari ini belum dicatat
+            Selesai!
           </Badge>
 
           <CircleCheckBig size={35} className=" text-primary" />
