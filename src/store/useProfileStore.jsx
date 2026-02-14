@@ -6,6 +6,8 @@ export const useProfileStore = create((set) => ({
   isControlOpen: false,
   isStartDateOpen: false,
   personalization: {},
+  isFullNameOpen: false,
+  isChangePasswordOpen: false,
 
   setPersonalization: (data) => {
     set((state) => ({
@@ -39,4 +41,17 @@ export const useProfileStore = create((set) => ({
       isControlOpen: !state.isControlOpen,
     }));
   },
+
+  setFullName: () => {
+    set((state) => ({
+      isFullNameOpen: !state.isFullNameOpen,
+    }))
+  },
+
+  setChangePassword: () => {
+    set((state) => ({
+      isChangePasswordOpen: !state.isChangePasswordOpen,
+    }))
+  },
+
 }));
