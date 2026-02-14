@@ -117,6 +117,17 @@ const MobileNav = ({
                         }}
                     />
                 )}
+
+                {variant === "info" && (
+                    <ArrowLeft
+                        size={20}
+                        className="text-primary"
+                        onClick={() => {
+                            setMaxStep();
+                            navigate("/");
+                        }}
+                    />
+                )}
             </div>
 
             {/* middle section */}
@@ -192,7 +203,7 @@ const MobileNav = ({
                         />
                     ))}
 
-                {variant === "info" && <img src="/logo.png" className="w-9" alt="Logo TIBER" />}
+                {/* {variant === "info" && <img src="/logo.png" className="w-9" alt="Logo TIBER" />} */}
 
                 {variant === "main" && (
                     <div className="flex gap-4">

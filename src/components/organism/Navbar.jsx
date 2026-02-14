@@ -55,18 +55,21 @@ const Navbar = ({ variant }) => {
             <Link
               className="p-4 font-inter text-h5 text-black/70 text-left"
               to="/about"
+              onClick={() => {setHamburgerIsOpen(false)}}
             >
               Tentang TIBER
             </Link>
             <Link
               className="p-4 font-inter text-h5 text-black/70 text-left border-b border-black/30"
               to="/hows-it-work"
+              onClick={() => {setHamburgerIsOpen(false)}}
             >
               Cara Kerja
             </Link>
             <Link
               className="p-4 font-inter text-h5 text-black/70 text-left"
               to="/login"
+              onClick={() => {setHamburgerIsOpen(false)}}
             >
               Masuk
             </Link>

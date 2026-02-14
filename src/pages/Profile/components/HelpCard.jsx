@@ -1,8 +1,11 @@
 import React from "react";
 import Card from "../../../components/atoms/Card";
 import { ChevronRight, CircleQuestionMark, Shield } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const HelpCard = () => {
+  const navigate = useNavigate();
+
   return (
     <Card
       size="full"
@@ -12,7 +15,7 @@ const HelpCard = () => {
     >
       <h3 className="font-medium text-h3">Bantuan & Informasi</h3>
       <div className="flex flex-col gap-3">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3" onClick={() => {navigate("/about")}}>
           <div className="w-9 h-9 aspect-square rounded-full bg-sec-light-blue/20 flex justify-center items-center">
             <CircleQuestionMark size={17} className="text-sec-light-blue" />
           </div>
@@ -23,7 +26,7 @@ const HelpCard = () => {
           <ChevronRight size={20} className="text-primary" />
         </div>
         <hr className="text-gray-400" />
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3" onClick={() => {navigate("/information-user")}}>
           <div className="w-9 h-9 aspect-square rounded-full bg-sec-light-purple/20 flex justify-center items-center">
             <Shield size={15} className="text-dark-purple" />
           </div>
