@@ -54,27 +54,27 @@ const ProfilePage = () => {
     return <ProfileSkeleton />;
   }
 
-  setPersonalization(data?.Data);
+  setPersonalization(data?.data);
   return (
     <div className="flex flex-col gap-4">
       {isDailyOpen && (
         <ManageReminderLog
-          reminderTime={data?.Data.reminder_time}
-          reminderTimeDay={data?.Data.time_category}
+          reminderTime={data?.data.reminder_time}
+          reminderTimeDay={data?.data.time_category}
         />
       )}
       {isControlOpen && <ManageControl />}
 
       <ProfileCard
         name={username}
-        duration={data?.Data.duration_month}
-        startDate={FormatDate(data?.Data.start_date)}
+        duration={data?.data.duration_month}
+        startDate={FormatDate(data?.data.start_date)}
       />
       <SummaryCard dayPass={dashboard?.data.days_passed} currentStreak={dashboard?.data.current_streak} totalDay={dashboard?.data.total_days} />
       <SettingReminderCard
-        reminderTimeDay={data?.Data.time_category}
-        reminderTime={data?.Data.reminder_time}
-        checkup={FormatDate(data?.Data.next_checkup_date)}
+        reminderTimeDay={data?.data.time_category}
+        reminderTime={data?.data.reminder_time}
+        checkup={FormatDate(data?.data.next_checkup_date)}
       />
       <HelpCard />
       <NoteCard />
