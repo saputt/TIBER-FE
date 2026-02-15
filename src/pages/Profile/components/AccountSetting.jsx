@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "../../../components/atoms/Card";
 import Notch from "../../../components/atoms/Notch";
 import { ChevronRight, Lock, Mail, Trash, User } from "lucide-react";
+import { useProfileStore } from "../../../store/useProfileStore";
 
 const AccountSetting = () => {
+  const setChangePassword = useProfileStore((state) => state.setChangePassword);
+  const isChangePasswordOpen = useProfileStore((state) => state.isChangePasswordOpen);
+
+  useEffect(() => {
+    if (isChangePasswordOpen) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "auto";
+    }
+
+    return () => {
+        document.body.style.overflow = "auto";
+    };
+  }, [isChangePasswordOpen]);
+
   return (
     <Card
       size="full"
@@ -36,7 +52,7 @@ const AccountSetting = () => {
           </div>
           <p className="text-h6">••••••••</p>
         </div>
-        <p className="text-primary text-h6 font-semibold">Ubah</p>
+        <p className="text-primary text-h6 font-semibold" onClick={() => {setChangePassword()}}>Ubah</p>
       </div>
       <hr className="text-gray-400" />
       <div className="flex items-center ">
