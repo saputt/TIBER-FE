@@ -76,10 +76,9 @@ const ManageReminderLog = ({ reminderTime, reminderTimeDay }) => {
   return (
     <div className="h-screen w-full bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5">
       <Card
-        className="flex flex-col gap-3 py-4"
+        className="flex flex-col gap-3 py-4 w-full lg:w-[40%]"
         boxShadowActive={true}
         variant="white"
-        size="full"
       >
         <div className="flex items-center gap-2">
           <Bell className="text-primary" size={20} />
@@ -90,7 +89,7 @@ const ManageReminderLog = ({ reminderTime, reminderTimeDay }) => {
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-1">
             <h4 className="text-h5">Waktu Rutin</h4>
-            <div className="flex justify-between">
+            <div className="flex justify-between gap-2">
               {times.map((time) => (
                 <SelectionButton
                   isSelect={selectTime === time.timeDay}
@@ -101,7 +100,7 @@ const ManageReminderLog = ({ reminderTime, reminderTimeDay }) => {
                   }}
                   selectionName={time.timeDay}
                   key={time.timeDay}
-                  className="px-6 py-1 text-h6"
+                  className="px-6 py-1 text-h6 w-full"
                 />
               ))}
             </div>

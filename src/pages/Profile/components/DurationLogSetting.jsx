@@ -10,7 +10,7 @@ const DurationLogSetting = () => {
   return (
     <div className="z-90 bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5">
       <Card
-        className="flex flex-col gap-4 py-4 z-100"
+        className="flex flex-col gap-4 py-4 w-full lg:w-[40%]"
         boxShadowActive={true}
         variant="white"
         size="full"

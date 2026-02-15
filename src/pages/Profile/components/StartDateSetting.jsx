@@ -20,7 +20,7 @@ const StartDateSetting = () => {
   return (
     <div className="z-90 bg-white/20 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5">
       <Card
-        className="flex flex-col gap-4 py-4 z-100"
+        className="flex flex-col gap-4 py-4 w-full lg:w-[40%]"
         boxShadowActive={true}
         variant="white"
         size="full"
@@ -28,7 +28,11 @@ const StartDateSetting = () => {
         <div className="flex gap-2">
           <Timer size={15} className="text-gray-700" />
           <p className="flex-1 text-h5 font-medium">Tanggal Mulai</p>
-          <X size={20} onClick={() => setStartDate()} className="cursor-pointer" />
+          <X
+            size={20}
+            onClick={() => setStartDate()}
+            className="cursor-pointer"
+          />
         </div>
 
         <DateTrigger
@@ -46,7 +50,11 @@ const StartDateSetting = () => {
         />
 
         <div className="flex text-h6 gap-2">
-          <Button variant="gray" className="flex-1 py-2" onClick={() => setStartDate()}>
+          <Button
+            variant="gray"
+            className="flex-1 py-2"
+            onClick={() => setStartDate()}
+          >
             Batal
           </Button>
           <Button variant="primary" className="flex-1">

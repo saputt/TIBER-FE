@@ -26,7 +26,9 @@ const ProfileSettingPage = () => {
   const isDurationOpen = useProfileStore((state) => state.isDurationOpen);
   const isStartDateOpen = useProfileStore((state) => state.isStartDateOpen);
   const isFullNameOpen = useProfileStore((state) => state.isFullNameOpen);
-  const isChangePasswordOpen = useProfileStore((state) => state.isChangePasswordOpen);
+  const isChangePasswordOpen = useProfileStore(
+    (state) => state.isChangePasswordOpen,
+  );
 
   return (
     <>
@@ -35,9 +37,9 @@ const ProfileSettingPage = () => {
 
         {isStartDateOpen && <StartDateSetting />}
 
-        {isFullNameOpen && <FullNameSetting/>}
-        
-        {isChangePasswordOpen && <ChangePasswordSetting/>}
+        {isFullNameOpen && <FullNameSetting />}
+
+        {isChangePasswordOpen && <ChangePasswordSetting />}
 
         <Badge variant="primary" size="sm">
           Sesuaikan Profil

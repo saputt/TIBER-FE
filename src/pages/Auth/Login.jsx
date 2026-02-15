@@ -31,12 +31,12 @@ const LoginPage = () => {
             "Terjadi kesalahan. Silakan coba lagi.";
           setErrorMessage(msg);
         },
-      }
+      },
     );
   };
 
   return (
-    <div className="px-8 py-24 bg-gray-50 min-h-dvh w-full flex flex-col items-center">
+    <div className="px-8 py-24 bg-gray-50 h-svh w-full flex flex-col items-center">
       <div className="flex justify-center">
         <img src="/secLogo.png" className="w-14 rounded-lg" alt="Logo TIBER" />
       </div>
