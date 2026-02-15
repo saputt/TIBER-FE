@@ -14,7 +14,7 @@ const ProfileCard = ({ name, duration, startDate }) => {
       variant="white"
       boxShadowActive={true}
       size="full"
-      className="flex flex-col gap-3 py-4"
+      className="flex flex-col gap-3 py-4 lg:py-5"
     >
       <div className="flex gap-2 items-center">
         <div className="text-white w-11 h-11 aspect-square bg-primary rounded-full flex items-center justify-center font-bold text-h2">

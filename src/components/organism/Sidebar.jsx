@@ -3,8 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import { LayoutDashboard, Activity, User, LogOut } from "lucide-react";
 import { useAuthStore } from "../../store/useAuthStore";
 import { useLogout } from "../../hooks/useAuth";
+import { useQueryClient } from "@tanstack/react-query";
+import { activityOverviewService } from "../../services/activityService";
+import { getPersonalizationService } from "../../services/personalizationService";
 
 const Sidebar = ({ className }) => {
+    const queryClient = useQueryClient();
     const location = useLocation();
     const isActive = (path) => location.pathname.startsWith(path);
     const user = useAuthStore((state) => state.user);
@@ -15,6 +19,38 @@ const Sidebar = ({ className }) => {
         { icon: Activity, label: "Aktivitas", path: "/activity" },
         { icon: User, label: "Profil", path: "/profile" },
     ];
+
+    const handleMouseEnterActivity = () => {
+        hoverTime = setTimeout(() => {
+            queryClient.prefetchQuery({
+                queryKey: ["activity", "overview"],
+                queryFn: () => activityOverviewService(),
+                staleTime: 60 * 60 * 1000,
+                refetchOnWindowFocus: false,
+                refetchOnMount: false,
+            });
+        }, 200);
+    };
+
+    const handleMouseLeaveActivity = () => {
+        clearTimeout(hoverTime);
+    };
+
+    const handleMouseEnterProfile = () => {
+        hoverTime = setTimeout(() => {
+            queryClient.prefetchQuery({
+                queryKey: ["personalization", "dashboard"],
+                queryFn: () => getPersonalizationService(),
+                staleTime: 60 * 60 * 1000,
+                refetchOnWindowFocus: false,
+                refetchOnMount: false,
+            });
+        }, 200);
+    };
+
+    const handleMouseLeaveProfile = () => {
+        clearTimeout(hoverTime);
+    };
 
     return (
         <aside className={`flex-col w-64 h-screen bg-white border-r border-gray-200 sticky top-0 ${className}`}>
@@ -28,9 +64,11 @@ const Sidebar = ({ className }) => {
                     <Link
                         key={item.path}
                         to={item.path}
+                        onMouseEnter={item.path === "/activity" ? handleMouseEnterActivity : item.path === "/profile" ? handleMouseEnterProfile : null}
+                        onMouseLeave={item.path === "/activity" ? handleMouseLeaveActivity : item.path === "/profile" ? handleMouseLeaveProfile : null}
                         className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${isActive(item.path)
-                                ? "bg-primary text-white shadow-md font-semibold"
-                                : "text-gray-500 hover:bg-gray-50 hover:text-primary"
+                            ? "bg-primary text-white shadow-md font-semibold"
+                            : "text-gray-500 hover:bg-gray-50 hover:text-primary"
                             }`}
                     >
                         <item.icon size={20} />
@@ -46,7 +84,6 @@ const Sidebar = ({ className }) => {
                     </div>
                     <div className="flex-1 min-w-0">
                         <p className="text-sm font-bold text-gray-800 truncate">{user?.fullname || "Pengguna"}</p>
-                        <p className="text-xs text-gray-500 truncate">Pasien</p>
                     </div>
                     <button
                         onClick={logout}

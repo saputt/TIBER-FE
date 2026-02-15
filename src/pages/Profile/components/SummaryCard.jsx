@@ -7,12 +7,12 @@ const SummaryCard = ({ dayPass, currentStreak, totalDay }) => {
   return (
     <Card
       size="full"
-      className="flex flex-col gap-2 bg-tersier/10 border-1 border-primary"
+      className="flex flex-col gap-2 bg-tersier/10 border-1 border-primary lg:py-5"
     >
       <h4 className="text-h4 font-semibold">Ringkasan Perjalanan</h4>
 
       {/* Hari tercatat */}
-      <div className="flex justify-between">
+      <div className="flex justify-between lg:justify-around">
         <div className="flex flex-col text-center items-center gap-1">
           <div className="w-9 h-9 aspect-square rounded-full bg-white/50 flex justify-center items-center">
             <Calendar className="text-primary" size={16} />

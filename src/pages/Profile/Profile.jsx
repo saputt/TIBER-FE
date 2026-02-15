@@ -32,7 +32,8 @@ const ProfilePage = () => {
     (state) => state.setPersonalization,
   );
 
-  const { data: dashboard, isLoading: dashboardLoading } = useDashboardOverview();
+  const { data: dashboard, isLoading: dashboardLoading } =
+    useDashboardOverview();
 
   const navigate = useNavigate();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -70,7 +71,11 @@ const ProfilePage = () => {
         duration={data?.Data.duration_month}
         startDate={FormatDate(data?.Data.start_date)}
       />
-      <SummaryCard dayPass={dashboard?.data.days_passed} currentStreak={dashboard?.data.current_streak} totalDay={dashboard?.data.total_days} />
+      <SummaryCard
+        dayPass={dashboard?.data.days_passed}
+        currentStreak={dashboard?.data.current_streak}
+        totalDay={dashboard?.data.total_days}
+      />
       <SettingReminderCard
         reminderTimeDay={data?.Data.time_category}
         reminderTime={data?.Data.reminder_time}

@@ -11,7 +11,7 @@ const SettingReminderCard = ({ reminderTimeDay, reminderTime, checkup }) => {
   return (
     <Card
       size="full"
-      className="flex flex-col gap-4"
+      className="flex flex-col gap-4 lg:py-5"
       boxShadowActive={true}
       variant="white"
     >
