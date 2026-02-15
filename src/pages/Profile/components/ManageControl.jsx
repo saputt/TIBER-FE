@@ -5,6 +5,7 @@ import Button from "../../../components/atoms/Button";
 import { useProfileStore } from "../../../store/useProfileStore";
 import DatePicker from "../../../components/organism/DatePicker/DatePicker";
 import { formatDateID } from "../../../utils/dateUtils";
+import { useUpdatePersonalization } from "../../../hooks/useProfile";
 
 const ManageControl = () => {
   const setControl = useProfileStore((state) => state.setControl);
@@ -14,6 +15,15 @@ const ManageControl = () => {
   const handleDateSelect = (date) => {
     setSelectedDate(date);
     setIsDatePickerOpen(false);
+  };
+
+  const { mutate } = useUpdatePersonalization();
+
+  const handleSubmit = () => {
+    mutate({
+      time_category,
+      reminder_time,
+    });
   };
 
   return (

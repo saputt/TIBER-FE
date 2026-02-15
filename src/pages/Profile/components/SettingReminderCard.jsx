@@ -24,13 +24,7 @@ const SettingReminderCard = ({ reminderTimeDay, reminderTime, checkup }) => {
           <div className="flex flex-col flex-1">
             <h5 className="text-h5 font-medium">Pengingat Harian</h5>
             <p className="font-light text-h6">
-              {personalization.time_category
-                ? personalization.time_category
-                : reminderTimeDay}
-              pukul{" "}
-              {personalization.reminder_time
-                ? personalization.reminder_time
-                : reminderTime}
+              {`${personalization.time_category || reminderTimeDay} pukul ${personalization.reminder_time || reminderTime}`}
             </p>
           </div>
           <p

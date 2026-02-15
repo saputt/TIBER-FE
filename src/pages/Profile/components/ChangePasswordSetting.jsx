@@ -5,12 +5,28 @@ import Button from "../../../components/atoms/Button";
 import InputLabel from "../../../components/molecules/InputLabel";
 import { Link } from "react-router-dom";
 import Card from "../../../components/atoms/Card";
+import { useProfile } from "../../../hooks/useProfile";
 
 const ChangePasswordSetting = () => {
   const setChangePassword = useProfileStore((state) => state.setChangePassword);
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const [oldPassword, setOldPassword] = useState()
+  const [newPassword, setNewPassword] = useState()
+  const [confirmPassword, setConfirmPassword] = useState()
+
+  const { mutate } = useProfile()
+
+  const handleSubmit = () => {
+    if (newPassword !== confirmPassword) return
+
+    mutate({
+      old_password: oldPassword,
+      new_password: newPassword
+    })
+  }
 
   return (
     <div className="h-screen w-full bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5 z-50">
@@ -43,6 +59,7 @@ const ChangePasswordSetting = () => {
               onEndIconClick={() =>
                 setShowCurrentPassword(!showCurrentPassword)
               }
+              onChange={(e) => setOldPassword(e.target.value)}
             />
             <div className="text-end">
               <Link
@@ -60,6 +77,7 @@ const ChangePasswordSetting = () => {
             type={showNewPassword ? "text" : "password"}
             endIcon={showNewPassword ? <Eye size={20} /> : <EyeOff size={20} />}
             onEndIconClick={() => setShowNewPassword(!showNewPassword)}
+            onChange={(e) => setNewPassword(e.target.value)}
           />
           <InputLabel
             label="Konfirmasi Kata Sandi baru"
@@ -70,6 +88,7 @@ const ChangePasswordSetting = () => {
               showConfirmPassword ? <Eye size={20} /> : <EyeOff size={20} />
             }
             onEndIconClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
         <div className="flex justify-center items-center gap-2">
@@ -82,7 +101,7 @@ const ChangePasswordSetting = () => {
           >
             Batal
           </Button>
-          <Button variant="primary" className="py-2 w-full font-inter text-h4">
+          <Button variant="primary" className="py-2 w-full font-inter text-h4" onClick={handleSubmit}>
             Simpan
           </Button>
         </div>

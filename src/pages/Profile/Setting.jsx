@@ -21,6 +21,7 @@ import DurationLogSetting from "./components/DurationLogSetting";
 import StartDateSetting from "./components/StartDateSetting";
 import FullNameSetting from "./components/FullNameSetting";
 import ChangePasswordSetting from "./components/ChangePasswordSetting";
+import { useGetPersonalization } from "../../hooks/useProfile";
 
 const ProfileSettingPage = () => {
   const isDurationOpen = useProfileStore((state) => state.isDurationOpen);
@@ -29,6 +30,12 @@ const ProfileSettingPage = () => {
   const isChangePasswordOpen = useProfileStore(
     (state) => state.isChangePasswordOpen,
   );
+
+  const { data, isLoading } = useGetPersonalization()
+
+  if (isLoading) return
+
+  console.log(data)
 
   return (
     <>
@@ -47,7 +54,7 @@ const ProfileSettingPage = () => {
 
         <ProfileInfoSetting />
 
-        <TreatmentEditSetting />
+        <TreatmentEditSetting startDate={data.data.start_date} durationTreatment={data.data.duration_month} />
 
         <AccountSetting />
       </div>

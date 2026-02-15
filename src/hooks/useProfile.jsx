@@ -21,9 +21,9 @@ export const useUpdatePersonalization = () => {
   return useMutation({
     mutationFn: (payload) => updatePersonalizationService(payload),
     onSuccess: (data) => {
-      console.log(data);
+      console.log(data)
       queryClient.invalidateQueries({
-        queryKey: ["dashboard", "personalization"],
+        queryKey: ["personalization"],
       });
       setPersonalization({
         reminder_time: data.reminder_time,
@@ -35,14 +35,16 @@ export const useUpdatePersonalization = () => {
 
 export const useGetPersonalization = () => {
   return useQuery({
-    queryKey: ["personalization", "dashboard"],
+    queryKey: ["personalization"],
     queryFn: () => getPersonalizationService(),
-    refetchOnWindowFocus: false,
   });
 };
 
 export const useProfile = () => {
   return useMutation({
     mutationFn: (payload) => profileService(payload),
+    onSuccess: (data) => {
+      console.log(data)
+    }
   });
 };

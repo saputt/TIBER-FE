@@ -3,7 +3,7 @@ import Card from "../../../components/atoms/Card";
 import { Calendar, Timer } from "lucide-react";
 import { useProfileStore } from "../../../store/useProfileStore";
 
-const TreatmentEditSetting = () => {
+const TreatmentEditSetting = ({ startDate, durationTreatment }) => {
   const setDuration = useProfileStore((state) => state.setDuration);
   const setStartDate = useProfileStore((state) => state.setStartDate);
   return (
@@ -19,7 +19,7 @@ const TreatmentEditSetting = () => {
             <Calendar size={10} />
             <p className="text-h5 font-semibold">Tanggal Mulai</p>
           </div>
-          <p className="text-h5">15/12/2025</p>
+          <p className="text-h5">{startDate}</p>
         </div>
         <p
           className="text-primary text-h5 font-semibold"
@@ -35,7 +35,7 @@ const TreatmentEditSetting = () => {
             <Timer size={10} />
             <p className="text-h5 font-semibold">Durasi Pengobatan</p>
           </div>
-          <p className="text-h5">6 Bulan</p>
+          <p className="text-h5">{durationTreatment} Bulan</p>
         </div>
         <p
           className="text-primary text-h5 font-semibold"

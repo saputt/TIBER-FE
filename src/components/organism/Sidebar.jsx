@@ -20,6 +20,8 @@ const Sidebar = ({ className }) => {
         { icon: User, label: "Profil", path: "/profile" },
     ];
 
+    let hoverTime;
+
     const handleMouseEnterActivity = () => {
         hoverTime = setTimeout(() => {
             queryClient.prefetchQuery({

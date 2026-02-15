@@ -4,7 +4,7 @@ import { dashboardService, logService } from "../services/dashboardService";
 
 export const useDashboardOverview = () => {
   return useQuery({
-    queryKey: ["dashboard", "personalization"],
+    queryKey: ["dashboard"],
     queryFn: () => dashboardService(),
     staleTime: 60 * 60 * 1000,
     refetchOnWindowFocus: false,
@@ -18,7 +18,7 @@ export const useMedicationLog = () => {
     mutationFn: (payload) => logService(payload),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["dashboard", "personalization"],
+        queryKey: ["dashboard"],
       });
     },
   });
