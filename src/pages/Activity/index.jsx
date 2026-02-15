@@ -8,6 +8,8 @@ import ActivitySkeleton from "./components/ActivitySkeleton";
 import CatatanKontrol from "./components/CatatanKontrol";
 import Button from "../../components/atoms/Button";
 import { useActivityOverview } from "../../hooks/useActivity";
+import { useDashboardOverview } from "../../hooks/useDashboard";
+import { useGetPersonalization } from "../../hooks/useProfile";
 
 const ActivityPage = () => {
   const { data, isLoading } = useActivityOverview();
@@ -20,6 +22,10 @@ const ActivityPage = () => {
   const colorCatatanKontrol = isCatatanKontrol
     ? "bg-primary text-white"
     : "bg-white text-black border border-gray-200";
+
+  const { data: personalization } = useGetPersonalization()
+
+  console.log([personalization])
 
   if (isLoading) {
     return <ActivitySkeleton />;
@@ -70,10 +76,15 @@ const ActivityPage = () => {
 
       {!isCatatanKontrol && (
         <>
-          <ActivityMonthModal />
+          <ActivityMonthModal
+            startDate={personalization?.data?.start_date}
+            durationMonth={personalization?.data?.duration_month}
+          />
           <ActivityHistoryModal
             isOpen={isHistoryModalOpen}
             onClose={() => setIsHistoryModalOpen(false)}
+            startDate={personalization?.data?.start_date}
+            durationMonth={personalization?.data?.duration_month}
           />
         </>
       )}

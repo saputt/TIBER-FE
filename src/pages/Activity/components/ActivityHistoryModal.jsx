@@ -14,7 +14,7 @@ import {
 import Notch from "../../../components/atoms/Notch";
 import ActivityHistorySkeleton from "./ActivityHistorySkeleton";
 
-const ActivityHistoryModal = ({ isOpen, onClose }) => {
+const ActivityHistoryModal = ({ isOpen, onClose, startDate, durationMonth }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const weekStart = getStartOfWeek(currentDate);
@@ -25,16 +25,59 @@ const ActivityHistoryModal = ({ isOpen, onClose }) => {
   const monthYearString = formatMonthYearID(currentDate);
   const weekNumber = getWeekOfMonth(currentDate);
 
+  // Calculate min and max dates
+  const minDate = startDate ? new Date(startDate) : null;
+  let maxDate = null;
+  if (minDate && durationMonth) {
+    maxDate = new Date(minDate);
+    maxDate.setMonth(maxDate.getMonth() + durationMonth);
+  }
+
+  const canGoPrev = () => {
+    if (!minDate) return true;
+    const prevWeekDate = new Date(currentDate);
+    prevWeekDate.setDate(prevWeekDate.getDate() - 7);
+    // Ensure the *end* of the previous week (or even the start) is not fully before minDate.
+    // Simplest check: start of the week vs minDate.
+    const prevWeekStart = getStartOfWeek(prevWeekDate);
+
+    // If the start of the previous week is before the start of the min allowed date?
+    // Actually, if the week contains strict "start_date", it should be allowed.
+    // But let's stick to "start of week" logic for simplicity first.
+    // Or checking if the *week* overlaps with the allowed range.
+
+    // If we go back 7 days, is the new date still valid?
+    // Let's use the `currentDate` (which acts as a pointer) for navigation check.
+    // Usually `currentDate` is somewhere in the week.
+
+    return prevWeekStart >= getStartOfWeek(minDate);
+  };
+
+  const canGoNext = () => {
+    if (!maxDate) return true;
+    const nextWeekDate = new Date(currentDate);
+    nextWeekDate.setDate(nextWeekDate.getDate() + 7);
+
+    const nextWeekStart = getStartOfWeek(nextWeekDate);
+    // Check if next week starts before the cutoff
+    return nextWeekStart < maxDate;
+  };
+
+
   const handlePrevWeek = () => {
-    const newDate = new Date(currentDate);
-    newDate.setDate(newDate.getDate() - 7);
-    setCurrentDate(newDate);
+    if (canGoPrev()) {
+      const newDate = new Date(currentDate);
+      newDate.setDate(newDate.getDate() - 7);
+      setCurrentDate(newDate);
+    }
   };
 
   const handleNextWeek = () => {
-    const newDate = new Date(currentDate);
-    newDate.setDate(newDate.getDate() + 7);
-    setCurrentDate(newDate);
+    if (canGoNext()) {
+      const newDate = new Date(currentDate);
+      newDate.setDate(newDate.getDate() + 7);
+      setCurrentDate(newDate);
+    }
   };
 
   if (!isOpen) return null;
@@ -64,7 +107,8 @@ const ActivityHistoryModal = ({ isOpen, onClose }) => {
         <div className="flex justify-between items-center mb-4">
           <button
             onClick={handlePrevWeek}
-            className="p-2 text-primary hover:bg-green-50 rounded-full"
+            disabled={!canGoPrev()}
+            className={`p-2 rounded-full transition-colors ${canGoPrev() ? 'text-primary hover:bg-green-50' : 'text-gray-300 cursor-not-allowed'}`}
           >
             <ChevronLeft size={20} />
           </button>
@@ -73,7 +117,8 @@ const ActivityHistoryModal = ({ isOpen, onClose }) => {
           </span>
           <button
             onClick={handleNextWeek}
-            className="p-2 text-primary hover:bg-green-50 rounded-full"
+            disabled={!canGoNext()}
+            className={`p-2 rounded-full transition-colors ${canGoNext() ? 'text-primary hover:bg-green-50' : 'text-gray-300 cursor-not-allowed'}`}
           >
             <ChevronRight size={20} />
           </button>

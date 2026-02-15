@@ -9,7 +9,7 @@ import Loading from "../../../components/molecules/Loading";
 import { getDaysInMonth, formatMonthYearID } from "../../../utils/dateUtils";
 import ActivityMonthSkeleton from "./ActivityMonthSkeleton";
 
-const ActivityMonthModal = () => {
+const ActivityMonthModal = ({ startDate, durationMonth }) => {
     const { isCalenderMonth, setCalenderMonth } = useActivityStore();
     const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -25,12 +25,63 @@ const ActivityMonthModal = () => {
 
     const { data: activityData, isLoading } = useActivityMonth(monthNumber);
 
+    // Calculate min and max dates
+    const minDate = startDate ? new Date(startDate) : null;
+    let maxDate = null;
+
+    if (minDate && durationMonth) {
+        maxDate = new Date(minDate);
+        maxDate.setMonth(maxDate.getMonth() + durationMonth);
+    }
+
+    // Helper to check if we can go to previous month
+    const canGoPrev = () => {
+        if (!minDate) return true;
+        const prevMonthDate = new Date(currentDate);
+        prevMonthDate.setMonth(prevMonthDate.getMonth() - 1);
+        // We compare the first day of the months
+        const currentMonthStart = new Date(prevMonthDate.getFullYear(), prevMonthDate.getMonth(), 1);
+        const minMonthStart = new Date(minDate.getFullYear(), minDate.getMonth(), 1);
+        return currentMonthStart >= minMonthStart;
+    };
+
+    // Helper to check if we can go to next month
+    const canGoNext = () => {
+        if (!maxDate) return true;
+        const nextMonthDate = new Date(currentDate);
+        nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
+
+        const nextMonthStart = new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), 1);
+        // maxDate is exclusive (start + duration), so we check if next month is BEFORE maxDate
+        // Actually, let's treat duration as inclusive range. 
+        // If start is Jan, duration 1 month, it means Jan is allowed. Feb is not? Or Jan + 10 months?
+        // Let's assume duration 10 months means we can access 10 months starting from start_date.
+        // e.g. Start Jan, duration 1. Allowed: Jan.
+        // Start Jan, duration 10. Allowed: Jan, Feb, ..., Oct.
+        // So maxDate should be the end of the allowed period.
+
+        // Let's refine maxDate calculation.
+        // If duration is 10, and start is 2026-02-08.
+        // Allowed range: 2026-02-08 to 2026-12-08 (approx).
+        // Navigation is by month. So we allow if the month of nextMonthDate is within range.
+
+        // Let's simplify: 
+        // minDate (start of authorized period)
+        // maxDate (end of authorized period) = start + duration months.
+
+        return nextMonthDate < maxDate;
+    };
+
     const handlePrevMonth = () => {
-        setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() - 1)));
+        if (canGoPrev()) {
+            setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() - 1)));
+        }
     };
 
     const handleNextMonth = () => {
-        setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)));
+        if (canGoNext()) {
+            setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)));
+        }
     };
 
     const calendarDays = getDaysInMonth(currentDate);
@@ -64,11 +115,19 @@ const ActivityMonthModal = () => {
                 </div>
 
                 <div className="flex justify-between items-center py-1">
-                    <button onClick={handlePrevMonth} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-primary">
+                    <button
+                        onClick={handlePrevMonth}
+                        disabled={!canGoPrev()}
+                        className={`p-2 rounded-full transition-colors ${canGoPrev() ? 'hover:bg-gray-100 text-primary' : 'text-gray-300 cursor-not-allowed'}`}
+                    >
                         <ChevronLeft size={20} />
                     </button>
                     <span className="text-h5 font-medium text-gray-600">{monthYearString}</span>
-                    <button onClick={handleNextMonth} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-primary">
+                    <button
+                        onClick={handleNextMonth}
+                        disabled={!canGoNext()}
+                        className={`p-2 rounded-full transition-colors ${canGoNext() ? 'hover:bg-gray-100 text-primary' : 'text-gray-300 cursor-not-allowed'}`}
+                    >
                         <ChevronRight size={20} />
                     </button>
                 </div>
