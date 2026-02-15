@@ -6,19 +6,20 @@ import { activityOverviewService } from "../../../services/activityService";
 import { getPersonalizationService } from "../../../services/personalizationService";
 import { useLocation } from "react-router-dom";
 import { useAuthStore } from "../../../store/useAuthStore";
+import { useLandingStore } from "../../../store/useLandingStore";
 
 const MobileNav = ({
   variant,
   navigate,
   location,
-  hamburgerIsOpen,
-  setHamburgerIsOpen,
 }) => {
   const queryClient = useQueryClient();
   const step = useOnboardingStore((state) => state.step);
   const totalStep = useOnboardingStore((state) => state.totalStep);
   const backStep = useOnboardingStore((state) => state.backStep);
   const setMaxStep = useOnboardingStore((state) => state.setMaxStep);
+  const setHamburger = useLandingStore((state) => state.setHamburger);
+  const isHamburgerOpen = useLandingStore((state) => state.isHamburgerOpen);
 
   let hoverTime;
 
@@ -210,15 +211,15 @@ const MobileNav = ({
         )}
 
         {variant === "landing" &&
-          (hamburgerIsOpen ? (
+          (isHamburgerOpen ? (
             <X
               className="w-10 text-primary cursor-pointer"
-              onClick={() => setHamburgerIsOpen(false)}
+              onClick={() => setHamburger()}
             />
           ) : (
             <Menu
               className="w-10 text-primary cursor-pointer"
-              onClick={() => setHamburgerIsOpen(true)}
+              onClick={() => setHamburger()}
             />
           ))}
 

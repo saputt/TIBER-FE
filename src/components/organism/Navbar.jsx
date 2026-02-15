@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import MobileNav from "./NavbarComponents/MobileNav";
+import { useLandingStore } from "../../store/useLandingStore";
 
 const Navbar = ({ variant }) => {
   const navigate = useNavigate();
@@ -8,10 +9,11 @@ const Navbar = ({ variant }) => {
   const bgColor =
     variant === "main" || variant === "sub" ? "bg-primary/15" : "bg-white";
 
-  const [hamburgerIsOpen, setHamburgerIsOpen] = useState(false);
+  const setHamburger = useLandingStore((state) => state.setHamburger);
+  const isHamburgerOpen = useLandingStore((state) => state.isHamburgerOpen);
 
   useEffect(() => {
-    if (hamburgerIsOpen) {
+    if (isHamburgerOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -20,7 +22,7 @@ const Navbar = ({ variant }) => {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [hamburgerIsOpen]);
+  }, [isHamburgerOpen]);
 
   return (
     <>
@@ -31,42 +33,40 @@ const Navbar = ({ variant }) => {
           variant={variant}
           navigate={navigate}
           location={location}
-          hamburgerIsOpen={hamburgerIsOpen}
-          setHamburgerIsOpen={setHamburgerIsOpen}
         />
       </header>
 
 
-      {variant === "landing" && hamburgerIsOpen && (
+      {variant === "landing" && isHamburgerOpen && (
         <div
           className="fixed inset-0 bg-black/20 z-30 transition-opacity duration-300 ease-in-out"
-          onClick={() => setHamburgerIsOpen(false)}
+          onClick={() => setHamburger()}
         />
       )}
 
       {variant === "landing" && (
         <div
-          className={`fixed top-0 left-0 pt-[52.8px] px-2 w-full ${bgColor} rounded-b-xl z-50 transform transition-transform duration-500 ease-in-out ${hamburgerIsOpen ? "translate-y-0" : "-translate-y-full"}`}
+          className={`fixed top-0 left-0 pt-[52.8px] px-2 w-full ${bgColor} rounded-b-xl z-50 transform transition-transform duration-500 ease-in-out ${isHamburgerOpen ? "translate-y-0" : "-translate-y-full"}`}
         >
           <div className="flex flex-col">
             <Link
               className="p-4 font-inter text-h5 text-black/70 text-left"
               to="/about"
-              onClick={() => {setHamburgerIsOpen(false)}}
+              onClick={() => {setHamburger()}}
             >
               Tentang TIBER
             </Link>
             <Link
               className="p-4 font-inter text-h5 text-black/70 text-left border-b border-black/30"
               to="/hows-it-work"
-              onClick={() => {setHamburgerIsOpen(false)}}
+              onClick={() => {setHamburger()}}
             >
               Cara Kerja
             </Link>
             <Link
               className="p-4 font-inter text-h5 text-black/70 text-left"
               to="/login"
-              onClick={() => {setHamburgerIsOpen(false)}}
+              onClick={() => {setHamburger()}}
             >
               Masuk
             </Link>
