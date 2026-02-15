@@ -5,11 +5,14 @@ import { Calendar, Pencil, X } from 'lucide-react';
 import Button from "../../../components/atoms/Button";
 import { useState, useEffect } from 'react';
 import InputLabel from "../../../components/molecules/InputLabel";
+import { useActivityStore } from '../../../store/useActivityStore';
 
 const CatatanKontrol = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const setCatatan = useActivityStore((state) => state.setCatatan);
+    const isCatatanOpen = useActivityStore((state) => state.isCatatanOpen);
+
     useEffect(() => {
-        if (isOpen) {
+        if (isCatatanOpen) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "auto";
@@ -18,7 +21,7 @@ const CatatanKontrol = () => {
         return () => {
             document.body.style.overflow = "auto";
         };
-    }, [isOpen]);
+    }, [isCatatanOpen]);
 
     return (
         <>
@@ -42,7 +45,7 @@ const CatatanKontrol = () => {
                                     </Badge>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Button variant="primary" className="p-1.5" onClick={() => setIsOpen(true)}><Pencil size="16"/></Button>
+                                    <Button variant="primary" className="p-1.5" onClick={() => setCatatan()}><Pencil size="16"/></Button>
                                     <Card variant="gray" size="full" className="rounded-lg min-h-20 flex justify-center items-center mb-2">
                                         <span className='font-inter text-h6'>Belum ada catatan</span>
                                     </Card>
@@ -59,7 +62,7 @@ const CatatanKontrol = () => {
                                     </Badge>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Button variant="primary" className="p-1.5" onClick={() => setIsOpen(true)}><Pencil size="16"/></Button>
+                                    <Button variant="primary" className="p-1.5" onClick={() => setCatatan()}><Pencil size="16"/></Button>
                                     <Card variant="primary" size="full" className="rounded-lg min-h-20 flex justify-center items-center mb-2">
                                         <span className='font-inter text-h6'>Belum ada catatan</span>
                                     </Card>
@@ -76,7 +79,7 @@ const CatatanKontrol = () => {
                                     </Badge>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Button variant="primary" className="p-1.5" onClick={() => setIsOpen(true)}><Pencil size="16"/></Button>
+                                    <Button variant="primary" className="p-1.5" onClick={() => setCatatan()}><Pencil size="16"/></Button>
                                     <Card variant="Blue" size="full" className="rounded-lg min-h-20 flex justify-center items-center mb-2">
                                         <span className='font-inter text-h6'>Belum ada catatan</span>
                                     </Card>
@@ -93,7 +96,7 @@ const CatatanKontrol = () => {
                                     </Badge>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Button variant="primary" className="p-1.5" onClick={() => setIsOpen(true)}><Pencil size="16"/></Button>
+                                    <Button variant="primary" className="p-1.5" onClick={() => setCatatan()}><Pencil size="16"/></Button>
                                     <Card variant="yellow" size="full" className="rounded-lg min-h-20 flex justify-center items-center mb-2">
                                         <span className='font-inter text-h6'>Belum ada catatan</span>
                                     </Card>
@@ -104,13 +107,13 @@ const CatatanKontrol = () => {
                 </div>
             </Card>
 
-            {isOpen && (
+            {isCatatanOpen && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center overflow-y-auto">
                     <div
                         className="w-full inset-0 bg-black/40 min-h-dvh flex justify-center items-center pt-16 pb-4"
                         onClick={(e) => {
                             if (e.target === e.currentTarget) {
-                                setIsOpen(false);
+                                setCatatan();
                             }
                         }}
                     >
@@ -120,7 +123,7 @@ const CatatanKontrol = () => {
                                     <Calendar size="16" className='text-white'></Calendar>
                                     <span className='font-inter font-medium text-h5 leading-none text-white'>24 Jan 2026</span>
                                 </div>
-                                <Button className="absolute right-0 top-2" onClick={() => setIsOpen(false)}><X /></Button>
+                                <Button className="absolute right-0 top-2" onClick={() => setCatatan()}><X /></Button>
                             </div>
                             <div className="space-y-4">
                                 <Card variant="gray" size="full" className="rounded-lg flex flex-col gap-4 min-h-fit py-1 relative z-10">
