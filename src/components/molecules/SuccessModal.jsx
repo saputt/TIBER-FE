@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../atoms/Card";
-import ButtonTest from "../atoms/ButtonTest";
+import Button from "../atoms/Button";
 
 const SuccessModal = ({ isOpen, title, description, buttonText, onConfirm }) => {
     if (!isOpen) return null;
@@ -13,14 +13,14 @@ const SuccessModal = ({ isOpen, title, description, buttonText, onConfirm }) => 
                     {description && <p className="text-gray-500 text-h5">{description}</p>}
                 </div>
 
-                <ButtonTest
+                <Button
                     variant="primary"
                     size="full"
                     className="mt-2 font-semibold text-h5"
                     onClick={onConfirm}
                 >
                     {buttonText}
-                </ButtonTest>
+                </Button>
             </Card>
         </div>
     );

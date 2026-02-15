@@ -61,7 +61,7 @@ const Sidebar = ({ className }) => {
                 <h1 className="text-primary text-h3 font-bold">TIBER</h1>
             </div>
 
-            <nav className="flex-1 flex flex-col gap-2 px-4 py-4">
+            <nav className="flex-1 flex flex-col gap-3 px-4 py-4">
                 {navItems.map((item) => (
                     <Link
                         key={item.path}

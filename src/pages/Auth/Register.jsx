@@ -3,7 +3,6 @@ import Navbar from "../../components/organism/Navbar";
 import OnboardingLayout from "../../components/templates/OnboardingLayout";
 import Card from "../../components/atoms/Card";
 import { LockKeyhole, SquareCheck } from "lucide-react";
-import ButtonTest from "../../components/atoms/ButtonTest";
 import InfoSaveCard from "./components/InfoSaveCard";
 import RegistForm from "./components/RegistForm";
 import { useNavigate } from "react-router-dom";

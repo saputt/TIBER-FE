@@ -3,12 +3,14 @@ import Card from "../../../components/atoms/Card";
 import { Settings } from "lucide-react";
 import { useProfileStore } from "../../../store/useProfileStore";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../../store/useAuthStore";
 
 const ProfileCard = ({ name, duration, startDate }) => {
   const setProfile = useProfileStore((state) => state.setProfile);
   const isProfileOpen = useProfileStore((state) => state.isProfileOpen);
 
   const navigate = useNavigate();
+
   return (
     <Card
       variant="white"
@@ -18,7 +20,7 @@ const ProfileCard = ({ name, duration, startDate }) => {
     >
       <div className="flex gap-2 items-center">
         <div className="text-white w-11 h-11 aspect-square bg-primary rounded-full flex items-center justify-center font-bold text-h2">
-          S
+          {name[0].toUpperCase()}
         </div>
         <div className="flex flex-col flex-1">
           <h3 className="font-semibold text-h4">{name}</h3>

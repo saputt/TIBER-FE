@@ -1,5 +1,5 @@
 import Navbar from "../organism/Navbar";
-import ButtonTest from "../atoms/ButtonTest";
+import Button from "../atoms/Button";
 import { ArrowRight } from "lucide-react";
 import { useOnboardingStore } from "../../store/useOnboardingStore";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -102,7 +102,7 @@ const OnboardingLayout = ({ children }) => {
 
           {!location.pathname.includes("register") && (
             <footer className="bg-white px-3 py-2 border-t-1 border-gray-200 lg:bg-transparent lg:border-none lg:static lg:w-full lg:max-w-md lg:p-0 lg:mt-6 lg:mb-20">
-              <ButtonTest
+              <Button
                 variant="primary"
                 size="full"
                 className="flex justify-center items-center gap-1 py-3"
@@ -111,7 +111,7 @@ const OnboardingLayout = ({ children }) => {
               >
                 <p className="font-bold text-h4">Lanjut</p>
                 <ArrowRight size={15} className="text-white" />
-              </ButtonTest>
+              </Button>
             </footer>
           )}
         </main>

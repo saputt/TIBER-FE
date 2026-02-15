@@ -10,3 +10,11 @@ export const confirmationMessages = [
     "Tetap semangat! Hari ini kamu telah menang melawan penyakitmu.",
     "Perjalanan panjang dimulai dengan langkah kecil yang konsisten.",
 ];
+
+export const motivationalQuotes = [
+    "Kesehatan adalah investasi terbaikmu.",
+    "Satu langkah kecil untuk hari yang lebih sehat.",
+    "Jangan lupa, tubuhmu berhak dijaga.",
+    "Sehat itu mahal, tapi sakit jauh lebih mahal.",
+    "Konsistensi adalah kunci kesembuhan."
+];

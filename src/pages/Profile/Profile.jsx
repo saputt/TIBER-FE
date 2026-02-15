@@ -4,7 +4,7 @@ import SummaryCard from "./components/SummaryCard";
 import SettingReminderCard from "./components/SettingReminderCard";
 import HelpCard from "./components/HelpCard";
 import NoteCard from "./components/NoteCard";
-import ButtonTest from "../../components/atoms/ButtonTest";
+import Button from "../../components/atoms/Button";
 import { LogOut } from "lucide-react";
 import { useProfileStore } from "../../store/useProfileStore";
 import ManageReminderLog from "./components/ManageReminderLog";
@@ -83,7 +83,7 @@ const ProfilePage = () => {
       />
       <HelpCard />
       <NoteCard />
-      <ButtonTest
+      <Button
         variant="white"
         size="full"
         className="flex justify-center items-center text-h5"
@@ -91,7 +91,7 @@ const ProfilePage = () => {
       >
         <LogOut size={17} />
         {isPending ? "Sedang Keluar..." : "Keluar"}
-      </ButtonTest>
+      </Button>
 
       <SuccessModal
         isOpen={showLogoutModal}
