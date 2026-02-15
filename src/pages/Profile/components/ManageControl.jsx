@@ -32,7 +32,7 @@ const ManageControl = () => {
             className="cursor-pointer"
           />
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 py-2">
           <h5 className="text-h5 font-medium">Tanggal kontrol selanjutnya</h5>
 
           <div

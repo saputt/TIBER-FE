@@ -86,8 +86,8 @@ const ManageReminderLog = ({ reminderTime, reminderTimeDay }) => {
           <X size={25} onClick={() => setDaily()} />
         </div>
 
-        <div className="flex flex-col gap-5">
-          <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-5 py-2">
+          <div className="flex flex-col gap-1 lg:gap-2">
             <h4 className="text-h5">Waktu Rutin</h4>
             <div className="flex justify-between gap-2">
               {times.map((time) => (
@@ -106,7 +106,7 @@ const ManageReminderLog = ({ reminderTime, reminderTimeDay }) => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1 lg:gap-2">
             <h5 className="text-h5 font-medium">Waktu Pengingat</h5>
             <div className="border-1 border-gray-400 w-fit px-2 text-h5 font-light">
               {formatTime(minutes)}
