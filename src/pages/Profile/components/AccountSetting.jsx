@@ -4,7 +4,7 @@ import Notch from "../../../components/atoms/Notch";
 import { ChevronRight, Lock, Mail, Trash, User } from "lucide-react";
 import { useProfileStore } from "../../../store/useProfileStore";
 
-const AccountSetting = () => {
+const AccountSetting = ({ email }) => {
   const setChangePassword = useProfileStore((state) => state.setChangePassword);
   const isChangePasswordOpen = useProfileStore(
     (state) => state.isChangePasswordOpen,
@@ -40,9 +40,8 @@ const AccountSetting = () => {
             <Mail size={10} />
             <p className="text-h5 font-semibold">Email</p>
           </div>
-          <p className="text-h5">saukiwell69@gmail.com</p>
+          <p className="text-h5">{email}</p>
         </div>
-        <p className="text-primary text-h5 font-semibold">Ubah</p>
       </div>
       <hr className="text-gray-400" />
 

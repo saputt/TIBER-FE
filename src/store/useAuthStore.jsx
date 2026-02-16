@@ -14,6 +14,11 @@ export const useAuthStore = create(
         set({ user: userData, token, isLogin: true });
       },
 
+      //function for set data profile to state
+      setUser: (userData) => {
+        set((state) => ({ user: { ...state.user, fullname: userData.full_name } }));
+      },
+
       //function for remove data login from state
       logout: () => {
         set({ user: null, token: null, isLogin: false });

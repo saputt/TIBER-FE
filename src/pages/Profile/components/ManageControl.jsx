@@ -17,13 +17,20 @@ const ManageControl = () => {
     setIsDatePickerOpen(false);
   };
 
-  const { mutate } = useUpdatePersonalization();
+  const { mutate, isIdle } = useUpdatePersonalization();
 
   const handleSubmit = () => {
+    if (!selectedDate) return;
+
+    const dateObj = new Date(selectedDate);
+    const formattedDate = dateObj.toISOString().split("T")[0];
+    console.log(formattedDate);
     mutate({
-      time_category,
-      reminder_time,
+      next_checkup_date: formattedDate,
     });
+    setTimeout(() => {
+      setControl();
+    }, 500);
   };
 
   return (
@@ -58,7 +65,7 @@ const ManageControl = () => {
             isOpen={isDatePickerOpen}
             onClose={() => setIsDatePickerOpen(false)}
             onSelectDate={handleDateSelect}
-            initialDate={selectedDate || new Date()}
+            initialDate={selectedDate ? new Date(selectedDate) : new Date()}
           />
         </div>
         <div className="flex text-h6 gap-2">
@@ -69,8 +76,8 @@ const ManageControl = () => {
           >
             Batal
           </Button>
-          <Button variant="primary" className="flex-1">
-            Simpan
+          <Button variant="primary" className="flex-1" onClick={handleSubmit}>
+            {isIdle ? "Simpan" : "Sedang Simpan..."}
           </Button>
         </div>
       </Card>

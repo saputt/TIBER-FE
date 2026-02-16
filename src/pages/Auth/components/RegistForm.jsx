@@ -100,7 +100,7 @@ const RegistForm = () => {
         </div>
         <InfoSaveCard variant="blue" />
 
-        <Button variant="primary" size="full" className="mt-5 shadow-button">
+        <Button variant="primary" size="full" className="mt-5 shadow-button" type="submit">
           {isPending ? "Sedang mendaftar..." : "Daftar"}
         </Button>
       </form>

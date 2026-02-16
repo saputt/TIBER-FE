@@ -24,9 +24,10 @@ export const getDailyNotes = () => {
   });
 };
 
-export const editDailyNotes = () => {
+export const editDailyNotes = (payload) => {
   return fetcher(`/activity/edit-checkup-note`, {
     method: "PUT",
+    body: JSON.stringify(payload),
   });
 };
 

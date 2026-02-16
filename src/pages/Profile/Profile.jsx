@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ProfileCard from "./components/ProfileCard";
 import SummaryCard from "./components/SummaryCard";
 import SettingReminderCard from "./components/SettingReminderCard";
@@ -14,13 +14,10 @@ import { useGetPersonalization } from "../../hooks/useProfile";
 import { useAuthStore } from "../../store/useAuthStore";
 import { FormatDate } from "../../utils/FormatDate";
 import { usePersonalizationStore } from "../../store/usePersonalizationStore";
-import Loading from "../../components/molecules/Loading";
-import ProfileSkeleton from "./components/ProfileSkeleton";
 import { useDashboardOverview } from "../../hooks/useDashboard";
-
 import { useNavigate } from "react-router-dom";
-import SuccessModal from "../../components/molecules/SuccessModal";
-import { useState } from "react";
+import ProfileSkeleton from "./components/ProfileSkeleton";
+import LogoutModal from "../../components/molecules/LogoutModal";
 
 const ProfilePage = () => {
   const isDailyOpen = useProfileStore((state) => state.isDailyOpen);
@@ -31,24 +28,19 @@ const ProfilePage = () => {
   const setPersonalization = usePersonalizationStore(
     (state) => state.setPersonalization,
   );
-
   const { data: dashboard, isLoading: dashboardLoading } =
     useDashboardOverview();
 
   const navigate = useNavigate();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-  const handleLogout = () => {
-    logout({
-      onSuccess: () => {
-        setShowLogoutModal(true);
-      },
-    });
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true);
   };
 
   const handleLogoutConfirm = () => {
+    logout();
     setShowLogoutModal(false);
-    navigate("/");
   };
 
   if (isLoading || dashboardLoading) {
@@ -87,17 +79,15 @@ const ProfilePage = () => {
         variant="white"
         size="full"
         className="flex justify-center items-center text-h5"
-        onClick={handleLogout}
+        onClick={handleLogoutClick}
       >
         <LogOut size={17} />
         {isPending ? "Sedang Keluar..." : "Keluar"}
       </Button>
 
-      <SuccessModal
+      <LogoutModal
         isOpen={showLogoutModal}
-        title="Sampai Jumpa Lagi!"
-        description="Jangan lupa minum obat ya, walau Aku tidak sedang mendampingimu. Semangat sembuh!"
-        buttonText="Ke Landing Page"
+        onClose={() => setShowLogoutModal(false)}
         onConfirm={handleLogoutConfirm}
       />
     </div>

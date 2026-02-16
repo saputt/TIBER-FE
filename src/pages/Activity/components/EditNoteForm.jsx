@@ -4,30 +4,39 @@ import InputLabel from "../../../components/molecules/InputLabel";
 import { Calendar, X } from "lucide-react";
 import { useActivityStore } from "../../../store/useActivityStore";
 import NoteCard from "./NoteCard";
-import { useAddDailyNotes } from "../../../hooks/useActivity";
+import { useEditDailyNotes } from "../../../hooks/useActivity";
 
-const AddNoteForm = () => {
+const EditNoteForm = ({ initialData }) => {
   const setCatatan = useActivityStore((state) => state.setCatatan);
-  const [noteText, setNoteText] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("");
-  const [selectedColor, setSelectedColor] = useState("gray");
+  const [noteText, setNoteText] = useState(initialData?.notes || "");
+  const [selectedStatus, setSelectedStatus] = useState(
+    initialData?.status || "",
+  );
+  const [selectedColor, setSelectedColor] = useState(
+    initialData?.color_status || "gray",
+  );
 
-  const today = "24 Jan 2026";
+  const today = initialData?.created_at
+    ? new Date(initialData.created_at).toLocaleDateString("id-ID", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    })
+    : "24 Jan 2026";
 
-  const { mutate: addDailyNotes } = useAddDailyNotes();
+  const { mutate: editDailyNotes } = useEditDailyNotes();
 
-  const handleAddNote = (e) => {
+  const handleEditNote = (e) => {
     e.preventDefault();
-    console.log({
+
+    editDailyNotes({
+      id: initialData?.id,
       status: selectedStatus,
       color_status: selectedColor,
       notes: noteText,
     });
-    addDailyNotes({
-      status: selectedStatus,
-      color_status: selectedColor,
-      notes: noteText,
-    });
+
+    setCatatan();
   };
 
   return (
@@ -76,7 +85,7 @@ const AddNoteForm = () => {
 
             <hr className="border-gray-100" />
 
-            <form onSubmit={handleAddNote}>
+            <form onSubmit={handleEditNote}>
               <div className="flex flex-col gap-4 my-3">
                 <div className="grid grid-cols-1 gap-2">
                   <InputLabel
@@ -153,7 +162,7 @@ const AddNoteForm = () => {
                 size="full"
                 className="py-2.5 text-h5 font-bold rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] transition-all"
               >
-                Simpan Catatan
+                Simpan Perubahan
               </Button>
             </form>
           </div>
@@ -163,4 +172,4 @@ const AddNoteForm = () => {
   );
 };
 
-export default AddNoteForm;
+export default EditNoteForm;

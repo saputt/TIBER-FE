@@ -33,10 +33,11 @@ const times = [
 
 const ManageReminderLog = ({ reminderTime, reminderTimeDay }) => {
   const [selectTime, setSelectTime] = useState(reminderTimeDay);
+  const setDaily = useProfileStore((state) => state.setDaily);
 
   const getTime = () => times.find((time) => time.timeDay === selectTime);
 
-  const { mutate } = useUpdatePersonalization();
+  const { mutate, isIdle } = useUpdatePersonalization();
 
   const minMinute = parseInt(getTime().time[0].split(".")[0] * 60);
   const maxMinute = parseInt(getTime().time.at(-1).split(".")[0] * 60);
@@ -57,7 +58,6 @@ const ManageReminderLog = ({ reminderTime, reminderTimeDay }) => {
   const [time_category, setTime_Category] = useState();
   const [reminder_time, setReminder_Time] = useState();
 
-  const setDaily = useProfileStore((state) => state.setDaily);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -71,6 +71,9 @@ const ManageReminderLog = ({ reminderTime, reminderTimeDay }) => {
       time_category,
       reminder_time,
     });
+    setTimeout(() => {
+      setDaily()
+    }, 500);
   };
 
   return (
@@ -137,7 +140,7 @@ const ManageReminderLog = ({ reminderTime, reminderTimeDay }) => {
             className="flex-1 text-h6"
             onClick={() => handleSubmit()}
           >
-            Simpan
+            {isIdle ? "Simpan" : "Sedang Simpan..."}
           </Button>
         </div>
       </Card>

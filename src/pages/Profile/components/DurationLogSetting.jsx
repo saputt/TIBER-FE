@@ -9,16 +9,16 @@ import { useUpdatePersonalization } from "../../../hooks/useProfile";
 
 const DurationLogSetting = () => {
   const setDuration = useProfileStore((state) => state.setDuration);
-  const [durationMonth, setDurationMonth] = useState()
-  const { mutate } = useUpdatePersonalization()
+  const [durationMonth, setDurationMonth] = useState();
+  const { mutate } = useUpdatePersonalization();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!durationMonth) return
+    e.preventDefault();
+    if (!durationMonth) return;
     mutate({
-      duration_month: durationMonth
-    })
-  }
+      duration_month: durationMonth,
+    });
+  };
 
   return (
     <div className="z-90 bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5">
@@ -36,14 +36,19 @@ const DurationLogSetting = () => {
           </div>
 
           <div className="py-2">
-            <Input placeholder="Bulan" variant="white" onChange={(e) => setDurationMonth(e.target.value)} type="number" />
+            <Input
+              placeholder="Bulan"
+              variant="white"
+              onChange={(e) => setDurationMonth(e.target.value)}
+              type="number"
+            />
           </div>
 
           <div className="flex text-h6 gap-2">
             <Button variant="gray" className="flex-1 py-2">
               Batal
             </Button>
-            <Button variant="primary" className="flex-1">
+            <Button variant="primary" className="flex-1" type="submit">
               Simpan
             </Button>
           </div>

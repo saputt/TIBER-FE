@@ -23,9 +23,6 @@ const ActivityPage = () => {
     : "bg-white text-black border border-gray-200";
 
   const { data: personalization } = useGetPersonalization();
-  const { data: dailyNotes } = useGetDailyNotes();
-
-  console.log([personalization, dailyNotes]);
 
   if (isLoading) {
     return <ActivitySkeleton />;

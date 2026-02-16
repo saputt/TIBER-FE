@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   activityWeekly,
   activityMonthly,
@@ -44,8 +44,9 @@ export const useGetDailyNotes = () => {
 };
 
 export const useEditDailyNotes = () => {
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => editDailyNotes(),
+    mutationFn: (payload) => editDailyNotes(payload),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["notes"],
@@ -55,6 +56,7 @@ export const useEditDailyNotes = () => {
 };
 
 export const useAddDailyNotes = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (payload) => addDailyNotes(payload),
     onSuccess: () => {

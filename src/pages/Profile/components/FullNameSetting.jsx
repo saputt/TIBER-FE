@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { Pencil, UserRoundPen, X } from "lucide-react";
 import { useProfileStore } from "../../../store/useProfileStore";
 import Button from "../../../components/atoms/Button";
 import InputLabel from "../../../components/molecules/InputLabel";
 import Card from "../../../components/atoms/Card";
+import { useProfile } from "../../../hooks/useProfile";
+import { useAuthStore } from "../../../store/useAuthStore";
 
 const FullNameSetting = () => {
   const setFullName = useProfileStore((state) => state.setFullName);
+  const { mutate, isIdle } = useProfile()
+
+  const [full_name, set_full_name] = useState("")
+
+  const setUser = useAuthStore((state) => state.setUser)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setUser({
+      full_name: full_name
+    })
+    mutate({
+      full_name: full_name
+    })
+  }
 
   return (
     <div className="h-screen w-full bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5 z-50">
@@ -24,41 +41,32 @@ const FullNameSetting = () => {
           </div>
           <X onClick={() => setFullName()} />
         </div>
-        <div className="py-2">
-          <InputLabel
-            label="Nama Lengkap"
-            placeholder="Nama Lengkap..."
-            variant="white"
-          />
-        </div>
-        <div className="flex justify-center items-center gap-2">
-          <Button
-            variant="gray"
-            onClick={() => {
-              setFullName();
-            }}
-            className="py-2 font-inter text-h4 w-full"
-          >
-            Batal
-          </Button>
-          <Button variant="primary" className="py-2 font-inter text-h4 w-full">
-            Simpan
-          </Button>
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="py-2">
+            <InputLabel
+              label="Nama Lengkap"
+              placeholder="Nama Lengkap..."
+              variant="white"
+              onChange={(e) => set_full_name(e.target.value)}
+            />
+          </div>
+          <div className="flex justify-center items-center gap-2">
+            <Button
+              variant="gray"
+              onClick={() => {
+                setFullName();
+              }}
+              className="py-2 font-inter text-h4 w-full"
+            >
+              Batal
+            </Button>
+            <Button variant="primary" className="py-2 font-inter text-h4 w-full" type="submit">
+              {isIdle ? "Simpan" : "Menyimpan..."}
+            </Button>
+          </div>
+        </form>
       </Card>
     </div>
-    // <div className="fixed inset-0 z-100 flex items-center justify-center">
-    //   <div
-    //     className="w-full inset-0 bg-black/20 min-h-dvh flex justify-center items-center pt-16 pb-4"
-    //     onClick={(e) => {
-    //       if (e.target === e.currentTarget) {
-    //         setFullName();
-    //       }
-    //     }}
-    //   >
-
-    //   </div>
-    // </div>
   );
 };
 

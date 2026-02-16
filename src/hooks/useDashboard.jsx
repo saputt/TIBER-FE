@@ -20,6 +20,9 @@ export const useMedicationLog = () => {
       queryClient.invalidateQueries({
         queryKey: ["dashboard"],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["activity"],
+      });
     },
   });
 };
