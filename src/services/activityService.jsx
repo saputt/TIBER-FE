@@ -17,3 +17,22 @@ export const activityMonthly = (month) => {
     method: "GET",
   });
 };
+
+export const getDailyNotes = () => {
+  return fetcher(`/activity/show-checkup-note`, {
+    method: "GET",
+  });
+};
+
+export const editDailyNotes = () => {
+  return fetcher(`/activity/edit-checkup-note`, {
+    method: "PUT",
+  });
+};
+
+export const addDailyNotes = (payload) => {
+  return fetcher(`/activity/add-checkup-note`, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+};

@@ -1,178 +1,150 @@
-import React from 'react';
-import Card from '../../../components/atoms/Card';
-import Badge from '../../../components/atoms/Badge';
-import { Calendar, Pencil, X } from 'lucide-react';
+import React, { useEffect } from "react";
+import Card from "../../../components/atoms/Card";
+import { Plus, Pencil } from "lucide-react";
 import Button from "../../../components/atoms/Button";
-import { useState, useEffect } from 'react';
-import InputLabel from "../../../components/molecules/InputLabel";
-import { useActivityStore } from '../../../store/useActivityStore';
+import { useActivityStore } from "../../../store/useActivityStore";
+import NoteCard from "./NoteCard";
+import AddNoteForm from "./AddNoteForm";
+import { useGetDailyNotes } from "../../../hooks/useActivity";
 
-const CatatanKontrol = () => {
-    const setCatatan = useActivityStore((state) => state.setCatatan);
-    const isCatatanOpen = useActivityStore((state) => state.isCatatanOpen);
+const CatatanKontrol = ({ data }) => {
+  const setCatatan = useActivityStore((state) => state.setCatatan);
+  const isCatatanOpen = useActivityStore((state) => state.isCatatanOpen);
+  const { data: dailyNotes, isLoading } = useGetDailyNotes();
 
-    useEffect(() => {
-        if (isCatatanOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "auto";
-        }
+  if (isLoading) return;
 
-        return () => {
-            document.body.style.overflow = "auto";
-        };
-    }, [isCatatanOpen]);
+  console.log(dailyNotes);
+  useEffect(() => {
+    if (isCatatanOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
-    return (
-        <>
-            <Card size="full" variant="white" boxShadowActive="true" className="py-5">
-                <div className="flex flex-col gap-2.5">
-                    <div className="flex flex-col gap-0.5">
-                        <span className='font-inter font-semibold text-h4'>Catatan Kontrol</span>
-                        <span className='font-inter font-light text-h6'>Ringkasan singkat dari setiap kontrol. Tidak harus panjang</span>
-                    </div>
-                    <div className="relative">
-                        <div className="absolute left-4 top-0 h-full w-px bg-black/15 z-0"></div>
-                        <div className="grid grid-cols-1 gap-5">
-                            <Card variant="gray" size="full" className="rounded-lg flex flex-col gap-4 min-h-fit py-1 relative z-10">
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-1.5">
-                                        <Calendar size="16"></Calendar>
-                                        <span className='font-inter font-medium text-h6 leading-none'>Kontrol • 24 Jan 2026</span>
-                                    </div>
-                                    <Badge variant="gray" className="font-inter font-medium text-h7 w-17">
-                                        Belum dicatat
-                                    </Badge>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Button variant="primary" className="p-1.5" onClick={() => setCatatan()}><Pencil size="16"/></Button>
-                                    <Card variant="gray" size="full" className="rounded-lg min-h-20 flex justify-center items-center mb-2">
-                                        <span className='font-inter text-h6'>Belum ada catatan</span>
-                                    </Card>
-                                </div>
-                            </Card>
-                            <Card variant="gray" size="full" className="rounded-lg flex flex-col gap-4 min-h-fit py-1 relative z-10">
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-1.5">
-                                        <Calendar size="16"></Calendar>
-                                        <span className='font-inter font-medium text-h6 leading-none'>Kontrol • 24 Jan 2026</span>
-                                    </div>
-                                    <Badge variant="primary" className="font-inter font-medium text-h7 w-17">
-                                        Membaik
-                                    </Badge>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Button variant="primary" className="p-1.5" onClick={() => setCatatan()}><Pencil size="16"/></Button>
-                                    <Card variant="primary" size="full" className="rounded-lg min-h-20 flex justify-center items-center mb-2">
-                                        <span className='font-inter text-h6'>Belum ada catatan</span>
-                                    </Card>
-                                </div>
-                            </Card>
-                            <Card variant="gray" size="full" className="rounded-lg flex flex-col gap-4 min-h-fit py-1 relative z-10">
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-1.5">
-                                        <Calendar size="16"></Calendar>
-                                        <span className='font-inter font-medium text-h6 leading-none'>Kontrol • 24 Jan 2026</span>
-                                    </div>
-                                    <Badge variant="darkBlue" className="font-inter font-medium text-h7 w-17">
-                                        Stabil
-                                    </Badge>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Button variant="primary" className="p-1.5" onClick={() => setCatatan()}><Pencil size="16"/></Button>
-                                    <Card variant="Blue" size="full" className="rounded-lg min-h-20 flex justify-center items-center mb-2">
-                                        <span className='font-inter text-h6'>Belum ada catatan</span>
-                                    </Card>
-                                </div>
-                            </Card>
-                            <Card variant="gray" size="full" className="rounded-lg flex flex-col gap-4 min-h-fit py-1 relative z-10">
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-1.5">
-                                        <Calendar size="16"></Calendar>
-                                        <span className='font-inter font-medium text-h6 leading-none'>Kontrol • 24 Jan 2026</span>
-                                    </div>
-                                    <Badge variant="darkYellow" className="font-inter font-medium text-h7 w-17">
-                                        Dipantau
-                                    </Badge>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Button variant="primary" className="p-1.5" onClick={() => setCatatan()}><Pencil size="16"/></Button>
-                                    <Card variant="yellow" size="full" className="rounded-lg min-h-20 flex justify-center items-center mb-2">
-                                        <span className='font-inter text-h6'>Belum ada catatan</span>
-                                    </Card>
-                                </div>
-                            </Card>
-                        </div>
-                    </div>
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isCatatanOpen]);
+
+  // Dummy data with varying lengths to demonstrate Masonry layout
+  const notes = [
+    {
+      id: 1,
+      date: "24 Jan 2026",
+      status: "Positif",
+      statusColor: "green",
+      note: "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    },
+    {
+      id: 2,
+      date: "25 Jan 2026",
+      status: "Netral",
+      statusColor: "blue",
+      note: "Tidak ada keluhan berarti. Masih rutin minum obat.",
+    },
+    {
+      id: 3,
+      date: "26 Jan 2026",
+      status: "Waspada",
+      statusColor: "yellow",
+      note: "Sedikit mual setelah makan siang. Perlu diobservasi apakah karena makanan atau efek obat. Jika berlanjut akan konsul dokter. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+    },
+    {
+      id: 4,
+      date: "27 Jan 2026",
+      status: "Belum dicatat",
+      statusColor: "gray",
+      note: "",
+    },
+    {
+      id: 5,
+      date: "28 Jan 2026",
+      status: "Positif",
+      statusColor: "green",
+      note: "Badan terasa segar bugar.",
+    },
+    {
+      id: 6,
+      date: "29 Jan 2026",
+      status: "Waspada",
+      statusColor: "yellow",
+      note: "Ada sedikit nyeri di persendian lutut. Mungkin karena cuaca dingin atau kelelahan. Perlu istirahat cukup malam ini. Lorem ipsum dolor sit amet.",
+    },
+  ];
+
+  return (
+    <>
+      <Card size="full" variant="white" boxShadowActive={true} className="py-5">
+        <div className="flex flex-col gap-6">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 px-1">
+            <div className="flex flex-col gap-1">
+              <span className="font-inter font-semibold text-h4 text-gray-900">
+                Catatan Kontrol
+              </span>
+              <span className="font-inter font-light text-h6 text-gray-500">
+                Ringkasan singkat dari setiap kontrol.
+              </span>
+            </div>
+            {/* Desktop Add Button */}
+            <div className="hidden md:block">
+              <Button
+                variant="primary"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95 transition-all"
+                onClick={() => setCatatan()}
+              >
+                <Plus size={18} strokeWidth={2.5} />
+                <span className="text-h5 font-bold">Tulis Catatan</span>
+              </Button>
+            </div>
+          </div>
+
+          {/* Masonry Grid */}
+          <div className="relative min-h-[200px]">
+            {/* Timeline Line (Desktop Only) */}
+            <div className="absolute left-4 top-0 h-full w-px bg-gray-200 z-0 hidden lg:block"></div>
+
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-5 space-y-5">
+              {dailyNotes?.data.map((note) => (
+                <div key={note.id} className="break-inside-avoid mb-5">
+                  <NoteCard
+                    date={note.created_at}
+                    status={note.status}
+                    statusColor={note.color_status}
+                    note={note.notes}
+                    onClick={() => setCatatan()}
+                  />
                 </div>
-            </Card>
+              ))}
+            </div>
+          </div>
 
-            {isCatatanOpen && (
-                <div className="fixed inset-0 z-100 flex items-center justify-center overflow-y-auto">
-                    <div
-                        className="w-full inset-0 bg-black/40 min-h-dvh flex justify-center items-center pt-16 pb-4"
-                        onClick={(e) => {
-                            if (e.target === e.currentTarget) {
-                                setCatatan();
-                            }
-                        }}
-                    >
-                        <div className="relative bg-white w-[90%] max-w-md rounded-2xl px-5 pb-5 z-50 shadow-xl animate-fadeIn" onClick={(e) => e.stopPropagation()}>
-                            <div className="relative flex items-end justify-center mb-4">
-                                <div className="flex items-center justify-center gap-1.5 bg-primary w-37.5 h-7 rounded-b-md">
-                                    <Calendar size="16" className='text-white'></Calendar>
-                                    <span className='font-inter font-medium text-h5 leading-none text-white'>24 Jan 2026</span>
-                                </div>
-                                <Button className="absolute right-0 top-2" onClick={() => setCatatan()}><X /></Button>
-                            </div>
-                            <div className="space-y-4">
-                                <Card variant="gray" size="full" className="rounded-lg flex flex-col gap-4 min-h-fit py-1 relative z-10">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-1.5">
-                                            <Calendar size="16"></Calendar>
-                                            <span className='font-inter font-medium text-h6 leading-none'>Kontrol • 24 Jan 2026</span>
-                                        </div>
-                                        <Badge variant="gray" className="font-inter font-medium text-h7 w-17">
-                                            Belum dicatat
-                                        </Badge>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <Button variant="primary" className="p-1.5"><Pencil size="16"/></Button>
-                                        <Card variant="gray" size="full" className="rounded-lg min-h-20 flex justify-center items-center mb-2">
-                                            <span className='font-inter text-h6'>Belum ada catatan</span>
-                                        </Card>
-                                    </div>
-                                </Card>
-                                <InputLabel label="Status" variant="white" placeholder="Status..." className="text-h4"/>
-                                <div className="grid grid-cols-1 gap-1.5">
-                                    <span className="text-h4 font-inter">Warna Status</span>
-                                    <div className="grid grid-cols-1 gap-1">
-                                        <div className="flex items-center gap-1">
-                                            <input type="radio" id="positif" name="warna_status" value="Positif"/>
-                                            <label for="positif" className='font-inter text-h5'>Hijau - Positif</label>
-                                        </div>
-                                        <div className="flex items-center gap-1">
-                                            <input type="radio" id="netral" name="warna_status" value="Positif" />
-                                            <label for="netral" className='font-inter text-h5'>Biru - Netral</label>
-                                        </div>
-                                        <div className="flex items-center gap-1">
-                                            <input type="radio" id="waspada" name="warna_status" value="Positif" />
-                                            <label for="waspada" className='font-inter text-h5'>Kuning - Waspada</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="grid grid-cols-1 gap-1.5">
-                                    <span className="text-h4 font-inter">Warna Status</span>
-                                    <textarea className="w-full p-3 bg-white text-black border border-gray-400 rounded-lg resize-none focus:outline-black font-inter text-h4" rows={4} placeholder="Tulis sesuatu di sini..."></textarea>
-                                </div>
-                                <Button variant="primary" size="full" className="py-1.5! text-h5 rounded-md">Simpan</Button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-        </>
-    )
-}
+          {/* Empty State */}
+          {notes.length === 0 && (
+            <div className="flex flex-col items-center justify-center py-10 text-gray-400">
+              <p className="italic">Belum ada catatan.</p>
+            </div>
+          )}
+        </div>
+      </Card>
 
-export default CatatanKontrol
+      {/* Mobile Floating Action Button (FAB) */}
+      <div className="md:hidden fixed bottom-6 right-6 z-40 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <Button
+          variant="primary"
+          className="w-14 h-14 rounded-full shadow-xl shadow-primary/40 flex items-center justify-center p-0 transition-transform active:scale-95 hover:scale-105"
+          onClick={() => setCatatan()}
+          aria-label="Add Note"
+        >
+          <Pencil size={24} className="text-white" strokeWidth={2.5} />
+        </Button>
+      </div>
+
+      {/* Add Note Modal */}
+      {isCatatanOpen && <AddNoteForm />}
+    </>
+  );
+};
+
+export default CatatanKontrol;

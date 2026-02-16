@@ -1,8 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   activityWeekly,
   activityMonthly,
   activityOverviewService,
+  addDailyNotes,
+  editDailyNotes,
+  getDailyNotes,
 } from "../services/activityService";
 
 export const useActivityOverview = () => {
@@ -30,5 +33,34 @@ export const useActivityWeek = (weekStart) => {
     queryFn: () => activityWeekly(weekStart),
     enabled: !!weekStart,
     staleTime: 60 * 60 * 1000,
+  });
+};
+
+export const useGetDailyNotes = () => {
+  return useQuery({
+    queryKey: ["notes"],
+    queryFn: () => getDailyNotes(),
+  });
+};
+
+export const useEditDailyNotes = () => {
+  return useMutation({
+    mutationFn: () => editDailyNotes(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["notes"],
+      });
+    },
+  });
+};
+
+export const useAddDailyNotes = () => {
+  return useMutation({
+    mutationFn: (payload) => addDailyNotes(payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["notes"],
+      });
+    },
   });
 };

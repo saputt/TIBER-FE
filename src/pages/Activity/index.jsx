@@ -7,8 +7,7 @@ import ActivityHistoryModal from "./components/ActivityHistoryModal";
 import ActivitySkeleton from "./components/ActivitySkeleton";
 import CatatanKontrol from "./components/CatatanKontrol";
 import Button from "../../components/atoms/Button";
-import { useActivityOverview } from "../../hooks/useActivity";
-import { useDashboardOverview } from "../../hooks/useDashboard";
+import { useActivityOverview, useGetDailyNotes } from "../../hooks/useActivity";
 import { useGetPersonalization } from "../../hooks/useProfile";
 
 const ActivityPage = () => {
@@ -23,9 +22,10 @@ const ActivityPage = () => {
     ? "bg-primary text-white"
     : "bg-white text-black border border-gray-200";
 
-  const { data: personalization } = useGetPersonalization()
+  const { data: personalization } = useGetPersonalization();
+  const { data: dailyNotes } = useGetDailyNotes();
 
-  console.log([personalization])
+  console.log([personalization, dailyNotes]);
 
   if (isLoading) {
     return <ActivitySkeleton />;
