@@ -1,6 +1,12 @@
 # 🏥 TIBER - Frontend (Tuberculosis Care App)
 
-Selamat datang di repository Frontend **TIBER**. Projek ini dibangun menggunakan **React + Vite** dengan fokus pada performa dan skalabilitas untuk membantu pasien TBC dalam manajemen pengobatan.
+---
+
+## 📝 Deskripsi Singkat
+Aplikasi Front-End ini dibangun menggunakan **React.js** dengan pendekatan desain minimalis untuk memastikan kemudahan akses bagi pasien TBC. Fokus utama antarmuka ini adalah:
+* **Dashboard Kepatuhan:** Visualisasi progres pengobatan secara real-time.
+* **Interaksi Intuitif:** Sistem konfirmasi dosis harian dengan umpan balik pesan motivasi.
+* **Daily Journaling UI:** Antarmuka pencatatan harian yang bersih untuk memantau kondisi fisik dan mental.
 
 ---
 
