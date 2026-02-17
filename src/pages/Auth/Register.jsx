@@ -12,7 +12,7 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   return (
     <OnboardingLayout>
-      <div className="flex flex-col gap-3 items-center px-3">
+      <div className="flex flex-col gap-3 items-center px-3 lg:px-0">
         <div className="flex flex-col items-center">
           <img src="secLogo.png" className="w-15" alt="Logo TIBER" />
           <div className="text-center flex flex-col py-6">
