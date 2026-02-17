@@ -11,7 +11,7 @@ const RegistForm = () => {
   const setFormData = useOnboardingStore((state) => state.setFormData);
   const formData = useOnboardingStore((state) => state.formData);
   const navigate = useNavigate();
-  const { mutate: register, isPending } = useRegister();
+  const { mutate: register, isPending, isError, error } = useRegister();
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -54,6 +54,14 @@ const RegistForm = () => {
   return (
     <div>
       <InfoSaveCard variant="green" />
+
+      {isError && (
+        <div className="mt-4 animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm font-medium text-center">
+            {error?.response?.data?.message || "Terjadi kesalahan saat mendaftar"}
+          </div>
+        </div>
+      )}
 
       <form onSubmit={handleRegister}>
         <div className="w-full flex flex-col gap-4 my-3">
