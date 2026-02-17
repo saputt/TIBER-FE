@@ -12,17 +12,31 @@ const InputLabel = ({
   size = "full",
   className,
   onChange,
+  value,
+  onClick,
+  defaultValue,
+  endIcon,
+  onEndIconClick,
 }) => {
   return (
     <div className="flex flex-col gap-1.5">
       {variantLabel == "normal" && (
-        <span className="text-h4 font-inter">{label}</span>
+        <span className="lg:text-h4 text-h5 font-inter">{label}</span>
       )}
       {variantLabel == "medium" && (
-        <span className="text-h4 font-medium font-inter">{label}</span>
+        <span className="lg:text-h4 text-h5 font-medium font-inter">
+          {label}
+        </span>
       )}
       {variantInput == "select" && (
-        <InputSelect variant={variant} placeholder={placeholder} />
+        <InputSelect
+          variant={variant}
+          placeholder={placeholder}
+          onClick={onClick}
+          defaultValue={defaultValue}
+          onChange={onChange}
+          value={value}
+        />
       )}
       {variantInput == "input" && (
         <Input
@@ -32,6 +46,9 @@ const InputLabel = ({
           className={className}
           onChange={onChange}
           size={size}
+          value={value}
+          endIcon={endIcon}
+          onEndIconClick={onEndIconClick}
         />
       )}
     </div>

@@ -65,7 +65,7 @@ const TimePickerSlider = ({ timeDay }) => {
 
         <div className="flex justify-between text-black/70">
           {getTime().time.map((time) => (
-            <p className="text-h6">{time}</p>
+            <p className="text-h6" key={time}>{time}</p>
           ))}
         </div>
 

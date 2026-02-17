@@ -1,5 +1,6 @@
 import React from "react";
-import SelectionButton from "../../../components/atoms/SelectionButton";
+import Card from "../../atoms/Card";
+import SelectionButton from "../../atoms/SelectionButton";
 
 const SelectionCard = ({ title, list, isSelect, onClick }) => {
   return (
@@ -8,6 +9,7 @@ const SelectionCard = ({ title, list, isSelect, onClick }) => {
       <hr />
       {list.map((list) => (
         <SelectionButton
+          key={list}
           isBoarding={true}
           isSelect={isSelect}
           selectionName={list}

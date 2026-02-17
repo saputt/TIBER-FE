@@ -2,14 +2,16 @@ import React from "react";
 import Card from "../../../components/atoms/Card";
 import { Bell, Calendar } from "lucide-react";
 import { useProfileStore } from "../../../store/useProfileStore";
+import { useUpdatePersonalization } from "../../../hooks/useProfile";
 
-const SettingReminderCard = () => {
+const SettingReminderCard = ({ reminderTimeDay, reminderTime, checkup }) => {
   const setDaily = useProfileStore((state) => state.setDaily);
   const setControl = useProfileStore((state) => state.setControl);
+  const personalization = useProfileStore((state) => state.personalization);
   return (
     <Card
       size="full"
-      className="flex flex-col gap-4"
+      className="flex flex-col gap-4 lg:py-5"
       boxShadowActive={true}
       variant="white"
     >
@@ -21,7 +23,9 @@ const SettingReminderCard = () => {
           </div>
           <div className="flex flex-col flex-1">
             <h5 className="text-h5 font-medium">Pengingat Harian</h5>
-            <p className="font-light text-h6">Pagi pukul 08 : 00</p>
+            <p className="font-light text-h6">
+              {`${personalization.time_category || reminderTimeDay} pukul ${personalization.reminder_time || reminderTime}`}
+            </p>
           </div>
           <p
             className="text-primary text-h6 font-semibold"
@@ -37,7 +41,7 @@ const SettingReminderCard = () => {
           </div>
           <div className="flex flex-col flex-1">
             <h5 className="text-h5 font-medium">Pengingat Kontrol Dokter</h5>
-            <p className="font-light text-h6">Aktif - 02 Feb 2026</p>
+            <p className="font-light text-h6">{checkup}</p>
           </div>
           <p
             className="text-primary text-h6 font-semibold"

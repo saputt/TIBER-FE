@@ -10,7 +10,7 @@ const LandingPage = () => {
   return (
     <div className="pt-3 pb-5 min-h-dvh">
       <div className="flex justify-center">
-        <img src="/logo.png" className="w-14 shadow-md rounded-lg" />
+        <img src="/logo.png" className="w-14 shadow-md rounded-lg" alt="Logo TIBER" />
       </div>
       <div className="flex flex-col items-center gap-5 pt-9">
         <span className="text-h1 font-extrabold font-jakarta text-center w-[80%] sm:w-xl">

@@ -2,18 +2,10 @@ import React from "react";
 import Card from "../../../components/atoms/Card";
 import Notch from "../../../components/atoms/Notch";
 import CheckboxCircle from "../../../components/atoms/CheckboxCircle";
+import { useActivityStore } from "../../../store/useActivityStore";
 
-const weeks = [
-  { day: "Sen", active: false, date: 19 },
-  { day: "Sel", active: true, date: 20 },
-  { day: "Rab", active: true, date: 21 },
-  { day: "Kam", active: true, date: 22 },
-  { day: "Jum", active: true, date: 23 },
-  { day: "Sab", active: true, date: 24 },
-  { day: "Min", active: false, date: 25 },
-];
-
-const CalenderWeek = () => {
+const CalenderWeek = ({ weekSummary }) => {
+  const setCalenderMonth = useActivityStore((state) => state.setCalenderMonth);
   return (
     <Card
       className="relative overflow-hidden pt-8 flex flex-col gap-3"
@@ -21,21 +13,34 @@ const CalenderWeek = () => {
       size="full"
       boxShadowActive={true}
     >
-      <Notch variant="right" className="font-semibold text-h6 px-5 py-1">
+      <Notch variant="right" className="font-semibold text-h6 px-5 py-1 lg:text-h5 lg:px-8">
         Minggu 3 | Januari 2026
       </Notch>
 
       <div className="flex justify-between">
-        {weeks.map((week) => (
-          <div className="flex flex-col items-center gap-1">
-            <p className="text-h6">{week.day}</p>
-            <CheckboxCircle isActive={week.active} />
-            <p className="text-h6">{week.date}</p>
-          </div>
-        ))}
+        {weekSummary.map((week) => {
+          const dateObj = new Date(week.date);
+
+          const dayInWeek = dateObj.toLocaleDateString("id-ID", {
+            weekday: "short",
+          });
+
+          return (
+            <div className="flex flex-col items-center gap-1">
+              <p className="text-h6">{dayInWeek}</p>
+              <CheckboxCircle isActive={week.status === "taken"} className="w-8 h-8 lg:w-11 lg:h-11" classCircle="w-4 h-4 lg:w-6 lg:h-6" />
+              <p className="text-h6">{week.date.split("-")[2]}</p>
+            </div>
+          );
+        })}
       </div>
 
-      <p className="text-h6 text-right font-semibold">Lihat Selengkapnya →</p>
+      <p
+        className="text-h6 text-right font-semibold hover:text-primary transition-colors cursor-pointer"
+        onClick={() => setCalenderMonth()}
+      >
+        Lihat Selengkapnya →
+      </p>
     </Card>
   );
 };

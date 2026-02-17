@@ -1,20 +1,29 @@
-import React from 'react'
-import Input from '../atoms/Input'
-import Select from '../atoms/Select'
+import React from "react";
+import Input from "../atoms/Input";
+import Select from "../atoms/Select";
 
-const InputSelect = ({ variant, placeholder }) => {
+const InputSelect = ({
+  variant,
+  placeholder,
+  onClick,
+  defaultValue,
+  onChange,
+  value,
+}) => {
   return (
     <div className="flex justify-center items-center pr-2 border border-gray-400 rounded-lg focus:outline-black">
       <Input
         type="text"
-        variant={ variant }
+        variant={variant}
         size="full"
-        placeholder={ placeholder }
+        placeholder={placeholder}
+        onChange={onChange}
         className="focus:outline-0"
+        value={value}
       />
-      <Select size="sm" />
+      <Select size="sm" onClick={onClick} defaultValue={defaultValue} />
     </div>
-  )
-}
+  );
+};
 
-export default InputSelect
+export default InputSelect;

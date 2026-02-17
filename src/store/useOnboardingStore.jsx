@@ -4,6 +4,9 @@ export const useOnboardingStore = create((set) => ({
   step: 1,
   totalStep: 5,
   formData: {},
+  isOverlay: false,
+
+  setOverlay: () => set((state) => ({ isOverlay: !state.isOverlay })),
 
   setMinStep: () => set({ step: 1 }),
   setMaxStep: () => set((state) => ({ step: state.totalStep })),
