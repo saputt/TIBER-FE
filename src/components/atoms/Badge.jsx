@@ -12,6 +12,7 @@ const Badge = ({ variant, size, children, className }) => {
     gray: "bg-gray-200 text-black border-1 border-gray-400",
     confirmPrimary: "bg-primary/30 text-black",
     confirmGray: "bg-gray-200 text-black",
+    yellow: "bg-dark-yellow text-white black border-1 border-dark-yellow",
   };
 
   const sizes = {

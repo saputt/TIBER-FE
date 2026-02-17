@@ -21,10 +21,12 @@ const InputLabel = ({
   return (
     <div className="flex flex-col gap-1.5">
       {variantLabel == "normal" && (
-        <span className="text-h4 font-inter">{label}</span>
+        <span className="lg:text-h4 text-h5 font-inter">{label}</span>
       )}
       {variantLabel == "medium" && (
-        <span className="text-h4 font-medium font-inter">{label}</span>
+        <span className="lg:text-h4 text-h5 font-medium font-inter">
+          {label}
+        </span>
       )}
       {variantInput == "select" && (
         <InputSelect

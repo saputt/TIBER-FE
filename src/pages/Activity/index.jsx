@@ -44,7 +44,7 @@ const ActivityPage = () => {
               className={`${colorCatatanKontrol} text-h6 px-5 py-1 rounded-xl w-fit cursor-pointer transition-colors`}
               onClick={() => setIsCatatanKontrol(true)}
             >
-              Catatan Kontrol
+              Catatan
             </Button>
           </div>
         </div>

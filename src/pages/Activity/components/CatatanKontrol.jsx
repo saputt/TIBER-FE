@@ -46,10 +46,10 @@ const CatatanKontrol = () => {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 px-1">
             <div className="flex flex-col gap-1">
               <span className="font-inter font-semibold text-h4 text-gray-900">
-                Catatan Kontrol
+                Catatan
               </span>
               <span className="font-inter font-light text-h6 text-gray-500">
-                Ringkasan singkat dari setiap kontrol.
+                Catatan harian kamu
               </span>
             </div>
             <div className="hidden md:block">

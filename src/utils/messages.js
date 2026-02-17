@@ -1,14 +1,14 @@
 export const confirmationMessages = [
-    "Hebat! Satu langkah lebih dekat menuju kesembuhan.",
-    "Terima kasih sudah peduli pada dirimu sendiri.",
-    "Konsistensi adalah kuncinya. Pertahankan semangatmu!",
-    "Setiap pil yang kamu minum adalah bukti kekuatanmu.",
-    "Kamu luar biasa! Kesehatanmu semakin membaik setiap hari.",
-    "Jangan menyerah, proses ini akan membuahkan hasil yang indah.",
-    "Ingatlah, kamu tidak berjuang sendirian. Kami selalu bersamamu.",
-    "Kesehatan adalah investasi terbaik. Kamu melakukan hal yang benar!",
-    "Tetap semangat! Hari ini kamu telah menang melawan penyakitmu.",
-    "Perjalanan panjang dimulai dengan langkah kecil yang konsisten.",
+    "Hebat! Obat hari ini bekerja melumpuhkan bakteri yang sedang tidur. Jangan beri mereka celah!",
+    "Luar biasa! Konsistensi hari ini mencegah kuman TB menjadi 'bakteri super' yang kebal obat (MDR-TB).",
+    "Satu langkah lebih dekat! Ingat, kuman TB itu tangguh, tapi disiplinmu jauh lebih tangguh.",
+    "Mantap! Meskipun tubuh sudah terasa enakan, tetap habiskan dosisnya ya agar bakteri mati total.",
+    "Terima kasih sudah bertahan! Proses 6 bulan ini adalah cara terbaik memastikan TB tidak kembali lagi.",
+    "Setiap pil yang kamu minum hari ini adalah pelindung bagi paru-parumu dan orang di sekitarmu.",
+    "Kamu luar biasa! Tahukah kamu? Disiplin minum obat di jam yang sama membuat efektivitasnya maksimal.",
+    "Keren! Dengan minum obat hari ini, kamu sudah memutus satu rantai penularan di lingkunganmu.",
+    "Jangan menyerah! Efek samping mungkin terasa berat, tapi itu tanda obat sedang berperang melawan bakteri.",
+    "Langkah kecil yang konsisten! Menuntaskan pengobatan adalah cara terbaik untuk merdeka dari TBC.",
 ];
 
 export const motivationalQuotes = [

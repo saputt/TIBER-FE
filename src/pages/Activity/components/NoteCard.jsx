@@ -33,7 +33,7 @@ const NoteCard = ({ date, status, statusColor, note, onClick, className }) => {
     status === "Waspada" ||
     status === "Dipantau"
   ) {
-    badgeVariant = "darkYellow";
+    badgeVariant = "yellow";
     cardVariant = "yellow";
   }
 
