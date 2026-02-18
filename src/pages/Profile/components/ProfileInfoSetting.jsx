@@ -31,7 +31,7 @@ const ProfileInfoSetting = () => {
 
       <div className="flex items-center gap-1">
         <p className="text-h5 font-medium">{name}</p>
-        <Pencil size={10} onClick={() => setFullName()} />
+        <Pencil size={10} onClick={() => setFullName()} className="cursor-pointer"/>
       </div>
     </div>
   );

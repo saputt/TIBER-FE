@@ -25,6 +25,8 @@ const FullNameSetting = () => {
     })
   }
 
+  const isFormValid = full_name.trim() !== "";
+
   return (
     <div className="h-screen w-full bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5 z-50">
       <Card
@@ -60,7 +62,7 @@ const FullNameSetting = () => {
             >
               Batal
             </Button>
-            <Button variant="primary" className="py-2 font-inter text-h4 w-full" type="submit">
+            <Button variant="primary" className="py-2 font-inter text-h4 w-full" type="submit" disabled={!isFormValid}>
               {isIdle ? "Simpan" : "Menyimpan..."}
             </Button>
           </div>
