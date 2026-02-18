@@ -18,7 +18,6 @@ export const useLogin = () => {
         queryFn: () => dashboardService(),
       });
       setAuth(data.data, data.token);
-      window.location.href = "/dashboard";
     },
   });
 };
