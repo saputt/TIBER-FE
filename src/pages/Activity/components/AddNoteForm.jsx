@@ -15,7 +15,7 @@ const AddNoteForm = () => {
 
   const today = "24 Jan 2026";
 
-  const { mutate: addDailyNotes, isIdle, isSuccess } = useAddDailyNotes();
+  const { mutate: addDailyNotes, isPending, isSuccess } = useAddDailyNotes();
 
   const handleAddNote = (e) => {
     e.preventDefault();
@@ -150,7 +150,7 @@ const AddNoteForm = () => {
               size="full"
               className="py-2.5 text-h5 font-bold rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] transition-all"
             >
-              {isIdle ? "Menyimpan Catatan..." : "Simpan Catatan"}
+              {isPending ? "Menyimpan Catatan..." : "Simpan Catatan"}
             </Button>
           </form>
         </div>

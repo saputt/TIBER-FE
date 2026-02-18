@@ -21,7 +21,7 @@ const RegistForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  let alert;
+  const [passwordError, setPasswordError] = useState(false);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -29,9 +29,11 @@ const RegistForm = () => {
     if (isPending) return;
 
     if (password !== confirmPassword) {
-      alert("kata sandi tidak sesuai");
+      setPasswordError(true);
       return;
     }
+
+    setPasswordError(false);
 
     const finalData = {
       user: {
@@ -55,13 +57,19 @@ const RegistForm = () => {
     <div>
       <InfoSaveCard variant="green" />
 
-      {isError && (
+      {passwordError ? (
         <div className="mt-4 animate-in fade-in slide-in-from-top-2 duration-300">
           <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm font-medium text-center">
-            {error?.response?.data?.message || "Terjadi kesalahan saat mendaftar"}
+            Password tidak sesuai
           </div>
         </div>
-      )}
+      ) : isError ? (
+        <div className="mt-4 animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm font-medium text-center">
+            {error?.data?.message || "Terjadi kesalahan saat mendaftar"}
+          </div>
+        </div>
+      ) : null}
 
       <form onSubmit={handleRegister}>
         <div className="w-full flex flex-col gap-4 my-3">
@@ -108,7 +116,12 @@ const RegistForm = () => {
         </div>
         <InfoSaveCard variant="blue" />
 
-        <Button variant="primary" size="full" className="mt-5 shadow-button" type="submit">
+        <Button
+          variant="primary"
+          size="full"
+          className="mt-5 shadow-button"
+          type="submit"
+        >
           {isPending ? "Sedang mendaftar..." : "Daftar"}
         </Button>
       </form>
