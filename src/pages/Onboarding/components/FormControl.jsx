@@ -51,6 +51,7 @@ const FormControl = () => {
           })
         }
         value={freqValue || ""}
+        type="number"
       />
 
       {isOverlay && <SelectionOverlayCard data={data} />}

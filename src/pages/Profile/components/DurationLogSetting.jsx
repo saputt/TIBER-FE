@@ -9,7 +9,7 @@ import { useUpdatePersonalization } from "../../../hooks/useProfile";
 
 const DurationLogSetting = () => {
   const setDuration = useProfileStore((state) => state.setDuration);
-  const [durationMonth, setDurationMonth] = useState();
+  const [durationMonth, setDurationMonth] = useState("");
   const { mutate } = useUpdatePersonalization();
 
   const handleSubmit = (e) => {
@@ -19,6 +19,8 @@ const DurationLogSetting = () => {
       duration_month: durationMonth,
     });
   };
+
+  const isFormValid = durationMonth !== "";
 
   return (
     <div className="z-90 bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5">
@@ -48,7 +50,7 @@ const DurationLogSetting = () => {
             <Button variant="gray" className="flex-1 py-2">
               Batal
             </Button>
-            <Button variant="primary" className="flex-1" type="submit">
+            <Button variant="primary" className="flex-1" type="submit"  disabled={!isFormValid}>
               Simpan
             </Button>
           </div>

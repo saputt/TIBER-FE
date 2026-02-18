@@ -36,6 +36,7 @@ const InputLabel = ({
           defaultValue={defaultValue}
           onChange={onChange}
           value={value}
+          type={type}
         />
       )}
       {variantInput == "input" && (

@@ -17,6 +17,8 @@ const StartDateSetting = () => {
     setIsDatePickerOpen(false);
   };
 
+  const isFormValid = selectedDate.trim() !== "";
+
   return (
     <div className="z-90 bg-white/20 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5">
       <Card
@@ -57,7 +59,7 @@ const StartDateSetting = () => {
           >
             Batal
           </Button>
-          <Button variant="primary" className="flex-1">
+          <Button variant="primary" className="flex-1"  disabled={!isFormValid}>
             Simpan
           </Button>
         </div>

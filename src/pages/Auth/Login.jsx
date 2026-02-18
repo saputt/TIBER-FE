@@ -43,6 +43,8 @@ const LoginPage = () => {
     );
   };
 
+  const isFormValid = email.trim() !== "" && password.trim() !== "";
+
   return (
     <div className="min-h-svh font-inter lg:grid lg:grid-cols-2">
       {/* Left Side - Desktop Only */}
@@ -109,13 +111,13 @@ const LoginPage = () => {
                 endIcon={showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
                 onEndIconClick={() => setShowPassword(!showPassword)}
               />
-              <div className="text-end">
-                <Link
+              <div className="text-end mt-4">
+                {/* <Link
                   to="*"
                   className="font-inter text-h5 underline text-black/70 w-fit"
                 >
                   Lupa sandi
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
@@ -126,6 +128,7 @@ const LoginPage = () => {
               boxShadowActive="true"
               className="text-h5"
               onClick={() => handleSubmit()}
+              disabled={!isFormValid || isPending}
             >
               {isPending ? "Sedang masuk..." : "Login"}
             </Button>
