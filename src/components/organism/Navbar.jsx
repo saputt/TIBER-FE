@@ -3,7 +3,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import MobileNav from "./NavbarComponents/MobileNav";
 import { useLandingStore } from "../../store/useLandingStore";
 
-const Navbar = ({ variant }) => {
+const Navbar = ({ variant, isFixed = false }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const bgColor =
@@ -27,15 +27,11 @@ const Navbar = ({ variant }) => {
   return (
     <>
       <header
-        className={`${bgColor} p-2 font-inter border-b-1 border-gray-400 sticky top-0 w-full backdrop-blur-3xl z-100`}
+        className={`${bgColor} p-2 font-inter border-b-1 border-gray-400 ${isFixed ? "fixed" : "sticky"
+          } top-0 w-full backdrop-blur-3xl z-100`}
       >
-        <MobileNav
-          variant={variant}
-          navigate={navigate}
-          location={location}
-        />
+        <MobileNav variant={variant} navigate={navigate} location={location} />
       </header>
-
 
       {variant === "landing" && isHamburgerOpen && (
         <div
@@ -52,21 +48,27 @@ const Navbar = ({ variant }) => {
             <Link
               className="p-4 font-inter text-h5 text-black/70 text-left"
               to="/about"
-              onClick={() => {setHamburger()}}
+              onClick={() => {
+                setHamburger();
+              }}
             >
               Tentang TIBER
             </Link>
             <Link
               className="p-4 font-inter text-h5 text-black/70 text-left border-b border-black/30"
               to="/hows-it-work"
-              onClick={() => {setHamburger()}}
+              onClick={() => {
+                setHamburger();
+              }}
             >
               Cara Kerja
             </Link>
             <Link
               className="p-4 font-inter text-h5 text-black/70 text-left"
               to="/login"
-              onClick={() => {setHamburger()}}
+              onClick={() => {
+                setHamburger();
+              }}
             >
               Masuk
             </Link>

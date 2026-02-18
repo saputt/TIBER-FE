@@ -1,4 +1,4 @@
-const RangeSlider = ({ min, max, step, value, onChange, className }) => {
+const RangeSlider = ({ min, max, step, value, onChange, className, isReadOnly = false }) => {
   const percentage = ((value - min) / (max - min)) * 100;
 
   return (
@@ -13,6 +13,7 @@ const RangeSlider = ({ min, max, step, value, onChange, className }) => {
       style={{
         background: `linear-gradient(to right, #4EA9A2 ${percentage}%, #E5E7EB ${percentage}%)`,
       }}
+      readOnly={isReadOnly}
     />
   );
 };

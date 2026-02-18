@@ -12,6 +12,7 @@ const AddNoteForm = () => {
   const [noteText, setNoteText] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
   const [selectedColor, setSelectedColor] = useState("gray");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const today = "24 Jan 2026";
 
@@ -20,9 +21,19 @@ const AddNoteForm = () => {
   const handleAddNote = (e) => {
     e.preventDefault();
 
-    if (selectedColor == "gray") {
-      return
+    if (!selectedStatus.trim()) {
+      setErrorMessage("Nama status harus diisi");
+      return;
     }
+    if (selectedColor === "gray" || !selectedColor) {
+      setErrorMessage("Pilih warna label");
+      return;
+    }
+    if (!noteText.trim()) {
+      setErrorMessage("Catatan harus diisi");
+      return;
+    }
+    setErrorMessage("");
 
     console.log({
       status: selectedStatus,
@@ -82,6 +93,12 @@ const AddNoteForm = () => {
 
           <form onSubmit={handleAddNote}>
             <div className="flex flex-col gap-4 lg:my-3 my-1">
+              {errorMessage && (
+                <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm text-center mb-2">
+                  {errorMessage}
+                </div>
+              )}
+
               <div className="grid grid-cols-1 gap-2">
                 <InputLabel
                   label="Nama Status"
@@ -156,7 +173,7 @@ const AddNoteForm = () => {
               type="submit"
               size="full"
               className="py-2.5 text-h5 font-bold rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] transition-all"
-              disabled={!isFormValid}
+              disabled={isPending}
             >
               {isPending ? "Menyimpan Catatan..." : "Simpan Catatan"}
             </Button>

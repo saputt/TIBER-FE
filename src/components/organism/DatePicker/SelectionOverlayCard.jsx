@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Card from "../../atoms/Card";
 import SelectionButton from "../../../components/atoms/SelectionButton";
 import { useOnboardingStore } from "../../../store/useOnboardingStore";
+import { X } from "lucide-react";
 
 const SelectionOverlayCard = ({ data }) => {
   const setFormData = useOnboardingStore((state) => state.setFormData);
@@ -19,7 +20,10 @@ const SelectionOverlayCard = ({ data }) => {
         boxShadowActive={true}
         variant="white"
       >
-        <h3>Pilih Rentang</h3>
+        <div className="flex justify-between">
+          <h3>Pilih Rentang</h3>
+          <X size={20} onClick={() => setOverlay()} />
+        </div>
         {data.map((data) => (
           <SelectionButton
             selectionName={data.name}

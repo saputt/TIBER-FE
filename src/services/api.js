@@ -30,10 +30,9 @@ export const fetcher = async (endpoint, options = {}) => {
 
   const response = await fetch(`${BASE_URL}${endpoint}`, config);
 
-  if (response.status === 401) {
-    console.log("lol");
+  if (response.status === 401 && endpoint !== "/login") {
     window.location.href = "/login";
-    const logout = useAuthStore().getState().logout;
+    const logout = useAuthStore.getState().logout;
     logout();
   }
 

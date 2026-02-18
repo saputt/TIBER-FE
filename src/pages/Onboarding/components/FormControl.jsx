@@ -40,7 +40,7 @@ const FormControl = () => {
     >
       <InputLabel
         variantInput="select"
-        placeholder="Contoh: 2 (Hari/Minggu/Bulan diatur di →)"
+        placeholder="Contoh: 2 (Hari/Minggu/Bulan)"
         label="Rentang kontrol, Setiap:"
         defaultValue={nameDay || "Bulan"}
         onClick={() => setOverlay()}

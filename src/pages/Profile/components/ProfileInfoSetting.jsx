@@ -26,12 +26,12 @@ const ProfileInfoSetting = () => {
   return (
     <div>
       <div className="w-14 h-14 aspect-square rounded-full bg-primary flex items-center justify-center text-h1 font-semibold text-white">
-        S
+        {name[0].toUpperCase()}
       </div>
 
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-1 justify-center">
         <p className="text-h5 font-medium">{name}</p>
-        <Pencil size={10} onClick={() => setFullName()} className="cursor-pointer"/>
+        <Pencil size={10} onClick={() => setFullName()} className="cursor-pointer" />
       </div>
     </div>
   );

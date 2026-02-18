@@ -56,7 +56,9 @@ const ProfilePage = () => {
           reminderTimeDay={data?.data.time_category}
         />
       )}
-      {isControlOpen && <ManageControl />}
+      {isControlOpen && (
+        <ManageControl controlDate={data?.data.next_checkup_date} />
+      )}
 
       <ProfileCard
         name={username}

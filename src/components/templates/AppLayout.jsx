@@ -30,10 +30,15 @@ const AppLayout = () => {
 
       <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
         <div className={!isLanding && isLogin ? "lg:hidden" : ""}>
-          <Navbar variant={types[location.pathname]} />
+          <Navbar
+            variant={types[location.pathname]}
+            isFixed={!isLanding && isLogin}
+          />
         </div>
-
-        <main className="p-4 lg:px-32 lg:py-10 bg-gray-50 flex-1 overflow-y-auto relative pb-24 lg:pb-8">
+        <main
+          className={`p-4 lg:px-32 lg:py-10 bg-gray-50 flex-1 overflow-y-auto relative pb-24 lg:pb-8 ${!isLanding && isLogin ? "pt-20" : ""
+            }`}
+        >
           <Outlet />
         </main>
       </div>

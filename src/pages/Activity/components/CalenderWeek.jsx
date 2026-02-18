@@ -26,7 +26,7 @@ const CalenderWeek = ({ weekSummary }) => {
           });
 
           return (
-            <div className="flex flex-col items-center gap-1">
+            <div className="flex flex-col items-center gap-1" key={week.date}>
               <p className="text-h6">{dayInWeek}</p>
               <CheckboxCircle isActive={week.status === "taken"} className="w-8 h-8 lg:w-11 lg:h-11" classCircle="w-4 h-4 lg:w-6 lg:h-6" />
               <p className="text-h6">{week.date.split("-")[2]}</p>

@@ -40,9 +40,9 @@ const ProfileSettingPage = () => {
   return (
     <>
       <div className="h-full flex flex-col items-center gap-3 relative">
-        {isDurationOpen && <DurationLogSetting />}
+        {isDurationOpen && <DurationLogSetting durationMonth={data.data.duration_month} />}
 
-        {isStartDateOpen && <StartDateSetting />}
+        {isStartDateOpen && <StartDateSetting startDate={data.data.start_date} />}
 
         {isFullNameOpen && <FullNameSetting />}
 

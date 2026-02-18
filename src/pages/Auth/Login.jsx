@@ -9,6 +9,10 @@ import { Eye, EyeOff } from "lucide-react";
 
 import { loginMessages } from "../../utils/messages";
 
+import { isValidEmail } from "../../utils/validation";
+
+// ... existing imports
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -24,9 +28,16 @@ const LoginPage = () => {
 
   const { mutate: login, isPending } = useLogin();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (isPending) return;
     setErrorMessage(""); // Clear previous errors
+
+    if (!isValidEmail(email)) {
+      setErrorMessage("Format email tidak valid (contoh: nama@email.com)");
+      return;
+    }
+
     login(
       {
         email,
@@ -35,9 +46,12 @@ const LoginPage = () => {
       {
         onError: (error) => {
           const msg =
-            error.response?.data?.message ||
+            error?.message ||
             "Terjadi kesalahan. Silakan coba lagi.";
           setErrorMessage(msg);
+        },
+        onSuccess: () => {
+          navigate("/dashboard");
         },
       },
     );
@@ -82,57 +96,59 @@ const LoginPage = () => {
               Lanjutkan perjalanan pengobatan Anda
             </span>
           </div>
-          <div className="flex flex-col gap-2 mt-8 w-full">
-            {errorMessage && (
-              <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm text-center">
-                {errorMessage}
-              </div>
-            )}
-            <InputLabel
-              variantInput="input"
-              variantLabel="normal"
-              label="Email"
-              variant="gray"
-              type="email"
-              placeholder="nama@email.com"
-              size="full"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <div className="flex flex-col">
+          <form onSubmit={handleSubmit} className="w-full">
+            <div className="flex flex-col gap-2 mt-8 w-full">
+              {errorMessage && (
+                <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm text-center">
+                  {errorMessage}
+                </div>
+              )}
               <InputLabel
                 variantInput="input"
                 variantLabel="normal"
-                label="Kata Sandi"
+                label="Email"
                 variant="gray"
-                type={showPassword ? "text" : "password"}
-                placeholder="Min 8 Karakter"
+                type="email"
+                placeholder="nama@email.com"
                 size="full"
-                onChange={(e) => setPassword(e.target.value)}
-                endIcon={showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
-                onEndIconClick={() => setShowPassword(!showPassword)}
+                onChange={(e) => setEmail(e.target.value)}
               />
-              <div className="text-end mt-4">
-                {/* <Link
-                  to="*"
-                  className="font-inter text-h5 underline text-black/70 w-fit"
-                >
-                  Lupa sandi
-                </Link> */}
+              <div className="flex flex-col">
+                <InputLabel
+                  variantInput="input"
+                  variantLabel="normal"
+                  label="Kata Sandi"
+                  variant="gray"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Min 8 Karakter"
+                  size="full"
+                  onChange={(e) => setPassword(e.target.value)}
+                  endIcon={showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+                  onEndIconClick={() => setShowPassword(!showPassword)}
+                />
+                <div className="text-end mt-4">
+                  {/* <Link
+                    to="*"
+                    className="font-inter text-h5 underline text-black/70 w-fit"
+                  >
+                    Lupa sandi
+                  </Link> */}
+                </div>
               </div>
             </div>
-          </div>
-          <div className="text-center w-full mt-6">
-            <Button
-              variant="primary"
-              size="full"
-              boxShadowActive="true"
-              className="text-h5"
-              onClick={() => handleSubmit()}
-              disabled={!isFormValid || isPending}
-            >
-              {isPending ? "Sedang masuk..." : "Login"}
-            </Button>
-          </div>
+            <div className="text-center w-full mt-6">
+              <Button
+                variant="primary"
+                size="full"
+                boxShadowActive="true"
+                className="text-h5"
+                type="submit"
+                disabled={!isFormValid || isPending}
+              >
+                {isPending ? "Sedang masuk..." : "Login"}
+              </Button>
+            </div>
+          </form>
           <div className="text-center mt-4 space-y-2">
             <div className="text-primary font-inter text-h5 text-center">
               Belum punya akun? <Link to="/onboarding">Daftar Sekarang</Link>
