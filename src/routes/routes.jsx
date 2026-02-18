@@ -50,8 +50,13 @@ const router = createBrowserRouter([
         children: [
           //landing page
           {
-            path: "/",
-            element: <LandingPage />,
+            element: <GuestGuard />,
+            children: [
+              {
+                path: "/",
+                element: <LandingPage />,
+              },
+            ],
           },
           {
             element: <AuthGuard />,

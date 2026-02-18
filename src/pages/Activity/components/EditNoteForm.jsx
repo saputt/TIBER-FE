@@ -25,7 +25,7 @@ const EditNoteForm = ({ initialData }) => {
     })
     : "24 Jan 2026";
 
-  const { mutate: editDailyNotes, isIdle, isSuccess } = useEditDailyNotes();
+  const { mutate: editDailyNotes, isPending, isSuccess } = useEditDailyNotes();
 
   const handleEditNote = (e) => {
     e.preventDefault();
@@ -158,7 +158,7 @@ const EditNoteForm = ({ initialData }) => {
               size="full"
               className="py-2.5 text-h5 font-bold rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] transition-all"
             >
-              {isIdle ? "Simpan Perubahan" : "Menyimpan Perubahan..."}
+              {isPending ? "Menyimpan Perubahan..." : "Simpan Perubahan"}
             </Button>
           </form>
         </div>

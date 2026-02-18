@@ -3,8 +3,11 @@ import Navbar from "../organism/Navbar";
 import Sidebar from "../organism/Sidebar";
 import { Outlet, useLocation } from "react-router-dom";
 
+import { useAuthStore } from "../../store/useAuthStore";
+
 const AppLayout = () => {
   const location = useLocation();
+  const isLogin = useAuthStore((state) => state.isLogin);
 
   const types = {
     "/dashboard": "main",
@@ -21,12 +24,12 @@ const AppLayout = () => {
 
   return (
     <div className="font-inter min-h-screen flex flex-col lg:flex-row bg-gray-50">
-      {!isLanding && (
+      {!isLanding && isLogin && (
         <Sidebar className="hidden lg:flex flex-shrink-0 sticky top-0 h-screen" />
       )}
 
       <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
-        <div className={!isLanding ? "lg:hidden" : ""}>
+        <div className={!isLanding && isLogin ? "lg:hidden" : ""}>
           <Navbar variant={types[location.pathname]} />
         </div>
 
