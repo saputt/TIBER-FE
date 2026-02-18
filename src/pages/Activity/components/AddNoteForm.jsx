@@ -19,6 +19,11 @@ const AddNoteForm = () => {
 
   const handleAddNote = (e) => {
     e.preventDefault();
+
+    if (selectedColor == "gray") {
+      return
+    }
+
     console.log({
       status: selectedStatus,
       color_status: selectedColor,
@@ -33,6 +38,8 @@ const AddNoteForm = () => {
       setCatatan();
     }, 500);
   };
+
+  const isFormValid = selectedStatus.trim() !== "" && selectedColor.trim() !== "" && noteText.trim() !== "";
 
   return (
     <div className="h-screen w-full bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5 z-50 overflow-auto">
@@ -149,6 +156,7 @@ const AddNoteForm = () => {
               type="submit"
               size="full"
               className="py-2.5 text-h5 font-bold rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] transition-all"
+              disabled={!isFormValid}
             >
               {isPending ? "Menyimpan Catatan..." : "Simpan Catatan"}
             </Button>
