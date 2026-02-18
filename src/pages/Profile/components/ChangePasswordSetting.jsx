@@ -13,9 +13,9 @@ const ChangePasswordSetting = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const [oldPassword, setOldPassword] = useState()
-  const [newPassword, setNewPassword] = useState()
-  const [confirmPassword, setConfirmPassword] = useState()
+  const [oldPassword, setOldPassword] = useState("")
+  const [newPassword, setNewPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
 
   const { mutate } = useProfile()
 
@@ -27,6 +27,8 @@ const ChangePasswordSetting = () => {
       new_password: newPassword
     })
   }
+
+  const isFormValid = oldPassword !== "" && newPassword !== "" && confirmPassword !== "";
 
   return (
     <div className="h-screen w-full bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5 z-50">
@@ -101,7 +103,7 @@ const ChangePasswordSetting = () => {
           >
             Batal
           </Button>
-          <Button variant="primary" className="py-2 w-full font-inter text-h4" onClick={handleSubmit}>
+          <Button variant="primary" className="py-2 w-full font-inter text-h4" onClick={handleSubmit} disabled={!isFormValid}>
             Simpan
           </Button>
         </div>
