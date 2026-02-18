@@ -62,12 +62,12 @@ const ChangePasswordSetting = () => {
               onChange={(e) => setOldPassword(e.target.value)}
             />
             <div className="text-end">
-              <Link
+              {/* <Link
                 to="*"
                 className="font-inter text-h5 underline text-black/70 w-fit"
               >
                 Lupa sandi
-              </Link>
+              </Link> */}
             </div>
           </div>
           <InputLabel

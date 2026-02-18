@@ -109,13 +109,13 @@ const LoginPage = () => {
                 endIcon={showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
                 onEndIconClick={() => setShowPassword(!showPassword)}
               />
-              <div className="text-end">
-                <Link
+              <div className="text-end mt-4">
+                {/* <Link
                   to="*"
                   className="font-inter text-h5 underline text-black/70 w-fit"
                 >
                   Lupa sandi
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
