@@ -43,6 +43,8 @@ const LoginPage = () => {
     );
   };
 
+  const isFormValid = email.trim() !== "" && password.trim() !== "";
+
   return (
     <div className="min-h-svh font-inter lg:grid lg:grid-cols-2">
       {/* Left Side - Desktop Only */}
@@ -126,6 +128,7 @@ const LoginPage = () => {
               boxShadowActive="true"
               className="text-h5"
               onClick={() => handleSubmit()}
+              disabled={!isFormValid || isPending}
             >
               {isPending ? "Sedang masuk..." : "Login"}
             </Button>
