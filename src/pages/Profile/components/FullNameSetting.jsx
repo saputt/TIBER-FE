@@ -23,6 +23,9 @@ const FullNameSetting = () => {
     mutate({
       full_name: full_name
     })
+    setTimeout(() => {
+      setFullName();
+    }, 500);
   }
 
   const isFormValid = full_name.trim() !== "";
