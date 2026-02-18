@@ -53,6 +53,8 @@ const RegistForm = () => {
     register(finalData);
   };
 
+  const isFormValid = fullname.trim() !== "" && email.trim() !== "" && password.trim() !== "" && confirmPassword.trim() !== "";
+
   return (
     <div>
       <InfoSaveCard variant="green" />
@@ -121,6 +123,7 @@ const RegistForm = () => {
           size="full"
           className="mt-5 shadow-button"
           type="submit"
+          disabled={!isFormValid}
         >
           {isPending ? "Sedang mendaftar..." : "Daftar"}
         </Button>
