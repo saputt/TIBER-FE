@@ -19,8 +19,6 @@ const DashboardPage = () => {
   const { data: personalization, isLoading: personalizationLoading } =
     useGetPersonalization();
 
-  console.log(dashboard);
-
   if (isLoading || personalizationLoading) {
     return <DashboardSkeleton />;
   }

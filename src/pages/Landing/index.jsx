@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../../components/atoms/Button";
 import FeatureList from "./components/FeatureList";
 import { useNavigate, Link } from "react-router-dom";
@@ -7,6 +7,12 @@ import { useOnboardingStore } from "../../store/useOnboardingStore";
 const LandingPage = () => {
   const navigate = useNavigate();
   const setMinStep = useOnboardingStore((state) => state.setMinStep);
+  const reset = useOnboardingStore((state) => state.reset);
+
+  useEffect(() => {
+    reset();
+  }, [reset]);
+
   return (
     <div className="pt-3 pb-5 min-h-dvh">
       <div className="flex justify-center">
