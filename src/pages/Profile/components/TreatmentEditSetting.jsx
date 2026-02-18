@@ -38,7 +38,7 @@ const TreatmentEditSetting = ({ startDate, durationTreatment }) => {
           <p className="text-h5">{durationTreatment} Bulan</p>
         </div>
         <p
-          className="text-primary text-h5 font-semibold"
+          className="text-primary text-h5 font-semibold cursor-pointer"
           onClick={() => setDuration()}
         >
           Ubah
