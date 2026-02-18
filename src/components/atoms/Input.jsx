@@ -38,11 +38,14 @@ const Input = ({
         className={`${sizes.full} ${variants[variant]} ${defaultStyle} ${className} ${boxShadow}`}
         onChange={onChange}
         value={value}
+        min={type === "number" && 1}
+        max={type === "number" && 100}
       />
       {endIcon && (
         <div
-          className={`absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 z-10 ${onEndIconClick ? "cursor-pointer" : ""
-            }`}
+          className={`absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 z-10 ${
+            onEndIconClick ? "cursor-pointer" : ""
+          }`}
           onClick={onEndIconClick}
         >
           {endIcon}
