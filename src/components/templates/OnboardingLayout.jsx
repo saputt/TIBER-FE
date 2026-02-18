@@ -47,14 +47,15 @@ const OnboardingLayout = ({ children }) => {
     } else {
       nextStep();
     }
-  }
+  };
   const quotes = {
     1: "Kesehatan adalah investasi masa depan. Mulai langkah kecil hari ini untuk hasil besar esok hari.",
     2: "Setiap hari adalah kemajuan. Tetapkan targetmu dan melangkah menuju kesembuhan.",
     3: "Konsistensi adalah kunci. Temukan ritme yang pas dengan aktivitas harianmu.",
     4: "Perjalanan ini tidak sendirian. Kontrol rutin memastikan kamu selalu di jalur yang tepat.",
     5: "Jangan biarkan kesibukan menghalangimu. Pengingat kecil berdampak besar bagi kesehatanmu.",
-    register: "Hampir sampai! Bergabunglah sekarang untuk mencatat setiap kemajuan hebatmu."
+    register:
+      "Hampir sampai! Bergabunglah sekarang untuk mencatat setiap kemajuan hebatmu.",
   };
 
   const isRegister = location.pathname.includes("register");
@@ -101,7 +102,7 @@ const OnboardingLayout = ({ children }) => {
           </section>
 
           {!location.pathname.includes("register") && (
-            <footer className="bg-white px-3 py-2 border-t-1 border-gray-200 lg:bg-transparent lg:border-none lg:static lg:w-full lg:max-w-md lg:p-0 lg:mt-6 lg:mb-20">
+            <footer className="px-3 py-2 border-t-1 border-gray-200 lg:bg-transparent lg:border-none lg:static lg:w-full lg:max-w-md lg:p-0 lg:mt-6 lg:mb-20 z-10">
               <Button
                 variant="primary"
                 size="full"
@@ -120,4 +121,4 @@ const OnboardingLayout = ({ children }) => {
   );
 };
 
-export default OnboardingLayout
+export default OnboardingLayout;
