@@ -2,6 +2,10 @@ import { useAuthStore } from "../store/useAuthStore";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
+if (!BASE_URL) {
+  console.warn("VITE_API_URL is missing! API requests will fail.");
+}
+
 export const fetcher = async (endpoint, options = {}) => {
   const token = useAuthStore.getState().token;
 
