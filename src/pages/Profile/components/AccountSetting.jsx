@@ -54,7 +54,7 @@ const AccountSetting = ({ email }) => {
           <p className="text-h5">••••••••</p>
         </div>
         <p
-          className="text-primary text-h5 font-semibold"
+          className="text-primary text-h5 font-semibold cursor-pointer"
           onClick={() => {
             setChangePassword();
           }}
