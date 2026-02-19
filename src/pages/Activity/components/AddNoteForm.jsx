@@ -14,7 +14,11 @@ const AddNoteForm = () => {
   const [selectedColor, setSelectedColor] = useState("gray");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const today = "24 Jan 2026";
+  const today = new Date().toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
 
   const { mutate: addDailyNotes, isPending, isSuccess } = useAddDailyNotes();
 
@@ -35,11 +39,6 @@ const AddNoteForm = () => {
     }
     setErrorMessage("");
 
-    console.log({
-      status: selectedStatus,
-      color_status: selectedColor,
-      notes: noteText,
-    });
     addDailyNotes({
       status: selectedStatus,
       color_status: selectedColor,

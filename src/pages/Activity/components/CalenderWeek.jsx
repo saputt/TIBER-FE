@@ -4,8 +4,18 @@ import Notch from "../../../components/atoms/Notch";
 import CheckboxCircle from "../../../components/atoms/CheckboxCircle";
 import { useActivityStore } from "../../../store/useActivityStore";
 
-const CalenderWeek = ({ weekSummary }) => {
+const CalenderWeek = ({ weekSummary, startDate }) => {
   const setCalenderMonth = useActivityStore((state) => state.setCalenderMonth);
+
+  const now = new Date();
+  const start = startDate ? new Date(startDate) : now;
+  const diffMs = now - start;
+  const weekNumber = Math.max(1, Math.ceil(diffMs / (7 * 24 * 60 * 60 * 1000)));
+
+  const currentMonth = now.toLocaleDateString("id-ID", {
+    month: "long",
+    year: "numeric",
+  });
 
   return (
     <Card
@@ -15,7 +25,7 @@ const CalenderWeek = ({ weekSummary }) => {
       boxShadowActive={true}
     >
       <Notch variant="right" className="font-semibold text-h6 px-5 py-1 lg:text-h5 lg:px-8">
-        Minggu 3 | Januari 2026
+        Minggu {weekNumber} | {currentMonth}
       </Notch>
 
       <div className="flex justify-between">

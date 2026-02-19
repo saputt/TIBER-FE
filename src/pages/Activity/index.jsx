@@ -54,7 +54,7 @@ const ActivityPage = () => {
         ) : (
           <div className="flex flex-col gap-3 lg:grid lg:grid-cols-12 lg:gap-6 lg:items-stretch">
             <div className="lg:col-span-8">
-              <CalenderWeek weekSummary={data?.data?.weekly_summary} />
+              <CalenderWeek weekSummary={data?.data?.weekly_summary} startDate={personalization?.data?.start_date} />
             </div>
 
             <div className="lg:col-span-4 flex flex-col gap-4">

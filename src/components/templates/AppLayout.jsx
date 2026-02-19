@@ -36,10 +36,11 @@ const AppLayout = () => {
           />
         </div>
         <main
-          className={`p-4 lg:px-8 lg:py-10 bg-gray-50 flex-1 overflow-y-auto relative pb-24 lg:pb-8 ${!isLanding && isLogin ? "pt-20" : ""
-            }`}
+          className={`p-4 lg:px-8 lg:py-10 bg-gray-50 flex-1 overflow-y-auto relative pb-24 lg:pb-8 ${
+            !isLanding && isLogin ? "pt-20" : ""
+          }`}
         >
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <Outlet />
           </div>
         </main>

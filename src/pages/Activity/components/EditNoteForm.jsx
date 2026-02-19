@@ -23,7 +23,11 @@ const EditNoteForm = ({ initialData }) => {
       month: "short",
       year: "numeric",
     })
-    : "24 Jan 2026";
+    : new Date().toLocaleDateString("id-ID", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
 
   const { mutate: editDailyNotes, isPending, isSuccess } = useEditDailyNotes();
 
