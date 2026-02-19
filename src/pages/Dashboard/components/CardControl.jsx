@@ -13,7 +13,6 @@ const CardControl = ({ dayLeft }) => {
   };
 
   const handleConfirmCheckup = () => {
-    console.log("Checkup confirmed");
     setIsModalOpen(false);
   };
 

@@ -28,7 +28,6 @@ export const useRegister = () => {
   return useMutation({
     mutationFn: (payload) => registerService(payload),
     onSuccess: (data) => {
-      console.log(data);
       useOnboardingStore.getState().reset();
       window.location.href = "/login";
     },

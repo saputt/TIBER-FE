@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../../../components/atoms/Card";
 import Skeleton from "../../../components/atoms/Skeleton";
 
-const CatatanKontrolSkeleton = () => {
+const DailyJournalSkeleton = () => {
     return (
         <Card size="full" variant="white" boxShadowActive={true} className="py-5">
             <div className="flex flex-col gap-6">
@@ -32,4 +32,4 @@ const CatatanKontrolSkeleton = () => {
     );
 };
 
-export default CatatanKontrolSkeleton;
+export default DailyJournalSkeleton;

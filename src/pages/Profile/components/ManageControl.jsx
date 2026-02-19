@@ -24,7 +24,6 @@ const ManageControl = ({ controlDate }) => {
 
     const dateObj = new Date(selectedDate);
     const formattedDate = dateObj.toISOString().split("T")[0];
-    console.log(formattedDate);
     mutate({
       next_checkup_date: formattedDate,
     });
