@@ -102,7 +102,7 @@ const OnboardingLayout = ({ children }) => {
           </section>
 
           {!location.pathname.includes("register") && (
-            <footer className="px-3 py-2 border-t-1 border-gray-200 lg:bg-transparent lg:border-none lg:static lg:w-full lg:max-w-md lg:p-0 lg:mt-6 lg:mb-20 z-10">
+            <footer className="px-3 py-2 border-t-1 border-gray-200 lg:bg-transparent lg:border-none lg:static lg:w-full lg:max-w-md lg:p-0 lg:mt-6 lg:mb-20 z-10 fixed bottom-0 left-0 right-0">
               <Button
                 variant="primary"
                 size="full"
