@@ -15,22 +15,14 @@ import { useProfileStore } from "../store/useProfileStore";
 
 export const useUpdatePersonalization = () => {
   const queryClient = useQueryClient();
-  const setPersonalization = useProfileStore(
-    (state) => state.setPersonalization,
-  );
+  const setPersonalization = useProfileStore((state) => state.setPersonalization);
+
   return useMutation({
     mutationFn: (payload) => updatePersonalizationService(payload),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({
-        queryKey: ["personalization"],
-      });
-      queryClient.invalidateQueries({
-        queryKey: ["dashboard"],
-      });
-      setPersonalization({
-        reminder_time: data.reminder_time,
-        time_category: data.time_category,
-      });
+      queryClient.invalidateQueries({ queryKey: ["personalization"] });
+
+      queryClient.invalidateQueries({ queryKey: ["dashboard"] });
     },
   });
 };
@@ -39,6 +31,9 @@ export const useGetPersonalization = () => {
   return useQuery({
     queryKey: ["personalization"],
     queryFn: () => getPersonalizationService(),
+    staleTime: 1000 * 60 * 10, // Data dianggap "fresh" selama 10 menit
+    refetchOnWindowFocus: false, // Matiin refetch otomatis pas buka tab lain
+    refetchOnMount: false, // Gak perlu fetch ulang kalau datanya udah ada di cache
   });
 };
 

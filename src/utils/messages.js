@@ -54,3 +54,27 @@ export const completionMessages = [
     "Pengobatanmu sudah tuntas! Ini adalah bukti kekuatan dan disiplinmu.",
     "Selesai! Setiap hari yang kamu jalani adalah bukti bahwa kamu lebih kuat dari TBC.",
 ];
+
+export const emptyJournalMessages = [
+    "Ceritakan harimu di sini. Setiap kata adalah langkah menuju penyembuhan. 💜",
+    "Catatan kecilmu hari ini bisa jadi pengingat berharga di masa depan.",
+    "Tulis apa yang kamu rasakan. Tidak perlu sempurna, yang penting jujur.",
+    "Kamu tidak sendirian. Curahan hatimu adalah bagian dari perjalanan ini.",
+    "Mulai dari satu kalimat. Terkadang itu sudah lebih dari cukup.",
+    "Hari ini layak untuk dicatat. Apa pun yang kamu rasakan, itu penting.",
+    "Menulis bisa menjadi obat. Cobalah tuangkan perasaanmu di sini. ✨",
+    "Setiap catatan adalah bukti perjuanganmu. Mulai tulis sekarang!",
+    "Bagaimana perasaanmu hari ini? Ceritakan, kami di sini mendengarkan.",
+    "Jurnal harianmu adalah ruang aman. Tulis tanpa takut, tanpa ragu.",
+];
+
+export const emptyHistoryMessages = [
+    "Ceritamu akan terpampang di sini. Mulailah perjalananmu hari ini! 🌟",
+    "Belum ada cerita yang tercatat, tapi setiap langkah kecilmu akan mulai mengisi halaman ini.",
+    "Riwayatmu masih kosong, tapi bukan berarti kamu belum memulai. Ayo, langkah pertama! 💪",
+    "Di sinilah perjalananmu akan terekam. Setiap hari adalah halaman baru.",
+    "Kosong bukan berarti hampa. Ini awal dari kisah perjuanganmu.",
+    "Harimu belum tercatat di sini. Ayo mulai dan lihat progresmu tumbuh!",
+    "Jejak langkahmu akan muncul di sini. Satu hari, satu langkah.",
+    "Ruang ini menunggu ceritamu. Mulai hari ini, buat sejarahmu sendiri. ✨",
+];

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Card from "../../../components/atoms/Card";
 import { Plus, Pencil } from "lucide-react";
 import Button from "../../../components/atoms/Button";
@@ -8,12 +8,16 @@ import AddNoteForm from "./AddNoteForm";
 import EditNoteForm from "./EditNoteForm";
 import { useGetDailyNotes } from "../../../hooks/useActivity";
 import DailyJournalSkeleton from "./DailyJournalSkeleton";
+import { emptyJournalMessages } from "../../../utils/messages";
 
 const DailyJournal = () => {
     const setCatatan = useActivityStore((state) => state.setCatatan);
     const isCatatanOpen = useActivityStore((state) => state.isCatatanOpen);
     const { data: dailyNotes, isLoading } = useGetDailyNotes();
     const [selectedNote, setSelectedNote] = useState(null);
+    const emptyJournalMessage = useMemo(() =>
+        emptyJournalMessages[Math.floor(Math.random() * emptyJournalMessages.length)]
+        , []);
 
     useEffect(() => {
         if (isCatatanOpen) {
@@ -64,7 +68,7 @@ const DailyJournal = () => {
                         </div>
                     </div>
 
-                    <div className="relative min-h-[200px]">
+                    {dailyNotes?.data.length > 0 && <div className="relative min-h-[200px]">
                         {/* <div className="absolute left-4 top-0 h-full w-px bg-gray-200 z-0 hidden lg:block"></div> */}
 
                         <div className="columns-1 md:columns-2 lg:columns-3 gap-5 space-y-5">
@@ -83,11 +87,29 @@ const DailyJournal = () => {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </div>}
 
                     {dailyNotes?.data.length === 0 && (
-                        <div className="flex flex-col items-center justify-center py-10 text-gray-400">
-                            <p className="italic">Belum ada catatan.</p>
+                        <div className="flex flex-col items-center justify-center py-12 gap-4">
+                            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                                <Pencil size={28} className="text-primary" />
+                            </div>
+                            <div className="flex flex-col items-center gap-2 max-w-xs text-center">
+                                <span className="font-inter font-semibold text-h5 text-gray-700">
+                                    Belum ada catatan
+                                </span>
+                                <p className="font-inter text-h6 text-gray-400 leading-relaxed">
+                                    {emptyJournalMessage}
+                                </p>
+                            </div>
+                            <Button
+                                variant="primary"
+                                className="flex items-center gap-2 px-6 py-2.5 rounded-full mt-2 shadow-lg shadow-primary/20 active:scale-95 transition-all"
+                                onClick={handleAddUser}
+                            >
+                                <Plus size={18} strokeWidth={2.5} />
+                                <span className="text-h6 font-bold">Tulis Catatan Pertamamu</span>
+                            </Button>
                         </div>
                     )}
                 </div>

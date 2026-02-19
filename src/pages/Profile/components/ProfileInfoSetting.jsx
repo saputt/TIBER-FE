@@ -24,7 +24,7 @@ const ProfileInfoSetting = () => {
   }, [isFullNameOpen]);
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <div className="w-14 h-14 aspect-square rounded-full bg-primary flex items-center justify-center text-h1 font-semibold text-white">
         {name[0].toUpperCase()}
       </div>
