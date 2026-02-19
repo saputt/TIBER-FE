@@ -53,13 +53,14 @@ const AddNoteForm = () => {
   const isFormValid = selectedStatus.trim() !== "" && selectedColor.trim() !== "" && noteText.trim() !== "";
 
   return (
-    <div className="h-screen w-full bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5 z-50 overflow-auto">
+    <div className="h-screen w-full bg-black/20 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-4 lg:p-6 z-50">
       <Card
-        className="flex flex-col gap-3 py-4 w-full lg:w-[40%] mt-25 z-900"
+        className="flex flex-col gap-2 py-4 w-full lg:w-[40%] max-h-[90vh] overflow-y-auto z-900"
         boxShadowActive={true}
         variant="white"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        <div className="relative flex items-end justify-center mb-1 lg:mb-4">
+        <div className="relative flex items-end justify-center mb-1 lg:mb-2">
           <div className="flex items-center justify-center gap-1.5 bg-primary w-37.5 h-7 rounded-b-md shadow-md">
             <Calendar size="16" className="text-white"></Calendar>
             <span className="font-inter font-medium text-h5 leading-none text-white">
@@ -92,7 +93,7 @@ const AddNoteForm = () => {
           <hr className="border-gray-100" />
 
           <form onSubmit={handleAddNote}>
-            <div className="flex flex-col gap-4 lg:my-3 my-1">
+            <div className="flex flex-col gap-3 my-1">
               {errorMessage && (
                 <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm text-center mb-2">
                   {errorMessage}
@@ -110,12 +111,12 @@ const AddNoteForm = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-1 lg:gap-2 gap-1">
-                <span className="lg:text-h4 text-h5 font-inter font-semibold">
+              <div className="grid grid-cols-1 gap-1">
+                <span className="text-h5 font-inter font-semibold">
                   Warna Label
                 </span>
-                <div className="grid grid-cols-1 lg:gap-2 gap-1">
-                  <label className="flex items-center gap-2 cursor-pointer lg:p-2 p-1 rounded-lg hover:bg-green-50 transition-colors border border-transparent hover:border-green-100 has-[:checked]:bg-green-50 has-[:checked]:border-green-200">
+                <div className="flex gap-2">
+                  <label className="flex items-center gap-2 cursor-pointer px-3 py-1.5 rounded-lg hover:bg-green-50 transition-colors border border-transparent hover:border-green-100 has-[:checked]:bg-green-50 has-[:checked]:border-green-200">
                     <input
                       type="radio"
                       name="warna_status"
@@ -127,7 +128,7 @@ const AddNoteForm = () => {
                       Hijau
                     </span>
                   </label>
-                  <label className="flex items-center gap-2 cursor-pointer lg:p-2 p-1 rounded-lg hover:bg-blue-50 transition-colors border border-transparent hover:border-blue-100 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-200">
+                  <label className="flex items-center gap-2 cursor-pointer px-3 py-1.5 rounded-lg hover:bg-blue-50 transition-colors border border-transparent hover:border-blue-100 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-200">
                     <input
                       type="radio"
                       name="warna_status"
@@ -139,7 +140,7 @@ const AddNoteForm = () => {
                       Biru
                     </span>
                   </label>
-                  <label className="flex items-center gap-2 cursor-pointer lg:p-2 p-1 rounded-lg hover:bg-yellow-50 transition-colors border border-transparent hover:border-yellow-100 has-[:checked]:bg-yellow-50 has-[:checked]:border-yellow-200">
+                  <label className="flex items-center gap-2 cursor-pointer px-3 py-1.5 rounded-lg hover:bg-yellow-50 transition-colors border border-transparent hover:border-yellow-100 has-[:checked]:bg-yellow-50 has-[:checked]:border-yellow-200">
                     <input
                       type="radio"
                       name="warna_status"
@@ -154,13 +155,13 @@ const AddNoteForm = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 gap-2">
-                <span className="lg:text-h4 text-h5 font-inter font-semibold">
+              <div className="grid grid-cols-1 gap-1">
+                <span className="text-h5 font-inter font-semibold">
                   Catatan
                 </span>
                 <textarea
                   className="w-full p-3 bg-gray-50 text-black border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-inter text-h5 leading-relaxed placeholder:text-gray-400"
-                  rows={4}
+                  rows={3}
                   placeholder="Tulis perkembangan kesehatanmu di sini..."
                   value={noteText}
                   onChange={(e) => setNoteText(e.target.value)}
