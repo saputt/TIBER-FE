@@ -14,11 +14,13 @@ import { useDashboardOverview } from "../../hooks/useDashboard";
 import DashboardSkeleton from "./components/DashboardSkeleton";
 import Loading from "../../components/molecules/Loading";
 import { useGetPersonalization } from "../../hooks/useProfile";
+import { useActivityOverview } from "../../hooks/useActivity";
 
 const DashboardPage = () => {
   const { data: dashboard, isLoading } = useDashboardOverview();
   const { data: personalization, isLoading: personalizationLoading } =
     useGetPersonalization();
+  const { data: activityData } = useActivityOverview();
 
   if (isLoading || personalizationLoading) {
     return <DashboardSkeleton />;
@@ -46,6 +48,7 @@ const DashboardPage = () => {
       <div className="lg:col-span-12">
         <CalendarStrip
           isTakenToday={dashboard?.data?.is_taken_today}
+          weekSummary={activityData?.data?.weekly_summary || []}
         />
       </div>
 

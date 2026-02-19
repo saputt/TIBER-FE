@@ -20,7 +20,7 @@ const generateWeek = () => {
     return dates;
 };
 
-const CalendarStrip = ({ isTakenToday }) => {
+const CalendarStrip = ({ isTakenToday, weekSummary = [] }) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const dates = generateWeek();
@@ -33,6 +33,19 @@ const CalendarStrip = ({ isTakenToday }) => {
         date.getFullYear() === today.getFullYear();
 
     const isPast = (date) => date < today;
+
+    const formatLocalDate = (date) => {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, "0");
+        const d = String(date.getDate()).padStart(2, "0");
+        return `${y}-${m}-${d}`;
+    };
+
+    const isTakenOnDate = (date) => {
+        const dateStr = formatLocalDate(date);
+        const entry = weekSummary.find((w) => w.date === dateStr);
+        return entry?.status === "taken";
+    };
 
     return (
         <Card
@@ -55,17 +68,28 @@ const CalendarStrip = ({ isTakenToday }) => {
                     const dateNum = date.getDate();
                     const current = isToday(date);
                     const past = isPast(date);
-                    const showCheck = current && isTakenToday;
+                    const takenPast = past && isTakenOnDate(date);
 
                     let circleClass =
-                        "w-9 h-9 lg:w-12 lg:h-12 rounded-full flex items-center justify-center font-inter font-semibold text-sm lg:text-base transition-all duration-300 ";
+                        "rounded-full flex items-center justify-center font-inter font-semibold transition-all duration-300 ";
+
+                    // Today's circle is slightly bigger
+                    if (current) {
+                        circleClass += "w-11 h-11 lg:w-14 lg:h-14 text-base lg:text-lg ";
+                    } else {
+                        circleClass += "w-9 h-9 lg:w-12 lg:h-12 text-sm lg:text-base ";
+                    }
 
                     if (current) {
-                        circleClass += showCheck
-                            ? "bg-primary text-white shadow-lg shadow-primary/30 scale-110"
-                            : "bg-primary text-white shadow-lg shadow-primary/30";
+                        if (isTakenToday) {
+                            circleClass += "bg-primary text-white shadow-lg shadow-primary/30";
+                        } else {
+                            circleClass += "bg-white border-2 border-primary text-primary";
+                        }
                     } else if (past) {
-                        circleClass += "bg-gray-100 text-gray-500";
+                        circleClass += takenPast
+                            ? "bg-primary text-white"
+                            : "bg-gray-100 text-gray-500";
                     } else {
                         circleClass += "border border-gray-300 text-gray-400 bg-transparent";
                     }
@@ -83,7 +107,7 @@ const CalendarStrip = ({ isTakenToday }) => {
                             </span>
 
                             <div className={circleClass}>
-                                {showCheck ? (
+                                {current && isTakenToday ? (
                                     <CircleCheck
                                         size={22}
                                         className="text-white animate-[scaleIn_0.4s_ease-out] lg:w-6 lg:h-6"
@@ -102,3 +126,4 @@ const CalendarStrip = ({ isTakenToday }) => {
 };
 
 export default CalendarStrip;
+
