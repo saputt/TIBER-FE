@@ -97,7 +97,7 @@ const OnboardingLayout = ({ children }) => {
             </div>
           )}
 
-          <section className="flex-1 flex flex-col overflow-y-auto py-5 bg-gray-50 w-full lg:max-w-md lg:flex-none lg:justify-center px-3 lg:px-0">
+          <section className="flex-1 flex flex-col overflow-y-auto py-5 bg-gray-50 w-full lg:max-w-md lg:flex-none lg:justify-center px-3 lg:px-0 min-h-dvh">
             {children}
           </section>
 
