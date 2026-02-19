@@ -8,9 +8,11 @@ const CalenderWeek = ({ weekSummary, startDate }) => {
   const setCalenderMonth = useActivityStore((state) => state.setCalenderMonth);
 
   const now = new Date();
-  const start = startDate ? new Date(startDate) : now;
-  const diffMs = now - start;
-  const weekNumber = Math.max(1, Math.ceil(diffMs / (7 * 24 * 60 * 60 * 1000)));
+  now.setHours(0, 0, 0, 0);
+  const start = startDate ? new Date(startDate + "T00:00:00") : now;
+  start.setHours(0, 0, 0, 0);
+  const diffDays = Math.floor((now - start) / (24 * 60 * 60 * 1000));
+  const weekNumber = Math.max(1, Math.floor(diffDays / 7));
 
   const currentMonth = now.toLocaleDateString("id-ID", {
     month: "long",
