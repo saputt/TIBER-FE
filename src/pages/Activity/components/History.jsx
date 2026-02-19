@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Card from "../../../components/atoms/Card";
 import CheckboxCircle from "../../../components/atoms/CheckboxCircle";
 import { formatRelativeDateID } from "../../../utils/dateUtils";
+import { emptyHistoryMessages } from "../../../utils/messages";
+import { Clock } from "lucide-react";
 
 const History = ({ data = [], onOpen }) => {
   const sortedData = [...data].sort(
     (a, b) => new Date(b.date) - new Date(a.date),
   );
+
+  const emptyMessage = useMemo(() =>
+    emptyHistoryMessages[Math.floor(Math.random() * emptyHistoryMessages.length)]
+    , []);
 
   return (
     <Card boxShadowActive={true} className="lg:pt-4" variant="white">
@@ -55,9 +61,14 @@ const History = ({ data = [], onOpen }) => {
             );
           })
         ) : (
-          <p className="text-center text-gray-500 py-4">
-            Belum ada riwayat aktivitas
-          </p>
+          <div className="flex flex-col items-center justify-center py-8 gap-3">
+            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+              <Clock size={24} className="text-primary" />
+            </div>
+            <p className="font-inter text-h6 text-gray-400 text-center max-w-xs leading-relaxed">
+              {emptyMessage}
+            </p>
+          </div>
         )}
       </div>
     </Card>
@@ -65,3 +76,4 @@ const History = ({ data = [], onOpen }) => {
 };
 
 export default History;
+
