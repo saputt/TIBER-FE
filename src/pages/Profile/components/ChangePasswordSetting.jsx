@@ -40,7 +40,6 @@ const ChangePasswordSetting = () => {
           setIsSuccess(true);
         },
         onError: (error) => {
-          console.log(error);
           const message = error?.message;
           if (message === "The old password you entered is incorrect.") {
             setPasswordError("Kata sandi lama yang Anda masukkan salah");

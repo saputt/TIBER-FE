@@ -4,6 +4,7 @@ import Badge from "../../components/atoms/Badge";
 import { Pill } from "lucide-react";
 import Button from "../../components/atoms/Button";
 import CardLog from "./components/CardLog";
+import CalendarStrip from "./components/CalendarStrip";
 import CardStreak from "./components/CardStreak";
 import CardJourney from "./components/CardJourney";
 import CardControl from "./components/CardControl";
@@ -40,39 +41,46 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 lg:grid lg:grid-cols-12 lg:items-start">
-      <div className="flex flex-col gap-6 lg:col-span-8">
-        <div className="w-full">
-          <div className="w-full">
-            <CardLog
-              isTaken={dashboard?.data?.is_taken_today}
-              reminderTime={personalization?.data?.reminder_time}
-              timeCategory={personalization?.data?.time_category}
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-          <CardProgress
-            currentDay={dashboard?.data?.days_passed}
-            totalDay={dashboard?.data?.total_days}
-          />
-          <CardJourney
-            dayPass={dashboard?.data?.days_passed}
-            totalDay={dashboard?.data?.total_days}
-          />
-        </div>
+    <div className="flex flex-col gap-6 lg:grid lg:grid-cols-12 lg:gap-4 lg:items-stretch">
+      {/* Row 1: Calendar Strip — full width */}
+      <div className="lg:col-span-12">
+        <CalendarStrip
+          isTakenToday={dashboard?.data?.is_taken_today}
+        />
       </div>
 
-      <div className="flex flex-col gap-6 lg:col-span-4 h-full">
+      {/* Row 2: CardLog (left) + Streak & Control (right) */}
+      <div className="lg:col-span-8">
+        <CardLog
+          isTaken={dashboard?.data?.is_taken_today}
+          reminderTime={personalization?.data?.reminder_time}
+          timeCategory={personalization?.data?.time_category}
+          isCompleted={dashboard?.data?.days_passed >= dashboard?.data?.total_days}
+        />
+      </div>
+
+      <div className="flex flex-col gap-4 lg:col-span-4">
         <CardStreak streak={dashboard?.data?.current_streak} />
         <CardControl
           dayLeft={calculateDaysLeft(dashboard?.data?.next_checkup)}
         />
+      </div>
 
-        <div className="lg:mt-auto">
-          <CardImportant />
-        </div>
+      {/* Row 3: Progress + Journey + Important */}
+      <div className="lg:col-span-4">
+        <CardProgress
+          currentDay={dashboard?.data?.days_passed}
+          totalDay={dashboard?.data?.total_days}
+        />
+      </div>
+      <div className="lg:col-span-4">
+        <CardJourney
+          dayPass={dashboard?.data?.days_passed}
+          totalDay={dashboard?.data?.total_days}
+        />
+      </div>
+      <div className="lg:col-span-4">
+        <CardImportant />
       </div>
     </div>
   );

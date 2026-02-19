@@ -4,8 +4,19 @@ import Notch from "../../../components/atoms/Notch";
 import CheckboxCircle from "../../../components/atoms/CheckboxCircle";
 import { useActivityStore } from "../../../store/useActivityStore";
 
-const CalenderWeek = ({ weekSummary }) => {
+const CalenderWeek = ({ weekSummary, startDate }) => {
   const setCalenderMonth = useActivityStore((state) => state.setCalenderMonth);
+
+  const now = new Date();
+  const start = startDate ? new Date(startDate) : now;
+  const diffMs = now - start;
+  const weekNumber = Math.max(1, Math.ceil(diffMs / (7 * 24 * 60 * 60 * 1000)));
+
+  const currentMonth = now.toLocaleDateString("id-ID", {
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <Card
       className="relative overflow-hidden pt-8 flex flex-col gap-3"
@@ -14,21 +25,26 @@ const CalenderWeek = ({ weekSummary }) => {
       boxShadowActive={true}
     >
       <Notch variant="right" className="font-semibold text-h6 px-5 py-1 lg:text-h5 lg:px-8">
-        Minggu 3 | Januari 2026
+        Minggu {weekNumber} | {currentMonth}
       </Notch>
 
       <div className="flex justify-between">
         {weekSummary.map((week) => {
           const dateObj = new Date(week.date);
-
           const dayInWeek = dateObj.toLocaleDateString("id-ID", {
             weekday: "short",
           });
+          const isTaken = week.status === "taken";
 
           return (
             <div className="flex flex-col items-center gap-1" key={week.date}>
               <p className="text-h6">{dayInWeek}</p>
-              <CheckboxCircle isActive={week.status === "taken"} className="w-8 h-8 lg:w-11 lg:h-11" classCircle="w-4 h-4 lg:w-6 lg:h-6" />
+              <CheckboxCircle
+                isActive={isTaken}
+                size={22}
+                className="w-9 h-9 lg:w-12 lg:h-12"
+                classCircle={`${isTaken ? "animate-[scaleIn_0.4s_ease-out]" : ""}`}
+              />
               <p className="text-h6">{week.date.split("-")[2]}</p>
             </div>
           );

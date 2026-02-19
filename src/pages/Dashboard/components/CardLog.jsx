@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Card from "../../../components/atoms/Card";
-import { CircleCheckBig, Clock, Sun, Moon, Sunset } from "lucide-react";
+import { PartyPopper, Clock, Sun, Moon, Sunset, Medal } from "lucide-react";
 import Button from "../../../components/atoms/Button";
 import { useMedicationLog } from "../../../hooks/useDashboard";
 import { useAuthStore } from "../../../store/useAuthStore";
-import { confirmationMessages, motivationalQuotes } from "../../../utils/messages";
+import { confirmationMessages, motivationalQuotes, completionMessages } from "../../../utils/messages";
 
-const CardLog = ({ isTaken, reminderTime, timeCategory }) => {
+const CardLog = ({ isTaken, reminderTime, timeCategory, isCompleted }) => {
   const { mutate } = useMedicationLog();
   const user = useAuthStore((state) => state.user);
 
   const [currentTime, setCurrentTime] = useState(new Date());
+
+  const [completionQuote] = useState(() => completionMessages[Math.floor(Math.random() * completionMessages.length)]);
 
   const [motivationQuote] = useState(() => motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)]);
 
@@ -83,17 +85,30 @@ const CardLog = ({ isTaken, reminderTime, timeCategory }) => {
     <Card
       boxShadowActive={true}
       size="full"
-      className={`relative flex flex-col gap-4 py-5 px-6 transition-all duration-300 ${isTaken ? 'bg-secondary border-primary/20' : 'bg-white'}`}
+      className={`relative flex flex-col gap-4 py-5 px-6 transition-all duration-300 h-full ${isCompleted ? 'bg-primary/5 border-primary/20' : isTaken ? 'bg-secondary border-primary/20' : 'bg-white'}`}
     >
-      {isTaken ? (
-        <div className="flex flex-col items-center justify-center text-center gap-4 py-2 animate-in fade-in zoom-in duration-500">
-          <div className="bg-primary/10 p-4 rounded-full">
-            <CircleCheckBig size={48} className="text-primary" />
+      {isCompleted ? (
+        <div className="flex flex-col items-center justify-center text-center gap-4 py-2 h-full">
+          <div className="bg-primary/10 p-5 rounded-full">
+            <Medal size={44} className="text-primary" />
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-h4 font-bold text-gray-900">Dosis Selesai!</h3>
-            <p className="text-h6 text-gray-600 max-w-[80%] mx-auto leading-relaxed italic">
+            <h3 className="text-h3 font-bold text-gray-900">Pengobatan Selesai!</h3>
+            <p className="text-h5 text-gray-500 max-w-[85%] mx-auto leading-relaxed italic">
+              "{completionQuote}"
+            </p>
+          </div>
+        </div>
+      ) : isTaken ? (
+        <div className="flex flex-col items-center justify-center text-center gap-4 py-2 h-full animate-in fade-in zoom-in duration-500">
+          <div className="bg-primary/10 p-5 rounded-full">
+            <PartyPopper size={44} className="text-primary" />
+          </div>
+
+          <div className="space-y-2">
+            <h3 className="text-h3 font-bold text-gray-900">Hebat, Kamu Luar Biasa!</h3>
+            <p className="text-h5 text-gray-500 max-w-[85%] mx-auto leading-relaxed italic">
               "{successQuote}"
             </p>
           </div>

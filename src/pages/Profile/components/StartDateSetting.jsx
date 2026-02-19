@@ -26,7 +26,6 @@ const StartDateSetting = ({ startDate }) => {
 
     const dateObj = new Date(selectedDate);
     const formattedDate = dateObj.toISOString().split("T")[0];
-    console.log(formattedDate);
     mutate({
       start_date: formattedDate,
     });

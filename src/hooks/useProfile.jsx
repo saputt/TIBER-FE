@@ -21,7 +21,6 @@ export const useUpdatePersonalization = () => {
   return useMutation({
     mutationFn: (payload) => updatePersonalizationService(payload),
     onSuccess: (data) => {
-      console.log(data)
       queryClient.invalidateQueries({
         queryKey: ["personalization"],
       });
@@ -47,7 +46,6 @@ export const useProfile = () => {
   return useMutation({
     mutationFn: (payload) => profileService(payload),
     onSuccess: (data) => {
-      console.log(data)
     }
   });
 };
@@ -56,7 +54,6 @@ export const useUser = () => {
   return useMutation({
     mutationFn: (payload) => profileService(payload),
     onSuccess: (data) => {
-      console.log(data)
     }
   });
 };
