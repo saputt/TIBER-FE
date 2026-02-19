@@ -72,7 +72,7 @@ const InfoUserPage = () => {
     <div className="min-h-dvh">
       <div className="grid grid-cols-1 place-items-center sm:grid-cols-2 lg:grid-cols-3 items-center gap-8">
         {informationUsers.map(info => (
-          <Card variant="whiteNoBorder" size="full" boxShadowActive="true" className="py-3.5 flex flex-col max-w-74 md:max-w-full min-h-75">
+          <Card variant="whiteNoBorder" size="full" boxShadowActive="true" className="py-3.5 flex flex-col max-w-74 md:max-w-full min-h-75" key={info[0].text}>
             {info.map(data => {
               switch (data.type) {
                 case "heading":

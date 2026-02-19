@@ -12,6 +12,7 @@ const AddNoteForm = () => {
   const [noteText, setNoteText] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
   const [selectedColor, setSelectedColor] = useState("gray");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const today = "24 Jan 2026";
 
@@ -19,6 +20,21 @@ const AddNoteForm = () => {
 
   const handleAddNote = (e) => {
     e.preventDefault();
+
+    if (!selectedStatus.trim()) {
+      setErrorMessage("Nama status harus diisi");
+      return;
+    }
+    if (selectedColor === "gray" || !selectedColor) {
+      setErrorMessage("Pilih warna label");
+      return;
+    }
+    if (!noteText.trim()) {
+      setErrorMessage("Catatan harus diisi");
+      return;
+    }
+    setErrorMessage("");
+
     console.log({
       status: selectedStatus,
       color_status: selectedColor,
@@ -33,6 +49,8 @@ const AddNoteForm = () => {
       setCatatan();
     }, 500);
   };
+
+  const isFormValid = selectedStatus.trim() !== "" && selectedColor.trim() !== "" && noteText.trim() !== "";
 
   return (
     <div className="h-screen w-full bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5 z-50 overflow-auto">
@@ -75,6 +93,12 @@ const AddNoteForm = () => {
 
           <form onSubmit={handleAddNote}>
             <div className="flex flex-col gap-4 lg:my-3 my-1">
+              {errorMessage && (
+                <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm text-center mb-2">
+                  {errorMessage}
+                </div>
+              )}
+
               <div className="grid grid-cols-1 gap-2">
                 <InputLabel
                   label="Nama Status"
@@ -149,6 +173,7 @@ const AddNoteForm = () => {
               type="submit"
               size="full"
               className="py-2.5 text-h5 font-bold rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] transition-all"
+              disabled={isPending}
             >
               {isPending ? "Menyimpan Catatan..." : "Simpan Catatan"}
             </Button>

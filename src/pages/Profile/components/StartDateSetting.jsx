@@ -6,15 +6,33 @@ import DateTrigger from "../../../components/atoms/DateTrigger";
 import DatePicker from "../../../components/organism/DatePicker/DatePicker";
 import { formatDateID } from "../../../utils/dateUtils";
 import { useProfileStore } from "../../../store/useProfileStore";
+import { useUpdatePersonalization } from "../../../hooks/useProfile";
 
-const StartDateSetting = () => {
+const StartDateSetting = ({ startDate }) => {
   const setStartDate = useProfileStore((state) => state.setStartDate);
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(startDate || "");
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
   const handleDateSelect = (date) => {
     setSelectedDate(date);
     setIsDatePickerOpen(false);
+  };
+
+  const isFormValid = selectedDate.trim() !== "";
+  const { mutate, isIdle } = useUpdatePersonalization();
+
+  const handleSubmit = () => {
+    if (!selectedDate) return;
+
+    const dateObj = new Date(selectedDate);
+    const formattedDate = dateObj.toISOString().split("T")[0];
+    console.log(formattedDate);
+    mutate({
+      start_date: formattedDate,
+    });
+    setTimeout(() => {
+      setStartDate();
+    }, 500);
   };
 
   return (
@@ -57,8 +75,8 @@ const StartDateSetting = () => {
           >
             Batal
           </Button>
-          <Button variant="primary" className="flex-1">
-            Simpan
+          <Button variant="primary" className="flex-1" disabled={!isFormValid} onClick={handleSubmit}>
+            {isIdle ? "Simpan" : "Menyimpan..."}
           </Button>
         </div>
       </Card>

@@ -42,7 +42,7 @@ const CardProgress = ({ currentDay, totalDay }) => {
       </div>
       <div className="flex flex-col gap-1">
         <div className="flex">
-          <RangeSlider min={0} max={totalDay} value={currentDay} />
+          <RangeSlider min={0} max={totalDay} value={currentDay} isReadOnly={true} />
         </div>
         <div className="w-full flex justify-between">
           <p className="text-h6">Mulai</p>

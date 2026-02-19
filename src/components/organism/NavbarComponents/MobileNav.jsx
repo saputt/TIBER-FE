@@ -73,7 +73,7 @@ const MobileNav = ({
           <img
             src="/logo.png"
             className="w-9 cursor-pointer"
-            onClick={() => navigate("/dashboard")}
+            onClick={() => { isLogin ? navigate("/dashboard") : navigate("/") }}
             alt="Logo TIBER"
           />
         ) : variant === "setup" ? (
@@ -107,7 +107,7 @@ const MobileNav = ({
             className="text-primary cursor-pointer"
             onClick={() => {
               setMaxStep();
-              navigate(isLogin ? "/dashboard" : "/");
+              navigate(isLogin ? "/profile" : "/");
             }}
           />
         )}
@@ -118,7 +118,7 @@ const MobileNav = ({
             className="text-primary cursor-pointer"
             onClick={() => {
               setMaxStep();
-              navigate(isLogin ? "/dashboard" : "/");
+              navigate(isLogin ? "/profile" : "/");
             }}
           />
         )}
@@ -187,7 +187,7 @@ const MobileNav = ({
           <img
             src="/logo.png"
             className="w-9"
-            onClick={() => navigate("/")}
+            onClick={() => { isLogin ? navigate("/dashboard") : navigate("/") }}
             alt="Logo TIBER"
           />
         )}
@@ -196,7 +196,7 @@ const MobileNav = ({
           <img
             src="/logo.png"
             className="w-9"
-            onClick={() => navigate("/")}
+            onClick={() => { isLogin ? navigate("/dashboard") : navigate("/") }}
             alt="Logo TIBER"
           />
         )}
@@ -205,7 +205,7 @@ const MobileNav = ({
           <img
             src="/logo.png"
             className="w-9"
-            onClick={() => navigate("/")}
+            onClick={() => { isLogin ? navigate("/dashboard") : navigate("/") }}
             alt="Logo TIBER"
           />
         )}

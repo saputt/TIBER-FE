@@ -7,9 +7,9 @@ import DatePicker from "../../../components/organism/DatePicker/DatePicker";
 import { formatDateID } from "../../../utils/dateUtils";
 import { useUpdatePersonalization } from "../../../hooks/useProfile";
 
-const ManageControl = () => {
+const ManageControl = ({ controlDate }) => {
   const setControl = useProfileStore((state) => state.setControl);
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(controlDate || "");
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
   const handleDateSelect = (date) => {

@@ -38,6 +38,8 @@ const Input = ({
         className={`${sizes.full} ${variants[variant]} ${defaultStyle} ${className} ${boxShadow}`}
         onChange={onChange}
         value={value}
+        min={type === "number" ? 1 : undefined}
+        max={type === "number" ? 100 : undefined}
       />
       {endIcon && (
         <div

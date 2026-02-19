@@ -7,10 +7,10 @@ import InputSelect from "../../../components/molecules/InputSelect";
 import Input from "../../../components/atoms/Input";
 import { useUpdatePersonalization } from "../../../hooks/useProfile";
 
-const DurationLogSetting = () => {
+const DurationLogSetting = ({ durationMonth: initialDuration }) => {
   const setDuration = useProfileStore((state) => state.setDuration);
-  const [durationMonth, setDurationMonth] = useState();
-  const { mutate } = useUpdatePersonalization();
+  const [durationMonth, setDurationMonth] = useState(initialDuration || "");
+  const { mutate, isIdle } = useUpdatePersonalization();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +18,12 @@ const DurationLogSetting = () => {
     mutate({
       duration_month: durationMonth,
     });
+    setTimeout(() => {
+      setDuration();
+    }, 500);
   };
+
+  const isFormValid = durationMonth !== "";
 
   return (
     <div className="z-90 bg-white/10 backdrop-blur-sm fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center p-5">
@@ -41,6 +46,7 @@ const DurationLogSetting = () => {
               variant="white"
               onChange={(e) => setDurationMonth(e.target.value)}
               type="number"
+              value={durationMonth}
             />
           </div>
 
@@ -48,8 +54,8 @@ const DurationLogSetting = () => {
             <Button variant="gray" className="flex-1 py-2">
               Batal
             </Button>
-            <Button variant="primary" className="flex-1" type="submit">
-              Simpan
+            <Button variant="primary" className="flex-1" type="submit" disabled={!isFormValid} onClick={handleSubmit}>
+              {isIdle ? "Simpan" : "Menyimpan..."}
             </Button>
           </div>
         </form>

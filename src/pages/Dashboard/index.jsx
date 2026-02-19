@@ -16,9 +16,8 @@ import { useGetPersonalization } from "../../hooks/useProfile";
 
 const DashboardPage = () => {
   const { data: dashboard, isLoading } = useDashboardOverview();
-  const { data: personalization, isLoading: personalizationLoading } = useGetPersonalization();
-
-  console.log(dashboard);
+  const { data: personalization, isLoading: personalizationLoading } =
+    useGetPersonalization();
 
   if (isLoading || personalizationLoading) {
     return <DashboardSkeleton />;
@@ -67,7 +66,9 @@ const DashboardPage = () => {
 
       <div className="flex flex-col gap-6 lg:col-span-4 h-full">
         <CardStreak streak={dashboard?.data?.current_streak} />
-        <CardControl dayLeft={calculateDaysLeft(dashboard?.data?.next_checkup)} />
+        <CardControl
+          dayLeft={calculateDaysLeft(dashboard?.data?.next_checkup)}
+        />
 
         <div className="lg:mt-auto">
           <CardImportant />

@@ -65,7 +65,7 @@ const CatatanKontrol = () => {
           </div>
 
           <div className="relative min-h-[200px]">
-            <div className="absolute left-4 top-0 h-full w-px bg-gray-200 z-0 hidden lg:block"></div>
+            {/* <div className="absolute left-4 top-0 h-full w-px bg-gray-200 z-0 hidden lg:block"></div> */}
 
             <div className="columns-1 md:columns-2 lg:columns-3 gap-5 space-y-5">
               {dailyNotes?.data.map((note) => (

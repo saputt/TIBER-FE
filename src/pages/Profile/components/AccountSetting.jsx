@@ -54,7 +54,7 @@ const AccountSetting = ({ email }) => {
           <p className="text-h5">••••••••</p>
         </div>
         <p
-          className="text-primary text-h5 font-semibold"
+          className="text-primary text-h5 font-semibold cursor-pointer"
           onClick={() => {
             setChangePassword();
           }}
@@ -62,7 +62,7 @@ const AccountSetting = ({ email }) => {
           Ubah
         </p>
       </div>
-      <hr className="text-gray-400" />
+      {/* <hr className="text-gray-400" />
       <div className="flex items-center ">
         <div className="flex flex-col flex-1 gap-1">
           <div className="flex items-center gap-1">
@@ -72,7 +72,7 @@ const AccountSetting = ({ email }) => {
           <p className="text-h5">Menghapus akun secara permanen</p>
         </div>
         <ChevronRight size={20} className="text-primary" />
-      </div>
+      </div> */}
     </Card>
   );
 };
