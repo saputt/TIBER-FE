@@ -129,7 +129,7 @@ const MobileNav = ({
             className="text-primary cursor-pointer"
             onClick={() => {
               setMaxStep();
-              navigate(isLogin ? "/dashboard" : "/");
+              navigate(isLogin ? "/profile" : "/");
             }}
           />
         )}
