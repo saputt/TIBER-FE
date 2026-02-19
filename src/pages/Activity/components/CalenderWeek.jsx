@@ -6,6 +6,7 @@ import { useActivityStore } from "../../../store/useActivityStore";
 
 const CalenderWeek = ({ weekSummary }) => {
   const setCalenderMonth = useActivityStore((state) => state.setCalenderMonth);
+
   return (
     <Card
       className="relative overflow-hidden pt-8 flex flex-col gap-3"
@@ -20,15 +21,20 @@ const CalenderWeek = ({ weekSummary }) => {
       <div className="flex justify-between">
         {weekSummary.map((week) => {
           const dateObj = new Date(week.date);
-
           const dayInWeek = dateObj.toLocaleDateString("id-ID", {
             weekday: "short",
           });
+          const isTaken = week.status === "taken";
 
           return (
             <div className="flex flex-col items-center gap-1" key={week.date}>
               <p className="text-h6">{dayInWeek}</p>
-              <CheckboxCircle isActive={week.status === "taken"} className="w-8 h-8 lg:w-11 lg:h-11" classCircle="w-4 h-4 lg:w-6 lg:h-6" />
+              <CheckboxCircle
+                isActive={isTaken}
+                size={22}
+                className="w-9 h-9 lg:w-12 lg:h-12"
+                classCircle={`${isTaken ? "animate-[scaleIn_0.4s_ease-out]" : ""}`}
+              />
               <p className="text-h6">{week.date.split("-")[2]}</p>
             </div>
           );

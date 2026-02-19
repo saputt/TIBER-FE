@@ -43,3 +43,14 @@ export const streakMessages = [
     "Wow! Semangatmu untuk sembuh sangat menginspirasi.",
     "Jadikan streak ini motivasi untuk terus maju!"
 ];
+
+export const completionMessages = [
+    "Selamat! Kamu telah menyelesaikan seluruh pengobatan. Kamu adalah pejuang sejati!",
+    "Perjalanan panjangmu telah selesai! Terima kasih sudah tidak menyerah.",
+    "Luar biasa! Kamu berhasil menuntaskan pengobatan. Kesehatanmu adalah hadiahnya.",
+    "Kamu hebat! Pengobatanmu telah selesai. Terus jaga kesehatan ya!",
+    "Misi selesai! Konsistensimu selama ini sungguh menginspirasi.",
+    "Bangga padamu! Kamu sudah melewati perjalanan ini dengan penuh ketangguhan.",
+    "Pengobatanmu sudah tuntas! Ini adalah bukti kekuatan dan disiplinmu.",
+    "Selesai! Setiap hari yang kamu jalani adalah bukti bahwa kamu lebih kuat dari TBC.",
+];
